@@ -1,0 +1,628 @@
+{
+  "contractName": "TestRecipientWithoutFallback",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "forwarder",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "getTrustedForwarder",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "forwarder",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "forwarder",
+          "type": "address"
+        }
+      ],
+      "name": "isTrustedForwarder",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"forwarder\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"getTrustedForwarder\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"forwarder\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"forwarder\",\"type\":\"address\"}],\"name\":\"isTrustedForwarder\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"getTrustedForwarder()\":{\"returns\":{\"forwarder\":\"The address of the Forwarder contract that is being used.\"}},\"isTrustedForwarder(address)\":{\"params\":{\"forwarder\":\"The address of the Forwarder contract that is being used.\"},\"returns\":{\"_0\":\"isTrustedForwarder `true` if the Forwarder is trusted to forward relayed transactions by this Recipient.\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"getTrustedForwarder()\":{\"notice\":\":warning: **Warning** :warning: The Forwarder can have a full control over your Recipient. Only trust verified Forwarder.Method is not a required method to allow Recipients to trust multiple Forwarders. Not recommended yet.\"},\"isTrustedForwarder(address)\":{\"notice\":\":warning: **Warning** :warning: The Forwarder can have a full control over your Recipient. Only trust verified Forwarder.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestRecipientWithoutFallback.sol\":\"TestRecipientWithoutFallback\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/BasePaymaster.sol\":{\"keccak256\":\"0x89c669597c94431753f0e043015677d0a2261121d8dee5db04baa9e0bd60506e\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://195cad8f002b5fd930f007f6f582a8d2193574422c74d65fc556ae58d4227f76\",\"dweb:/ipfs/QmPxDaWYdZfB1kwKCxVMFw92h59RarKXkyadcVT5LT5avd\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/ERC2771Recipient.sol\":{\"keccak256\":\"0x59c3b1808d8e9cdfe652be6e4855e399536b7431d9b2725f8a7ba7ff5cd1d9cf\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a1505389e12708d3de0252d9da1bc9c7fc03f39273bdfb0deb667adb23082e6b\",\"dweb:/ipfs/QmXdWyNCnef8jjELUed3SZEZoUKHVT6yzVr9wqi6fZ2X1E\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/forwarder/IForwarder.sol\":{\"keccak256\":\"0xef3d770001c3245db4408cdd0afdfc622695ccfe31f28b74571d05158bbf83f8\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://08949174ed05b596d89c8f1eeedfeb254993b84054bbc1ff6081ad926f5db406\",\"dweb:/ipfs/QmNQtKzHpie4Esocxuc9YrPtGQyA928a1a5TWbVc7cPoqk\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/interfaces/IERC2771Recipient.sol\":{\"keccak256\":\"0x92a3665ec2fc3d2ab78cf8a08451b2ab6466dc7fae3c215150be2132500406fa\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://364eee344363535733b4cc1a7748e1fc8b10786f6df6c0e2bc0082bcb2477e0e\",\"dweb:/ipfs/QmfCwWAxFqU4woSqu3g5BFPASEA7eCSwcwUSHM9EoYhYdu\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/interfaces/IPaymaster.sol\":{\"keccak256\":\"0x205617108fad6f3543fc12773e9d25998e944852e8ed9d71f79cb799ae299246\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://4903018f63b15211f2714edcf1c56f5c0bee6fea07efaaf908d3a78d07fb6d84\",\"dweb:/ipfs/Qmezexeh6GszFUHW2dgTGWTfb613Ni3tfjLqAtdAYAxCpQ\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/interfaces/IRelayHub.sol\":{\"keccak256\":\"0x19dcbf5e1bfaa413b6800ad84ffedd2989b401cede299f009ff62c33e03ccfae\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://bb5cb7bee7de97770e374b4cad1265c636a740dc7a2013d686a89d9398ba3098\",\"dweb:/ipfs/QmSqhNkFwDtS1EnupbQWduDm78N6s8c1zqXf5aLqZF69Xx\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/interfaces/IStakeManager.sol\":{\"keccak256\":\"0x27535f3677a2c373862d8672725632fdcabdf5d0e784f80c158063f55be68b5a\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://904ad156bf1cac29f9e13619ee0ee41e602b6cf1fafedea0a1d3be7a7accc654\",\"dweb:/ipfs/QmXVy5gfYXSWYFrkmL2u9jctZDXupiNWbif5tFVpVZMPww\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestPaymasterConfigurableMisbehavior.sol\":{\"keccak256\":\"0xb383ff5807d66eaba645b63fa718f63b351cd134ec7b1a897ec9dc7ee4d81b3e\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://c3c1db889cad142731dad08fd76cbb7585aed967f47cd7c785b76bd7530180f3\",\"dweb:/ipfs/QmZfefyFmWeDZ8mNSrz6Atzq6sVMbqTkmCM7wf1PGwZ7xg\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestPaymasterEverythingAccepted.sol\":{\"keccak256\":\"0xd21014ab3a4ada1c21486db36c971e30be61451e519eaa61f3f074908247c607\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://2956d687a5691de930f698a22a1ff62b151792fbfd4e4a928a5cf6d982e03921\",\"dweb:/ipfs/QmNgkGYL4vqUu6jHHHsRfdCFLnvRQ7WTatkVVJoW2YwJtX\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestRecipientWithoutFallback.sol\":{\"keccak256\":\"0x6d99858001cc3f390957de7162ec7c9aa4054e4e0a8575b6e289f2660b5eea4f\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://c735dfc2a95aeecafe8e85112eeac3b521bca9cf3ca278e57e415e55d26cd97d\",\"dweb:/ipfs/QmczR8wnmhP4HNhaoR5ZUym19vS5U1bJn96Phc4vWu8iS7\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnEip712Library.sol\":{\"keccak256\":\"0xc35980f371cab5d9af3e1ead06f82b2afb705a8dbb2a5f53793f0179c485c274\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://dd7732d690c7959df567ee3e4863b0045583506fbae3c87b684b6173fd126968\",\"dweb:/ipfs/QmUbcUAqxKZTQS5ZwwPVnfNAtCmas4pPWQhRWXXwWQEeef\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnTypes.sol\":{\"keccak256\":\"0xfc3ed2bbd925e24facf0c3bb96d57dd7fc5bcc4a684b5473f04e8d209b758805\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://cb57b5b38d3e588f119ae45174891f2049d1d0de160a12b81a20335cd8bf731b\",\"dweb:/ipfs/Qmf6xfbdLbTKEpnzxwnSaRy1YZJtLYTZh8URqry86oyoSU\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnUtils.sol\":{\"keccak256\":\"0x8616968305b6127f4cb43209502e074c3964230a66c703e6b8623b03e5ec6442\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://2b1f1163fee75613024b38c25e17649933919f4a47a5ba5e8c3ea046023eb1ad\",\"dweb:/ipfs/QmNWReZE8BQ82eXahdKjnNjQWHuH9L9wcTcnKgyV5ypKCa\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/MinLibBytes.sol\":{\"keccak256\":\"0xa61a3d8fcd89182975d0bd17b86c22b6affd2f7bf26db66b1ddb2ee396f122ab\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2e0bc21e2c8c2f483aee9d5bc003fa77dc7afddbaa7cc99560581a416cfdef11\",\"dweb:/ipfs/QmbwLE7AJpoH2LVeeHxewq3tf1vXhLNUdYsubWxzDGKfTr\"]},\"@openzeppelin/contracts/access/Ownable.sol\":{\"keccak256\":\"0xa94b34880e3c1b0b931662cb1c09e5dfa6662f31cba80e07c5ee71cd135c9673\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://40fb1b5102468f783961d0af743f91b9980cf66b50d1d12009f6bb1869cea4d2\",\"dweb:/ipfs/QmYqEbJML4jB1GHbzD4cUZDtJg5wVwNm3vDJq1GbyDus8y\"]},\"@openzeppelin/contracts/interfaces/IERC165.sol\":{\"keccak256\":\"0xd04b0f06e0666f29cf7cccc82894de541e19bb30a765b107b1e40bb7fe5f7d7a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7b652499d098e88d8d878374616bb58434301061cae2253298b3f374044e0ddb\",\"dweb:/ipfs/QmbhAzctqo5jrSKU6idHdVyqfmzCcDbNUPvmx4GiXxfA6q\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x9750c6b834f7b43000631af5cc30001c5f547b3ceb3635488f140f60e897ea6b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5a7d5b1ef5d8d5889ad2ed89d8619c09383b80b72ab226e0fe7bde1636481e34\",\"dweb:/ipfs/QmebXWgtEfumQGBdVeM6c71McLixYXQP5Bk6kKXuoY4Bmr\"]},\"@openzeppelin/contracts/utils/Context.sol\":{\"keccak256\":\"0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6df0ddf21ce9f58271bdfaa85cde98b200ef242a05a3f85c2bc10a8294800a92\",\"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3\"]},\"@openzeppelin/contracts/utils/introspection/ERC165.sol\":{\"keccak256\":\"0xd10975de010d89fd1c78dc5e8a9a7e7f496198085c151648f20cba166b32582b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://fb0048dee081f6fffa5f74afc3fb328483c2a30504e94a0ddd2a5114d731ec4d\",\"dweb:/ipfs/QmZptt1nmYoA5SgjwnSgWqgUSDgm4q52Yos3xhnMv3MV43\"]},\"@openzeppelin/contracts/utils/introspection/ERC165Checker.sol\":{\"keccak256\":\"0xc65c83c1039508fa7a42a09a3c6a32babd1c438ba4dbb23581255e784b5d5eed\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a1b3b38db0f76429db899909025e534c366415e9ea8b5ddc4c8901e6a7fc1461\",\"dweb:/ipfs/QmYv1KxyHjLEky9JWNSsSfpGJbiCxFyzVFgTwQKpiqYGUg\"]},\"@openzeppelin/contracts/utils/introspection/IERC165.sol\":{\"keccak256\":\"0x447a5f3ddc18419d41ff92b3773fb86471b1db25773e07f877f548918a185bf1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://be161e54f24e5c6fae81a12db1a8ae87bc5ae1b0ddc805d82a1440a68455088f\",\"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060405161017738038061017783398101604081905261002f91610050565b600080546001600160a01b0319166001600160a01b03831617905550610080565b60006020828403121561006257600080fd5b81516001600160a01b038116811461007957600080fd5b9392505050565b60e98061008e6000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c8063572b6c05146037578063ce1b815f14606b575b600080fd5b605660423660046085565b6000546001600160a01b0391821691161490565b60405190151581526020015b60405180910390f35b6000546040516001600160a01b0390911681526020016062565b600060208284031215609657600080fd5b81356001600160a01b038116811460ac57600080fd5b939250505056fea26469706673582212207e31454653af11d7e43cd4bab8a8a718122525c14334f235676d1c424c4232e664736f6c63430008070033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060325760003560e01c8063572b6c05146037578063ce1b815f14606b575b600080fd5b605660423660046085565b6000546001600160a01b0391821691161490565b60405190151581526020015b60405180910390f35b6000546040516001600160a01b0390911681526020016062565b600060208284031215609657600080fd5b81356001600160a01b038116811460ac57600080fd5b939250505056fea26469706673582212207e31454653af11d7e43cd4bab8a8a718122525c14334f235676d1c424c4232e664736f6c63430008070033",
+  "immutableReferences": {},
+  "sourceMap": "225:146:30:-:0;;;290:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;1213:17:1;:30;;-1:-1:-1;;;;;;1213:30:1;-1:-1:-1;;;;;1213:30:1;;;;;290:79:30;225:146;;14:290:63;84:6;137:2;125:9;116:7;112:23;108:32;105:52;;;153:1;150;143:12;105:52;179:16;;-1:-1:-1;;;;;224:31:63;;214:42;;204:70;;270:1;267;260:12;204:70;293:5;14:290;-1:-1:-1;;;14:290:63:o;:::-;225:146:30;;;;;;",
+  "deployedSourceMap": "225:146:30:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1294:144:1;;;;;;:::i;:::-;1378:4;1414:17;-1:-1:-1;;;;;1401:30:1;;;1414:17;;1401:30;;1294:144;;;;678:14:63;;671:22;653:41;;641:2;626:18;1294:144:1;;;;;;;;1019:119;1079:17;1114;1019:119;;-1:-1:-1;;;;;1114:17:1;;;451:51:63;;439:2;424:18;1019:119:1;305:203:63;14:286;73:6;126:2;114:9;105:7;101:23;97:32;94:52;;;142:1;139;132:12;94:52;168:23;;-1:-1:-1;;;;;220:31:63;;210:42;;200:70;;266:1;263;256:12;200:70;289:5;14:286;-1:-1:-1;;;14:286:63:o",
+  "source": "pragma solidity ^0.8.0;\n\n/* solhint-disable avoid-tx-origin */\n// SPDX-License-Identifier: GPL-3.0-only\n\nimport \"../utils/GsnUtils.sol\";\nimport \"../ERC2771Recipient.sol\";\nimport \"./TestPaymasterConfigurableMisbehavior.sol\";\n\ncontract TestRecipientWithoutFallback is ERC2771Recipient {\n\n    constructor(address forwarder) {\n        _setTrustedForwarder(forwarder);\n    }\n}",
+  "sourcePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestRecipientWithoutFallback.sol",
+  "ast": {
+    "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestRecipientWithoutFallback.sol",
+    "exportedSymbols": {
+      "BasePaymaster": [
+        397
+      ],
+      "Context": [
+        11474
+      ],
+      "ERC165": [
+        12112
+      ],
+      "ERC165Checker": [
+        12306
+      ],
+      "ERC2771Recipient": [
+        500
+      ],
+      "GsnEip712Library": [
+        8430
+      ],
+      "GsnTypes": [
+        8458
+      ],
+      "GsnUtils": [
+        8538
+      ],
+      "IERC165": [
+        12318
+      ],
+      "IERC20": [
+        10815
+      ],
+      "IERC2771Recipient": [
+        5374
+      ],
+      "IForwarder": [
+        5129
+      ],
+      "IPaymaster": [
+        5447
+      ],
+      "IRelayHub": [
+        5896
+      ],
+      "IStakeManager": [
+        6284
+      ],
+      "MinLibBytes": [
+        8653
+      ],
+      "Ownable": [
+        10148
+      ],
+      "TestPaymasterConfigurableMisbehavior": [
+        6866
+      ],
+      "TestPaymasterEverythingAccepted": [
+        7006
+      ],
+      "TestRecipientWithoutFallback": [
+        7562
+      ]
+    },
+    "id": 7563,
+    "license": "GPL-3.0-only",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7546,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:30"
+      },
+      {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnUtils.sol",
+        "file": "../utils/GsnUtils.sol",
+        "id": 7547,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 7563,
+        "sourceUnit": 8539,
+        "src": "105:31:30",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/ERC2771Recipient.sol",
+        "file": "../ERC2771Recipient.sol",
+        "id": 7548,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 7563,
+        "sourceUnit": 501,
+        "src": "137:33:30",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestPaymasterConfigurableMisbehavior.sol",
+        "file": "./TestPaymasterConfigurableMisbehavior.sol",
+        "id": 7549,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 7563,
+        "sourceUnit": 6867,
+        "src": "171:52:30",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 7550,
+              "name": "ERC2771Recipient",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 500,
+              "src": "266:16:30"
+            },
+            "id": 7551,
+            "nodeType": "InheritanceSpecifier",
+            "src": "266:16:30"
+          }
+        ],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 7562,
+        "linearizedBaseContracts": [
+          7562,
+          500,
+          5374
+        ],
+        "name": "TestRecipientWithoutFallback",
+        "nameLocation": "234:28:30",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 7560,
+              "nodeType": "Block",
+              "src": "321:48:30",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 7557,
+                        "name": "forwarder",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7553,
+                        "src": "352:9:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 7556,
+                      "name": "_setTrustedForwarder",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 424,
+                      "src": "331:20:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 7558,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "331:31:30",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7559,
+                  "nodeType": "ExpressionStatement",
+                  "src": "331:31:30"
+                }
+              ]
+            },
+            "id": 7561,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7554,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7553,
+                  "mutability": "mutable",
+                  "name": "forwarder",
+                  "nameLocation": "310:9:30",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7561,
+                  "src": "302:17:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7552,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "302:7:30",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "301:19:30"
+            },
+            "returnParameters": {
+              "id": 7555,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "321:0:30"
+            },
+            "scope": 7562,
+            "src": "290:79:30",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 7563,
+        "src": "225:146:30",
+        "usedErrors": []
+      }
+    ],
+    "src": "0:371:30"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestRecipientWithoutFallback.sol",
+    "exportedSymbols": {
+      "BasePaymaster": [
+        397
+      ],
+      "Context": [
+        11474
+      ],
+      "ERC165": [
+        12112
+      ],
+      "ERC165Checker": [
+        12306
+      ],
+      "ERC2771Recipient": [
+        500
+      ],
+      "GsnEip712Library": [
+        8430
+      ],
+      "GsnTypes": [
+        8458
+      ],
+      "GsnUtils": [
+        8538
+      ],
+      "IERC165": [
+        12318
+      ],
+      "IERC20": [
+        10815
+      ],
+      "IERC2771Recipient": [
+        5374
+      ],
+      "IForwarder": [
+        5129
+      ],
+      "IPaymaster": [
+        5447
+      ],
+      "IRelayHub": [
+        5896
+      ],
+      "IStakeManager": [
+        6284
+      ],
+      "MinLibBytes": [
+        8653
+      ],
+      "Ownable": [
+        10148
+      ],
+      "TestPaymasterConfigurableMisbehavior": [
+        6866
+      ],
+      "TestPaymasterEverythingAccepted": [
+        7006
+      ],
+      "TestRecipientWithoutFallback": [
+        7562
+      ]
+    },
+    "id": 7563,
+    "license": "GPL-3.0-only",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7546,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:30"
+      },
+      {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnUtils.sol",
+        "file": "../utils/GsnUtils.sol",
+        "id": 7547,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 7563,
+        "sourceUnit": 8539,
+        "src": "105:31:30",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/ERC2771Recipient.sol",
+        "file": "../ERC2771Recipient.sol",
+        "id": 7548,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 7563,
+        "sourceUnit": 501,
+        "src": "137:33:30",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestPaymasterConfigurableMisbehavior.sol",
+        "file": "./TestPaymasterConfigurableMisbehavior.sol",
+        "id": 7549,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 7563,
+        "sourceUnit": 6867,
+        "src": "171:52:30",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 7550,
+              "name": "ERC2771Recipient",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 500,
+              "src": "266:16:30"
+            },
+            "id": 7551,
+            "nodeType": "InheritanceSpecifier",
+            "src": "266:16:30"
+          }
+        ],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 7562,
+        "linearizedBaseContracts": [
+          7562,
+          500,
+          5374
+        ],
+        "name": "TestRecipientWithoutFallback",
+        "nameLocation": "234:28:30",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 7560,
+              "nodeType": "Block",
+              "src": "321:48:30",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 7557,
+                        "name": "forwarder",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7553,
+                        "src": "352:9:30",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 7556,
+                      "name": "_setTrustedForwarder",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 424,
+                      "src": "331:20:30",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 7558,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "331:31:30",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7559,
+                  "nodeType": "ExpressionStatement",
+                  "src": "331:31:30"
+                }
+              ]
+            },
+            "id": 7561,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7554,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7553,
+                  "mutability": "mutable",
+                  "name": "forwarder",
+                  "nameLocation": "310:9:30",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7561,
+                  "src": "302:17:30",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7552,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "302:7:30",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "301:19:30"
+            },
+            "returnParameters": {
+              "id": 7555,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "321:0:30"
+            },
+            "scope": 7562,
+            "src": "290:79:30",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 7563,
+        "src": "225:146:30",
+        "usedErrors": []
+      }
+    ],
+    "src": "0:371:30"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.7+commit.e28d00a7.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2023-06-08T13:50:08.508Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "getTrustedForwarder()": {
+        "returns": {
+          "forwarder": "The address of the Forwarder contract that is being used."
+        }
+      },
+      "isTrustedForwarder(address)": {
+        "params": {
+          "forwarder": "The address of the Forwarder contract that is being used."
+        },
+        "returns": {
+          "_0": "isTrustedForwarder `true` if the Forwarder is trusted to forward relayed transactions by this Recipient."
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "getTrustedForwarder()": {
+        "notice": ":warning: **Warning** :warning: The Forwarder can have a full control over your Recipient. Only trust verified Forwarder.Method is not a required method to allow Recipients to trust multiple Forwarders. Not recommended yet."
+      },
+      "isTrustedForwarder(address)": {
+        "notice": ":warning: **Warning** :warning: The Forwarder can have a full control over your Recipient. Only trust verified Forwarder."
+      }
+    },
+    "version": 1
+  }
+}

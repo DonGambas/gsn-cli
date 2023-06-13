@@ -1,0 +1,2215 @@
+{
+    "contractName": "GsnUtils",
+    "abi": [],
+    "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"title\":\"The GSN Solidity Utils Library\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"Some library functions used throughout the GSN Solidity codebase.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnUtils.sol\":\"GsnUtils\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/forwarder/IForwarder.sol\":{\"keccak256\":\"0xef3d770001c3245db4408cdd0afdfc622695ccfe31f28b74571d05158bbf83f8\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://08949174ed05b596d89c8f1eeedfeb254993b84054bbc1ff6081ad926f5db406\",\"dweb:/ipfs/QmNQtKzHpie4Esocxuc9YrPtGQyA928a1a5TWbVc7cPoqk\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnTypes.sol\":{\"keccak256\":\"0xfc3ed2bbd925e24facf0c3bb96d57dd7fc5bcc4a684b5473f04e8d209b758805\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://cb57b5b38d3e588f119ae45174891f2049d1d0de160a12b81a20335cd8bf731b\",\"dweb:/ipfs/Qmf6xfbdLbTKEpnzxwnSaRy1YZJtLYTZh8URqry86oyoSU\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnUtils.sol\":{\"keccak256\":\"0x8616968305b6127f4cb43209502e074c3964230a66c703e6b8623b03e5ec6442\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://2b1f1163fee75613024b38c25e17649933919f4a47a5ba5e8c3ea046023eb1ad\",\"dweb:/ipfs/QmNWReZE8BQ82eXahdKjnNjQWHuH9L9wcTcnKgyV5ypKCa\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/MinLibBytes.sol\":{\"keccak256\":\"0xa61a3d8fcd89182975d0bd17b86c22b6affd2f7bf26db66b1ddb2ee396f122ab\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2e0bc21e2c8c2f483aee9d5bc003fa77dc7afddbaa7cc99560581a416cfdef11\",\"dweb:/ipfs/QmbwLE7AJpoH2LVeeHxewq3tf1vXhLNUdYsubWxzDGKfTr\"]},\"@openzeppelin/contracts/interfaces/IERC165.sol\":{\"keccak256\":\"0xd04b0f06e0666f29cf7cccc82894de541e19bb30a765b107b1e40bb7fe5f7d7a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7b652499d098e88d8d878374616bb58434301061cae2253298b3f374044e0ddb\",\"dweb:/ipfs/QmbhAzctqo5jrSKU6idHdVyqfmzCcDbNUPvmx4GiXxfA6q\"]},\"@openzeppelin/contracts/utils/introspection/IERC165.sol\":{\"keccak256\":\"0x447a5f3ddc18419d41ff92b3773fb86471b1db25773e07f877f548918a185bf1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://be161e54f24e5c6fae81a12db1a8ae87bc5ae1b0ddc805d82a1440a68455088f\",\"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy\"]}},\"version\":1}",
+    "bytecode": "0x60566037600b82828239805160001a607314602a57634e487b7160e01b600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122029d2b1d5bb7feb0ee683aada70d1a761cd2f0fab272e54b674ac16a3f779f72764736f6c63430008070033",
+    "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122029d2b1d5bb7feb0ee683aada70d1a761cd2f0fab272e54b674ac16a3f779f72764736f6c63430008070033",
+    "immutableReferences": {},
+    "sourceMap": "295:1990:40:-:0;;;;;;;;;;;;;;;-1:-1:-1;;;295:1990:40;;;;;;;;;;;;;;;;;",
+    "deployedSourceMap": "295:1990:40:-:0;;;;;;;;",
+    "source": "pragma solidity ^0.8.0;\n\n/* solhint-disable no-inline-assembly */\n// SPDX-License-Identifier: GPL-3.0-only\n\nimport \"../utils/MinLibBytes.sol\";\nimport \"./GsnTypes.sol\";\n\n/**\n * @title The GSN Solidity Utils Library\n * @notice Some library functions used throughout the GSN Solidity codebase.\n */\nlibrary GsnUtils {\n\n    bytes32 constant private RELAY_REQUEST_ID_MASK = 0x00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;\n\n    /**\n     * @notice Calculate an identifier for the meta-transaction in a format similar to a transaction hash.\n     * Note that uniqueness relies on signature and may not be enforced if meta-transactions are verified\n     * with a different algorithm, e.g. when batching.\n     * @param relayRequest The `RelayRequest` for which an ID is being calculated.\n     * @param signature The signature for the `RelayRequest`. It is not validated here and may even remain empty.\n     */\n    function getRelayRequestID(GsnTypes.RelayRequest calldata relayRequest, bytes calldata signature)\n    internal\n    pure\n    returns (bytes32) {\n        return keccak256(abi.encode(relayRequest.request.from, relayRequest.request.nonce, signature)) & RELAY_REQUEST_ID_MASK;\n    }\n\n    /**\n     * @notice Extract the method identifier signature from the encoded function call.\n     */\n    function getMethodSig(bytes memory msgData) internal pure returns (bytes4) {\n        return MinLibBytes.readBytes4(msgData, 0);\n    }\n\n    /**\n     * @notice Extract a parameter from encoded-function block.\n     * see: https://solidity.readthedocs.io/en/develop/abi-spec.html#formal-specification-of-the-encoding\n     * The return value should be casted to the right type (`uintXXX`/`bytesXXX`/`address`/`bool`/`enum`).\n     * @param msgData Byte array containing a uint256 value.\n     * @param index Index in byte array of uint256 value.\n     * @return result uint256 value from byte array.\n     */\n    function getParam(bytes memory msgData, uint256 index) internal pure returns (uint256 result) {\n        return MinLibBytes.readUint256(msgData, 4 + index * 32);\n    }\n\n    /// @notice Re-throw revert with the same revert data.\n    function revertWithData(bytes memory data) internal pure {\n        assembly {\n            revert(add(data,32), mload(data))\n        }\n    }\n\n}",
+    "sourcePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnUtils.sol",
+    "ast": {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnUtils.sol",
+        "exportedSymbols": {
+            "GsnTypes": [
+                8458
+            ],
+            "GsnUtils": [
+                8538
+            ],
+            "IERC165": [
+                12318
+            ],
+            "IForwarder": [
+                5129
+            ],
+            "MinLibBytes": [
+                8653
+            ]
+        },
+        "id": 8539,
+        "license": "GPL-3.0-only",
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 8460,
+                "literals": [
+                    "solidity",
+                    "^",
+                    "0.8",
+                    ".0"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "0:23:40"
+            },
+            {
+                "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/MinLibBytes.sol",
+                "file": "../utils/MinLibBytes.sol",
+                "id": 8461,
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "ImportDirective",
+                "scope": 8539,
+                "sourceUnit": 8654,
+                "src": "108:34:40",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnTypes.sol",
+                "file": "./GsnTypes.sol",
+                "id": 8462,
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "ImportDirective",
+                "scope": 8539,
+                "sourceUnit": 8459,
+                "src": "143:24:40",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "abstract": false,
+                "baseContracts": [],
+                "contractDependencies": [],
+                "contractKind": "library",
+                "documentation": {
+                    "id": 8463,
+                    "nodeType": "StructuredDocumentation",
+                    "src": "169:125:40",
+                    "text": " @title The GSN Solidity Utils Library\n @notice Some library functions used throughout the GSN Solidity codebase."
+                },
+                "fullyImplemented": true,
+                "id": 8538,
+                "linearizedBaseContracts": [
+                    8538
+                ],
+                "name": "GsnUtils",
+                "nameLocation": "303:8:40",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "constant": true,
+                        "id": 8466,
+                        "mutability": "constant",
+                        "name": "RELAY_REQUEST_ID_MASK",
+                        "nameLocation": "344:21:40",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 8538,
+                        "src": "319:115:40",
+                        "stateVariable": true,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                        },
+                        "typeName": {
+                            "id": 8464,
+                            "name": "bytes32",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "319:7:40",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                            }
+                        },
+                        "value": {
+                            "hexValue": "307830303030303030304646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646",
+                            "id": 8465,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "368:66:40",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_rational_26959946667150639794667015087019630673637144422540572481103610249215_by_1",
+                                "typeString": "int_const 2695...(60 digits omitted)...9215"
+                            },
+                            "value": "0x00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
+                        },
+                        "visibility": "private"
+                    },
+                    {
+                        "body": {
+                            "id": 8492,
+                            "nodeType": "Block",
+                            "src": "1064:135:40",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "commonType": {
+                                            "typeIdentifier": "t_bytes32",
+                                            "typeString": "bytes32"
+                                        },
+                                        "id": 8490,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "leftExpression": {
+                                            "arguments": [
+                                                {
+                                                    "arguments": [
+                                                        {
+                                                            "expression": {
+                                                                "expression": {
+                                                                    "id": 8480,
+                                                                    "name": "relayRequest",
+                                                                    "nodeType": "Identifier",
+                                                                    "overloadedDeclarations": [],
+                                                                    "referencedDeclaration": 8470,
+                                                                    "src": "1102:12:40",
+                                                                    "typeDescriptions": {
+                                                                        "typeIdentifier": "t_struct$_RelayRequest_$8457_calldata_ptr",
+                                                                        "typeString": "struct GsnTypes.RelayRequest calldata"
+                                                                    }
+                                                                },
+                                                                "id": 8481,
+                                                                "isConstant": false,
+                                                                "isLValue": false,
+                                                                "isPure": false,
+                                                                "lValueRequested": false,
+                                                                "memberName": "request",
+                                                                "nodeType": "MemberAccess",
+                                                                "referencedDeclaration": 8453,
+                                                                "src": "1102:20:40",
+                                                                "typeDescriptions": {
+                                                                    "typeIdentifier": "t_struct$_ForwardRequest_$5058_calldata_ptr",
+                                                                    "typeString": "struct IForwarder.ForwardRequest calldata"
+                                                                }
+                                                            },
+                                                            "id": 8482,
+                                                            "isConstant": false,
+                                                            "isLValue": false,
+                                                            "isPure": false,
+                                                            "lValueRequested": false,
+                                                            "memberName": "from",
+                                                            "nodeType": "MemberAccess",
+                                                            "referencedDeclaration": 5045,
+                                                            "src": "1102:25:40",
+                                                            "typeDescriptions": {
+                                                                "typeIdentifier": "t_address",
+                                                                "typeString": "address"
+                                                            }
+                                                        },
+                                                        {
+                                                            "expression": {
+                                                                "expression": {
+                                                                    "id": 8483,
+                                                                    "name": "relayRequest",
+                                                                    "nodeType": "Identifier",
+                                                                    "overloadedDeclarations": [],
+                                                                    "referencedDeclaration": 8470,
+                                                                    "src": "1129:12:40",
+                                                                    "typeDescriptions": {
+                                                                        "typeIdentifier": "t_struct$_RelayRequest_$8457_calldata_ptr",
+                                                                        "typeString": "struct GsnTypes.RelayRequest calldata"
+                                                                    }
+                                                                },
+                                                                "id": 8484,
+                                                                "isConstant": false,
+                                                                "isLValue": false,
+                                                                "isPure": false,
+                                                                "lValueRequested": false,
+                                                                "memberName": "request",
+                                                                "nodeType": "MemberAccess",
+                                                                "referencedDeclaration": 8453,
+                                                                "src": "1129:20:40",
+                                                                "typeDescriptions": {
+                                                                    "typeIdentifier": "t_struct$_ForwardRequest_$5058_calldata_ptr",
+                                                                    "typeString": "struct IForwarder.ForwardRequest calldata"
+                                                                }
+                                                            },
+                                                            "id": 8485,
+                                                            "isConstant": false,
+                                                            "isLValue": false,
+                                                            "isPure": false,
+                                                            "lValueRequested": false,
+                                                            "memberName": "nonce",
+                                                            "nodeType": "MemberAccess",
+                                                            "referencedDeclaration": 5053,
+                                                            "src": "1129:26:40",
+                                                            "typeDescriptions": {
+                                                                "typeIdentifier": "t_uint256",
+                                                                "typeString": "uint256"
+                                                            }
+                                                        },
+                                                        {
+                                                            "id": 8486,
+                                                            "name": "signature",
+                                                            "nodeType": "Identifier",
+                                                            "overloadedDeclarations": [],
+                                                            "referencedDeclaration": 8472,
+                                                            "src": "1157:9:40",
+                                                            "typeDescriptions": {
+                                                                "typeIdentifier": "t_bytes_calldata_ptr",
+                                                                "typeString": "bytes calldata"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "expression": {
+                                                        "argumentTypes": [
+                                                            {
+                                                                "typeIdentifier": "t_address",
+                                                                "typeString": "address"
+                                                            },
+                                                            {
+                                                                "typeIdentifier": "t_uint256",
+                                                                "typeString": "uint256"
+                                                            },
+                                                            {
+                                                                "typeIdentifier": "t_bytes_calldata_ptr",
+                                                                "typeString": "bytes calldata"
+                                                            }
+                                                        ],
+                                                        "expression": {
+                                                            "id": 8478,
+                                                            "name": "abi",
+                                                            "nodeType": "Identifier",
+                                                            "overloadedDeclarations": [],
+                                                            "referencedDeclaration": 4294967295,
+                                                            "src": "1091:3:40",
+                                                            "typeDescriptions": {
+                                                                "typeIdentifier": "t_magic_abi",
+                                                                "typeString": "abi"
+                                                            }
+                                                        },
+                                                        "id": 8479,
+                                                        "isConstant": false,
+                                                        "isLValue": false,
+                                                        "isPure": true,
+                                                        "lValueRequested": false,
+                                                        "memberName": "encode",
+                                                        "nodeType": "MemberAccess",
+                                                        "src": "1091:10:40",
+                                                        "typeDescriptions": {
+                                                            "typeIdentifier": "t_function_abiencode_pure$__$returns$_t_bytes_memory_ptr_$",
+                                                            "typeString": "function () pure returns (bytes memory)"
+                                                        }
+                                                    },
+                                                    "id": 8487,
+                                                    "isConstant": false,
+                                                    "isLValue": false,
+                                                    "isPure": false,
+                                                    "kind": "functionCall",
+                                                    "lValueRequested": false,
+                                                    "names": [],
+                                                    "nodeType": "FunctionCall",
+                                                    "src": "1091:76:40",
+                                                    "tryCall": false,
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_bytes_memory_ptr",
+                                                        "typeString": "bytes memory"
+                                                    }
+                                                }
+                                            ],
+                                            "expression": {
+                                                "argumentTypes": [
+                                                    {
+                                                        "typeIdentifier": "t_bytes_memory_ptr",
+                                                        "typeString": "bytes memory"
+                                                    }
+                                                ],
+                                                "id": 8477,
+                                                "name": "keccak256",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 4294967288,
+                                                "src": "1081:9:40",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                                                    "typeString": "function (bytes memory) pure returns (bytes32)"
+                                                }
+                                            },
+                                            "id": 8488,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": false,
+                                            "kind": "functionCall",
+                                            "lValueRequested": false,
+                                            "names": [],
+                                            "nodeType": "FunctionCall",
+                                            "src": "1081:87:40",
+                                            "tryCall": false,
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_bytes32",
+                                                "typeString": "bytes32"
+                                            }
+                                        },
+                                        "nodeType": "BinaryOperation",
+                                        "operator": "&",
+                                        "rightExpression": {
+                                            "id": 8489,
+                                            "name": "RELAY_REQUEST_ID_MASK",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [],
+                                            "referencedDeclaration": 8466,
+                                            "src": "1171:21:40",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_bytes32",
+                                                "typeString": "bytes32"
+                                            }
+                                        },
+                                        "src": "1081:111:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes32",
+                                            "typeString": "bytes32"
+                                        }
+                                    },
+                                    "functionReturnParameters": 8476,
+                                    "id": 8491,
+                                    "nodeType": "Return",
+                                    "src": "1074:118:40"
+                                }
+                            ]
+                        },
+                        "documentation": {
+                            "id": 8467,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "441:476:40",
+                            "text": " @notice Calculate an identifier for the meta-transaction in a format similar to a transaction hash.\n Note that uniqueness relies on signature and may not be enforced if meta-transactions are verified\n with a different algorithm, e.g. when batching.\n @param relayRequest The `RelayRequest` for which an ID is being calculated.\n @param signature The signature for the `RelayRequest`. It is not validated here and may even remain empty."
+                        },
+                        "id": 8493,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getRelayRequestID",
+                        "nameLocation": "931:17:40",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 8473,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 8470,
+                                    "mutability": "mutable",
+                                    "name": "relayRequest",
+                                    "nameLocation": "980:12:40",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8493,
+                                    "src": "949:43:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "calldata",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_RelayRequest_$8457_calldata_ptr",
+                                        "typeString": "struct GsnTypes.RelayRequest"
+                                    },
+                                    "typeName": {
+                                        "id": 8469,
+                                        "nodeType": "UserDefinedTypeName",
+                                        "pathNode": {
+                                            "id": 8468,
+                                            "name": "GsnTypes.RelayRequest",
+                                            "nodeType": "IdentifierPath",
+                                            "referencedDeclaration": 8457,
+                                            "src": "949:21:40"
+                                        },
+                                        "referencedDeclaration": 8457,
+                                        "src": "949:21:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_struct$_RelayRequest_$8457_storage_ptr",
+                                            "typeString": "struct GsnTypes.RelayRequest"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 8472,
+                                    "mutability": "mutable",
+                                    "name": "signature",
+                                    "nameLocation": "1009:9:40",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8493,
+                                    "src": "994:24:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "calldata",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bytes_calldata_ptr",
+                                        "typeString": "bytes"
+                                    },
+                                    "typeName": {
+                                        "id": 8471,
+                                        "name": "bytes",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "994:5:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes_storage_ptr",
+                                            "typeString": "bytes"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "948:71:40"
+                        },
+                        "returnParameters": {
+                            "id": 8476,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 8475,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8493,
+                                    "src": "1055:7:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bytes32",
+                                        "typeString": "bytes32"
+                                    },
+                                    "typeName": {
+                                        "id": 8474,
+                                        "name": "bytes32",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1055:7:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes32",
+                                            "typeString": "bytes32"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1054:9:40"
+                        },
+                        "scope": 8538,
+                        "src": "922:277:40",
+                        "stateMutability": "pure",
+                        "virtual": false,
+                        "visibility": "internal"
+                    },
+                    {
+                        "body": {
+                            "id": 8507,
+                            "nodeType": "Block",
+                            "src": "1383:58:40",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "arguments": [
+                                            {
+                                                "id": 8503,
+                                                "name": "msgData",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 8496,
+                                                "src": "1423:7:40",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_bytes_memory_ptr",
+                                                    "typeString": "bytes memory"
+                                                }
+                                            },
+                                            {
+                                                "hexValue": "30",
+                                                "id": 8504,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": true,
+                                                "kind": "number",
+                                                "lValueRequested": false,
+                                                "nodeType": "Literal",
+                                                "src": "1432:1:40",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_rational_0_by_1",
+                                                    "typeString": "int_const 0"
+                                                },
+                                                "value": "0"
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_bytes_memory_ptr",
+                                                    "typeString": "bytes memory"
+                                                },
+                                                {
+                                                    "typeIdentifier": "t_rational_0_by_1",
+                                                    "typeString": "int_const 0"
+                                                }
+                                            ],
+                                            "expression": {
+                                                "id": 8501,
+                                                "name": "MinLibBytes",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 8653,
+                                                "src": "1400:11:40",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_type$_t_contract$_MinLibBytes_$8653_$",
+                                                    "typeString": "type(library MinLibBytes)"
+                                                }
+                                            },
+                                            "id": 8502,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": false,
+                                            "lValueRequested": false,
+                                            "memberName": "readBytes4",
+                                            "nodeType": "MemberAccess",
+                                            "referencedDeclaration": 8652,
+                                            "src": "1400:22:40",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_internal_pure$_t_bytes_memory_ptr_$_t_uint256_$returns$_t_bytes4_$",
+                                                "typeString": "function (bytes memory,uint256) pure returns (bytes4)"
+                                            }
+                                        },
+                                        "id": 8505,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "1400:34:40",
+                                        "tryCall": false,
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes4",
+                                            "typeString": "bytes4"
+                                        }
+                                    },
+                                    "functionReturnParameters": 8500,
+                                    "id": 8506,
+                                    "nodeType": "Return",
+                                    "src": "1393:41:40"
+                                }
+                            ]
+                        },
+                        "documentation": {
+                            "id": 8494,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "1205:98:40",
+                            "text": " @notice Extract the method identifier signature from the encoded function call."
+                        },
+                        "id": 8508,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getMethodSig",
+                        "nameLocation": "1317:12:40",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 8497,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 8496,
+                                    "mutability": "mutable",
+                                    "name": "msgData",
+                                    "nameLocation": "1343:7:40",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8508,
+                                    "src": "1330:20:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bytes_memory_ptr",
+                                        "typeString": "bytes"
+                                    },
+                                    "typeName": {
+                                        "id": 8495,
+                                        "name": "bytes",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1330:5:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes_storage_ptr",
+                                            "typeString": "bytes"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1329:22:40"
+                        },
+                        "returnParameters": {
+                            "id": 8500,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 8499,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8508,
+                                    "src": "1375:6:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bytes4",
+                                        "typeString": "bytes4"
+                                    },
+                                    "typeName": {
+                                        "id": 8498,
+                                        "name": "bytes4",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1375:6:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes4",
+                                            "typeString": "bytes4"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1374:8:40"
+                        },
+                        "scope": 8538,
+                        "src": "1308:133:40",
+                        "stateMutability": "pure",
+                        "virtual": false,
+                        "visibility": "internal"
+                    },
+                    {
+                        "body": {
+                            "id": 8528,
+                            "nodeType": "Block",
+                            "src": "2006:72:40",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "arguments": [
+                                            {
+                                                "id": 8520,
+                                                "name": "msgData",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 8511,
+                                                "src": "2047:7:40",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_bytes_memory_ptr",
+                                                    "typeString": "bytes memory"
+                                                }
+                                            },
+                                            {
+                                                "commonType": {
+                                                    "typeIdentifier": "t_uint256",
+                                                    "typeString": "uint256"
+                                                },
+                                                "id": 8525,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": false,
+                                                "lValueRequested": false,
+                                                "leftExpression": {
+                                                    "hexValue": "34",
+                                                    "id": 8521,
+                                                    "isConstant": false,
+                                                    "isLValue": false,
+                                                    "isPure": true,
+                                                    "kind": "number",
+                                                    "lValueRequested": false,
+                                                    "nodeType": "Literal",
+                                                    "src": "2056:1:40",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_rational_4_by_1",
+                                                        "typeString": "int_const 4"
+                                                    },
+                                                    "value": "4"
+                                                },
+                                                "nodeType": "BinaryOperation",
+                                                "operator": "+",
+                                                "rightExpression": {
+                                                    "commonType": {
+                                                        "typeIdentifier": "t_uint256",
+                                                        "typeString": "uint256"
+                                                    },
+                                                    "id": 8524,
+                                                    "isConstant": false,
+                                                    "isLValue": false,
+                                                    "isPure": false,
+                                                    "lValueRequested": false,
+                                                    "leftExpression": {
+                                                        "id": 8522,
+                                                        "name": "index",
+                                                        "nodeType": "Identifier",
+                                                        "overloadedDeclarations": [],
+                                                        "referencedDeclaration": 8513,
+                                                        "src": "2060:5:40",
+                                                        "typeDescriptions": {
+                                                            "typeIdentifier": "t_uint256",
+                                                            "typeString": "uint256"
+                                                        }
+                                                    },
+                                                    "nodeType": "BinaryOperation",
+                                                    "operator": "*",
+                                                    "rightExpression": {
+                                                        "hexValue": "3332",
+                                                        "id": 8523,
+                                                        "isConstant": false,
+                                                        "isLValue": false,
+                                                        "isPure": true,
+                                                        "kind": "number",
+                                                        "lValueRequested": false,
+                                                        "nodeType": "Literal",
+                                                        "src": "2068:2:40",
+                                                        "typeDescriptions": {
+                                                            "typeIdentifier": "t_rational_32_by_1",
+                                                            "typeString": "int_const 32"
+                                                        },
+                                                        "value": "32"
+                                                    },
+                                                    "src": "2060:10:40",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_uint256",
+                                                        "typeString": "uint256"
+                                                    }
+                                                },
+                                                "src": "2056:14:40",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_uint256",
+                                                    "typeString": "uint256"
+                                                }
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_bytes_memory_ptr",
+                                                    "typeString": "bytes memory"
+                                                },
+                                                {
+                                                    "typeIdentifier": "t_uint256",
+                                                    "typeString": "uint256"
+                                                }
+                                            ],
+                                            "expression": {
+                                                "id": 8518,
+                                                "name": "MinLibBytes",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 8653,
+                                                "src": "2023:11:40",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_type$_t_contract$_MinLibBytes_$8653_$",
+                                                    "typeString": "type(library MinLibBytes)"
+                                                }
+                                            },
+                                            "id": 8519,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": false,
+                                            "lValueRequested": false,
+                                            "memberName": "readUint256",
+                                            "nodeType": "MemberAccess",
+                                            "referencedDeclaration": 8629,
+                                            "src": "2023:23:40",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_internal_pure$_t_bytes_memory_ptr_$_t_uint256_$returns$_t_uint256_$",
+                                                "typeString": "function (bytes memory,uint256) pure returns (uint256)"
+                                            }
+                                        },
+                                        "id": 8526,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "2023:48:40",
+                                        "tryCall": false,
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "functionReturnParameters": 8517,
+                                    "id": 8527,
+                                    "nodeType": "Return",
+                                    "src": "2016:55:40"
+                                }
+                            ]
+                        },
+                        "documentation": {
+                            "id": 8509,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "1447:460:40",
+                            "text": " @notice Extract a parameter from encoded-function block.\n see: https://solidity.readthedocs.io/en/develop/abi-spec.html#formal-specification-of-the-encoding\n The return value should be casted to the right type (`uintXXX`/`bytesXXX`/`address`/`bool`/`enum`).\n @param msgData Byte array containing a uint256 value.\n @param index Index in byte array of uint256 value.\n @return result uint256 value from byte array."
+                        },
+                        "id": 8529,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getParam",
+                        "nameLocation": "1921:8:40",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 8514,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 8511,
+                                    "mutability": "mutable",
+                                    "name": "msgData",
+                                    "nameLocation": "1943:7:40",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8529,
+                                    "src": "1930:20:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bytes_memory_ptr",
+                                        "typeString": "bytes"
+                                    },
+                                    "typeName": {
+                                        "id": 8510,
+                                        "name": "bytes",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1930:5:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes_storage_ptr",
+                                            "typeString": "bytes"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 8513,
+                                    "mutability": "mutable",
+                                    "name": "index",
+                                    "nameLocation": "1960:5:40",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8529,
+                                    "src": "1952:13:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 8512,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1952:7:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1929:37:40"
+                        },
+                        "returnParameters": {
+                            "id": 8517,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 8516,
+                                    "mutability": "mutable",
+                                    "name": "result",
+                                    "nameLocation": "1998:6:40",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8529,
+                                    "src": "1990:14:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 8515,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1990:7:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1989:16:40"
+                        },
+                        "scope": 8538,
+                        "src": "1912:166:40",
+                        "stateMutability": "pure",
+                        "virtual": false,
+                        "visibility": "internal"
+                    },
+                    {
+                        "body": {
+                            "id": 8536,
+                            "nodeType": "Block",
+                            "src": "2200:82:40",
+                            "statements": [
+                                {
+                                    "AST": {
+                                        "nodeType": "YulBlock",
+                                        "src": "2219:57:40",
+                                        "statements": [
+                                            {
+                                                "expression": {
+                                                    "arguments": [
+                                                        {
+                                                            "arguments": [
+                                                                {
+                                                                    "name": "data",
+                                                                    "nodeType": "YulIdentifier",
+                                                                    "src": "2244:4:40"
+                                                                },
+                                                                {
+                                                                    "kind": "number",
+                                                                    "nodeType": "YulLiteral",
+                                                                    "src": "2249:2:40",
+                                                                    "type": "",
+                                                                    "value": "32"
+                                                                }
+                                                            ],
+                                                            "functionName": {
+                                                                "name": "add",
+                                                                "nodeType": "YulIdentifier",
+                                                                "src": "2240:3:40"
+                                                            },
+                                                            "nodeType": "YulFunctionCall",
+                                                            "src": "2240:12:40"
+                                                        },
+                                                        {
+                                                            "arguments": [
+                                                                {
+                                                                    "name": "data",
+                                                                    "nodeType": "YulIdentifier",
+                                                                    "src": "2260:4:40"
+                                                                }
+                                                            ],
+                                                            "functionName": {
+                                                                "name": "mload",
+                                                                "nodeType": "YulIdentifier",
+                                                                "src": "2254:5:40"
+                                                            },
+                                                            "nodeType": "YulFunctionCall",
+                                                            "src": "2254:11:40"
+                                                        }
+                                                    ],
+                                                    "functionName": {
+                                                        "name": "revert",
+                                                        "nodeType": "YulIdentifier",
+                                                        "src": "2233:6:40"
+                                                    },
+                                                    "nodeType": "YulFunctionCall",
+                                                    "src": "2233:33:40"
+                                                },
+                                                "nodeType": "YulExpressionStatement",
+                                                "src": "2233:33:40"
+                                            }
+                                        ]
+                                    },
+                                    "evmVersion": "london",
+                                    "externalReferences": [
+                                        {
+                                            "declaration": 8532,
+                                            "isOffset": false,
+                                            "isSlot": false,
+                                            "src": "2244:4:40",
+                                            "valueSize": 1
+                                        },
+                                        {
+                                            "declaration": 8532,
+                                            "isOffset": false,
+                                            "isSlot": false,
+                                            "src": "2260:4:40",
+                                            "valueSize": 1
+                                        }
+                                    ],
+                                    "id": 8535,
+                                    "nodeType": "InlineAssembly",
+                                    "src": "2210:66:40"
+                                }
+                            ]
+                        },
+                        "documentation": {
+                            "id": 8530,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "2084:54:40",
+                            "text": "@notice Re-throw revert with the same revert data."
+                        },
+                        "id": 8537,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "revertWithData",
+                        "nameLocation": "2152:14:40",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 8533,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 8532,
+                                    "mutability": "mutable",
+                                    "name": "data",
+                                    "nameLocation": "2180:4:40",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8537,
+                                    "src": "2167:17:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bytes_memory_ptr",
+                                        "typeString": "bytes"
+                                    },
+                                    "typeName": {
+                                        "id": 8531,
+                                        "name": "bytes",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2167:5:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes_storage_ptr",
+                                            "typeString": "bytes"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2166:19:40"
+                        },
+                        "returnParameters": {
+                            "id": 8534,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "2200:0:40"
+                        },
+                        "scope": 8538,
+                        "src": "2143:139:40",
+                        "stateMutability": "pure",
+                        "virtual": false,
+                        "visibility": "internal"
+                    }
+                ],
+                "scope": 8539,
+                "src": "295:1990:40",
+                "usedErrors": []
+            }
+        ],
+        "src": "0:2285:40"
+    },
+    "legacyAST": {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnUtils.sol",
+        "exportedSymbols": {
+            "GsnTypes": [
+                8458
+            ],
+            "GsnUtils": [
+                8538
+            ],
+            "IERC165": [
+                12318
+            ],
+            "IForwarder": [
+                5129
+            ],
+            "MinLibBytes": [
+                8653
+            ]
+        },
+        "id": 8539,
+        "license": "GPL-3.0-only",
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 8460,
+                "literals": [
+                    "solidity",
+                    "^",
+                    "0.8",
+                    ".0"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "0:23:40"
+            },
+            {
+                "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/MinLibBytes.sol",
+                "file": "../utils/MinLibBytes.sol",
+                "id": 8461,
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "ImportDirective",
+                "scope": 8539,
+                "sourceUnit": 8654,
+                "src": "108:34:40",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnTypes.sol",
+                "file": "./GsnTypes.sol",
+                "id": 8462,
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "ImportDirective",
+                "scope": 8539,
+                "sourceUnit": 8459,
+                "src": "143:24:40",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "abstract": false,
+                "baseContracts": [],
+                "contractDependencies": [],
+                "contractKind": "library",
+                "documentation": {
+                    "id": 8463,
+                    "nodeType": "StructuredDocumentation",
+                    "src": "169:125:40",
+                    "text": " @title The GSN Solidity Utils Library\n @notice Some library functions used throughout the GSN Solidity codebase."
+                },
+                "fullyImplemented": true,
+                "id": 8538,
+                "linearizedBaseContracts": [
+                    8538
+                ],
+                "name": "GsnUtils",
+                "nameLocation": "303:8:40",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "constant": true,
+                        "id": 8466,
+                        "mutability": "constant",
+                        "name": "RELAY_REQUEST_ID_MASK",
+                        "nameLocation": "344:21:40",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 8538,
+                        "src": "319:115:40",
+                        "stateVariable": true,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                        },
+                        "typeName": {
+                            "id": 8464,
+                            "name": "bytes32",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "319:7:40",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                            }
+                        },
+                        "value": {
+                            "hexValue": "307830303030303030304646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646",
+                            "id": 8465,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "368:66:40",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_rational_26959946667150639794667015087019630673637144422540572481103610249215_by_1",
+                                "typeString": "int_const 2695...(60 digits omitted)...9215"
+                            },
+                            "value": "0x00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
+                        },
+                        "visibility": "private"
+                    },
+                    {
+                        "body": {
+                            "id": 8492,
+                            "nodeType": "Block",
+                            "src": "1064:135:40",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "commonType": {
+                                            "typeIdentifier": "t_bytes32",
+                                            "typeString": "bytes32"
+                                        },
+                                        "id": 8490,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "leftExpression": {
+                                            "arguments": [
+                                                {
+                                                    "arguments": [
+                                                        {
+                                                            "expression": {
+                                                                "expression": {
+                                                                    "id": 8480,
+                                                                    "name": "relayRequest",
+                                                                    "nodeType": "Identifier",
+                                                                    "overloadedDeclarations": [],
+                                                                    "referencedDeclaration": 8470,
+                                                                    "src": "1102:12:40",
+                                                                    "typeDescriptions": {
+                                                                        "typeIdentifier": "t_struct$_RelayRequest_$8457_calldata_ptr",
+                                                                        "typeString": "struct GsnTypes.RelayRequest calldata"
+                                                                    }
+                                                                },
+                                                                "id": 8481,
+                                                                "isConstant": false,
+                                                                "isLValue": false,
+                                                                "isPure": false,
+                                                                "lValueRequested": false,
+                                                                "memberName": "request",
+                                                                "nodeType": "MemberAccess",
+                                                                "referencedDeclaration": 8453,
+                                                                "src": "1102:20:40",
+                                                                "typeDescriptions": {
+                                                                    "typeIdentifier": "t_struct$_ForwardRequest_$5058_calldata_ptr",
+                                                                    "typeString": "struct IForwarder.ForwardRequest calldata"
+                                                                }
+                                                            },
+                                                            "id": 8482,
+                                                            "isConstant": false,
+                                                            "isLValue": false,
+                                                            "isPure": false,
+                                                            "lValueRequested": false,
+                                                            "memberName": "from",
+                                                            "nodeType": "MemberAccess",
+                                                            "referencedDeclaration": 5045,
+                                                            "src": "1102:25:40",
+                                                            "typeDescriptions": {
+                                                                "typeIdentifier": "t_address",
+                                                                "typeString": "address"
+                                                            }
+                                                        },
+                                                        {
+                                                            "expression": {
+                                                                "expression": {
+                                                                    "id": 8483,
+                                                                    "name": "relayRequest",
+                                                                    "nodeType": "Identifier",
+                                                                    "overloadedDeclarations": [],
+                                                                    "referencedDeclaration": 8470,
+                                                                    "src": "1129:12:40",
+                                                                    "typeDescriptions": {
+                                                                        "typeIdentifier": "t_struct$_RelayRequest_$8457_calldata_ptr",
+                                                                        "typeString": "struct GsnTypes.RelayRequest calldata"
+                                                                    }
+                                                                },
+                                                                "id": 8484,
+                                                                "isConstant": false,
+                                                                "isLValue": false,
+                                                                "isPure": false,
+                                                                "lValueRequested": false,
+                                                                "memberName": "request",
+                                                                "nodeType": "MemberAccess",
+                                                                "referencedDeclaration": 8453,
+                                                                "src": "1129:20:40",
+                                                                "typeDescriptions": {
+                                                                    "typeIdentifier": "t_struct$_ForwardRequest_$5058_calldata_ptr",
+                                                                    "typeString": "struct IForwarder.ForwardRequest calldata"
+                                                                }
+                                                            },
+                                                            "id": 8485,
+                                                            "isConstant": false,
+                                                            "isLValue": false,
+                                                            "isPure": false,
+                                                            "lValueRequested": false,
+                                                            "memberName": "nonce",
+                                                            "nodeType": "MemberAccess",
+                                                            "referencedDeclaration": 5053,
+                                                            "src": "1129:26:40",
+                                                            "typeDescriptions": {
+                                                                "typeIdentifier": "t_uint256",
+                                                                "typeString": "uint256"
+                                                            }
+                                                        },
+                                                        {
+                                                            "id": 8486,
+                                                            "name": "signature",
+                                                            "nodeType": "Identifier",
+                                                            "overloadedDeclarations": [],
+                                                            "referencedDeclaration": 8472,
+                                                            "src": "1157:9:40",
+                                                            "typeDescriptions": {
+                                                                "typeIdentifier": "t_bytes_calldata_ptr",
+                                                                "typeString": "bytes calldata"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "expression": {
+                                                        "argumentTypes": [
+                                                            {
+                                                                "typeIdentifier": "t_address",
+                                                                "typeString": "address"
+                                                            },
+                                                            {
+                                                                "typeIdentifier": "t_uint256",
+                                                                "typeString": "uint256"
+                                                            },
+                                                            {
+                                                                "typeIdentifier": "t_bytes_calldata_ptr",
+                                                                "typeString": "bytes calldata"
+                                                            }
+                                                        ],
+                                                        "expression": {
+                                                            "id": 8478,
+                                                            "name": "abi",
+                                                            "nodeType": "Identifier",
+                                                            "overloadedDeclarations": [],
+                                                            "referencedDeclaration": 4294967295,
+                                                            "src": "1091:3:40",
+                                                            "typeDescriptions": {
+                                                                "typeIdentifier": "t_magic_abi",
+                                                                "typeString": "abi"
+                                                            }
+                                                        },
+                                                        "id": 8479,
+                                                        "isConstant": false,
+                                                        "isLValue": false,
+                                                        "isPure": true,
+                                                        "lValueRequested": false,
+                                                        "memberName": "encode",
+                                                        "nodeType": "MemberAccess",
+                                                        "src": "1091:10:40",
+                                                        "typeDescriptions": {
+                                                            "typeIdentifier": "t_function_abiencode_pure$__$returns$_t_bytes_memory_ptr_$",
+                                                            "typeString": "function () pure returns (bytes memory)"
+                                                        }
+                                                    },
+                                                    "id": 8487,
+                                                    "isConstant": false,
+                                                    "isLValue": false,
+                                                    "isPure": false,
+                                                    "kind": "functionCall",
+                                                    "lValueRequested": false,
+                                                    "names": [],
+                                                    "nodeType": "FunctionCall",
+                                                    "src": "1091:76:40",
+                                                    "tryCall": false,
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_bytes_memory_ptr",
+                                                        "typeString": "bytes memory"
+                                                    }
+                                                }
+                                            ],
+                                            "expression": {
+                                                "argumentTypes": [
+                                                    {
+                                                        "typeIdentifier": "t_bytes_memory_ptr",
+                                                        "typeString": "bytes memory"
+                                                    }
+                                                ],
+                                                "id": 8477,
+                                                "name": "keccak256",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 4294967288,
+                                                "src": "1081:9:40",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                                                    "typeString": "function (bytes memory) pure returns (bytes32)"
+                                                }
+                                            },
+                                            "id": 8488,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": false,
+                                            "kind": "functionCall",
+                                            "lValueRequested": false,
+                                            "names": [],
+                                            "nodeType": "FunctionCall",
+                                            "src": "1081:87:40",
+                                            "tryCall": false,
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_bytes32",
+                                                "typeString": "bytes32"
+                                            }
+                                        },
+                                        "nodeType": "BinaryOperation",
+                                        "operator": "&",
+                                        "rightExpression": {
+                                            "id": 8489,
+                                            "name": "RELAY_REQUEST_ID_MASK",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [],
+                                            "referencedDeclaration": 8466,
+                                            "src": "1171:21:40",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_bytes32",
+                                                "typeString": "bytes32"
+                                            }
+                                        },
+                                        "src": "1081:111:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes32",
+                                            "typeString": "bytes32"
+                                        }
+                                    },
+                                    "functionReturnParameters": 8476,
+                                    "id": 8491,
+                                    "nodeType": "Return",
+                                    "src": "1074:118:40"
+                                }
+                            ]
+                        },
+                        "documentation": {
+                            "id": 8467,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "441:476:40",
+                            "text": " @notice Calculate an identifier for the meta-transaction in a format similar to a transaction hash.\n Note that uniqueness relies on signature and may not be enforced if meta-transactions are verified\n with a different algorithm, e.g. when batching.\n @param relayRequest The `RelayRequest` for which an ID is being calculated.\n @param signature The signature for the `RelayRequest`. It is not validated here and may even remain empty."
+                        },
+                        "id": 8493,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getRelayRequestID",
+                        "nameLocation": "931:17:40",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 8473,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 8470,
+                                    "mutability": "mutable",
+                                    "name": "relayRequest",
+                                    "nameLocation": "980:12:40",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8493,
+                                    "src": "949:43:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "calldata",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_RelayRequest_$8457_calldata_ptr",
+                                        "typeString": "struct GsnTypes.RelayRequest"
+                                    },
+                                    "typeName": {
+                                        "id": 8469,
+                                        "nodeType": "UserDefinedTypeName",
+                                        "pathNode": {
+                                            "id": 8468,
+                                            "name": "GsnTypes.RelayRequest",
+                                            "nodeType": "IdentifierPath",
+                                            "referencedDeclaration": 8457,
+                                            "src": "949:21:40"
+                                        },
+                                        "referencedDeclaration": 8457,
+                                        "src": "949:21:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_struct$_RelayRequest_$8457_storage_ptr",
+                                            "typeString": "struct GsnTypes.RelayRequest"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 8472,
+                                    "mutability": "mutable",
+                                    "name": "signature",
+                                    "nameLocation": "1009:9:40",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8493,
+                                    "src": "994:24:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "calldata",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bytes_calldata_ptr",
+                                        "typeString": "bytes"
+                                    },
+                                    "typeName": {
+                                        "id": 8471,
+                                        "name": "bytes",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "994:5:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes_storage_ptr",
+                                            "typeString": "bytes"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "948:71:40"
+                        },
+                        "returnParameters": {
+                            "id": 8476,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 8475,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8493,
+                                    "src": "1055:7:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bytes32",
+                                        "typeString": "bytes32"
+                                    },
+                                    "typeName": {
+                                        "id": 8474,
+                                        "name": "bytes32",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1055:7:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes32",
+                                            "typeString": "bytes32"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1054:9:40"
+                        },
+                        "scope": 8538,
+                        "src": "922:277:40",
+                        "stateMutability": "pure",
+                        "virtual": false,
+                        "visibility": "internal"
+                    },
+                    {
+                        "body": {
+                            "id": 8507,
+                            "nodeType": "Block",
+                            "src": "1383:58:40",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "arguments": [
+                                            {
+                                                "id": 8503,
+                                                "name": "msgData",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 8496,
+                                                "src": "1423:7:40",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_bytes_memory_ptr",
+                                                    "typeString": "bytes memory"
+                                                }
+                                            },
+                                            {
+                                                "hexValue": "30",
+                                                "id": 8504,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": true,
+                                                "kind": "number",
+                                                "lValueRequested": false,
+                                                "nodeType": "Literal",
+                                                "src": "1432:1:40",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_rational_0_by_1",
+                                                    "typeString": "int_const 0"
+                                                },
+                                                "value": "0"
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_bytes_memory_ptr",
+                                                    "typeString": "bytes memory"
+                                                },
+                                                {
+                                                    "typeIdentifier": "t_rational_0_by_1",
+                                                    "typeString": "int_const 0"
+                                                }
+                                            ],
+                                            "expression": {
+                                                "id": 8501,
+                                                "name": "MinLibBytes",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 8653,
+                                                "src": "1400:11:40",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_type$_t_contract$_MinLibBytes_$8653_$",
+                                                    "typeString": "type(library MinLibBytes)"
+                                                }
+                                            },
+                                            "id": 8502,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": false,
+                                            "lValueRequested": false,
+                                            "memberName": "readBytes4",
+                                            "nodeType": "MemberAccess",
+                                            "referencedDeclaration": 8652,
+                                            "src": "1400:22:40",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_internal_pure$_t_bytes_memory_ptr_$_t_uint256_$returns$_t_bytes4_$",
+                                                "typeString": "function (bytes memory,uint256) pure returns (bytes4)"
+                                            }
+                                        },
+                                        "id": 8505,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "1400:34:40",
+                                        "tryCall": false,
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes4",
+                                            "typeString": "bytes4"
+                                        }
+                                    },
+                                    "functionReturnParameters": 8500,
+                                    "id": 8506,
+                                    "nodeType": "Return",
+                                    "src": "1393:41:40"
+                                }
+                            ]
+                        },
+                        "documentation": {
+                            "id": 8494,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "1205:98:40",
+                            "text": " @notice Extract the method identifier signature from the encoded function call."
+                        },
+                        "id": 8508,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getMethodSig",
+                        "nameLocation": "1317:12:40",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 8497,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 8496,
+                                    "mutability": "mutable",
+                                    "name": "msgData",
+                                    "nameLocation": "1343:7:40",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8508,
+                                    "src": "1330:20:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bytes_memory_ptr",
+                                        "typeString": "bytes"
+                                    },
+                                    "typeName": {
+                                        "id": 8495,
+                                        "name": "bytes",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1330:5:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes_storage_ptr",
+                                            "typeString": "bytes"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1329:22:40"
+                        },
+                        "returnParameters": {
+                            "id": 8500,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 8499,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8508,
+                                    "src": "1375:6:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bytes4",
+                                        "typeString": "bytes4"
+                                    },
+                                    "typeName": {
+                                        "id": 8498,
+                                        "name": "bytes4",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1375:6:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes4",
+                                            "typeString": "bytes4"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1374:8:40"
+                        },
+                        "scope": 8538,
+                        "src": "1308:133:40",
+                        "stateMutability": "pure",
+                        "virtual": false,
+                        "visibility": "internal"
+                    },
+                    {
+                        "body": {
+                            "id": 8528,
+                            "nodeType": "Block",
+                            "src": "2006:72:40",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "arguments": [
+                                            {
+                                                "id": 8520,
+                                                "name": "msgData",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 8511,
+                                                "src": "2047:7:40",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_bytes_memory_ptr",
+                                                    "typeString": "bytes memory"
+                                                }
+                                            },
+                                            {
+                                                "commonType": {
+                                                    "typeIdentifier": "t_uint256",
+                                                    "typeString": "uint256"
+                                                },
+                                                "id": 8525,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": false,
+                                                "lValueRequested": false,
+                                                "leftExpression": {
+                                                    "hexValue": "34",
+                                                    "id": 8521,
+                                                    "isConstant": false,
+                                                    "isLValue": false,
+                                                    "isPure": true,
+                                                    "kind": "number",
+                                                    "lValueRequested": false,
+                                                    "nodeType": "Literal",
+                                                    "src": "2056:1:40",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_rational_4_by_1",
+                                                        "typeString": "int_const 4"
+                                                    },
+                                                    "value": "4"
+                                                },
+                                                "nodeType": "BinaryOperation",
+                                                "operator": "+",
+                                                "rightExpression": {
+                                                    "commonType": {
+                                                        "typeIdentifier": "t_uint256",
+                                                        "typeString": "uint256"
+                                                    },
+                                                    "id": 8524,
+                                                    "isConstant": false,
+                                                    "isLValue": false,
+                                                    "isPure": false,
+                                                    "lValueRequested": false,
+                                                    "leftExpression": {
+                                                        "id": 8522,
+                                                        "name": "index",
+                                                        "nodeType": "Identifier",
+                                                        "overloadedDeclarations": [],
+                                                        "referencedDeclaration": 8513,
+                                                        "src": "2060:5:40",
+                                                        "typeDescriptions": {
+                                                            "typeIdentifier": "t_uint256",
+                                                            "typeString": "uint256"
+                                                        }
+                                                    },
+                                                    "nodeType": "BinaryOperation",
+                                                    "operator": "*",
+                                                    "rightExpression": {
+                                                        "hexValue": "3332",
+                                                        "id": 8523,
+                                                        "isConstant": false,
+                                                        "isLValue": false,
+                                                        "isPure": true,
+                                                        "kind": "number",
+                                                        "lValueRequested": false,
+                                                        "nodeType": "Literal",
+                                                        "src": "2068:2:40",
+                                                        "typeDescriptions": {
+                                                            "typeIdentifier": "t_rational_32_by_1",
+                                                            "typeString": "int_const 32"
+                                                        },
+                                                        "value": "32"
+                                                    },
+                                                    "src": "2060:10:40",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_uint256",
+                                                        "typeString": "uint256"
+                                                    }
+                                                },
+                                                "src": "2056:14:40",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_uint256",
+                                                    "typeString": "uint256"
+                                                }
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_bytes_memory_ptr",
+                                                    "typeString": "bytes memory"
+                                                },
+                                                {
+                                                    "typeIdentifier": "t_uint256",
+                                                    "typeString": "uint256"
+                                                }
+                                            ],
+                                            "expression": {
+                                                "id": 8518,
+                                                "name": "MinLibBytes",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 8653,
+                                                "src": "2023:11:40",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_type$_t_contract$_MinLibBytes_$8653_$",
+                                                    "typeString": "type(library MinLibBytes)"
+                                                }
+                                            },
+                                            "id": 8519,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": false,
+                                            "lValueRequested": false,
+                                            "memberName": "readUint256",
+                                            "nodeType": "MemberAccess",
+                                            "referencedDeclaration": 8629,
+                                            "src": "2023:23:40",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_internal_pure$_t_bytes_memory_ptr_$_t_uint256_$returns$_t_uint256_$",
+                                                "typeString": "function (bytes memory,uint256) pure returns (uint256)"
+                                            }
+                                        },
+                                        "id": 8526,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "2023:48:40",
+                                        "tryCall": false,
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "functionReturnParameters": 8517,
+                                    "id": 8527,
+                                    "nodeType": "Return",
+                                    "src": "2016:55:40"
+                                }
+                            ]
+                        },
+                        "documentation": {
+                            "id": 8509,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "1447:460:40",
+                            "text": " @notice Extract a parameter from encoded-function block.\n see: https://solidity.readthedocs.io/en/develop/abi-spec.html#formal-specification-of-the-encoding\n The return value should be casted to the right type (`uintXXX`/`bytesXXX`/`address`/`bool`/`enum`).\n @param msgData Byte array containing a uint256 value.\n @param index Index in byte array of uint256 value.\n @return result uint256 value from byte array."
+                        },
+                        "id": 8529,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getParam",
+                        "nameLocation": "1921:8:40",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 8514,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 8511,
+                                    "mutability": "mutable",
+                                    "name": "msgData",
+                                    "nameLocation": "1943:7:40",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8529,
+                                    "src": "1930:20:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bytes_memory_ptr",
+                                        "typeString": "bytes"
+                                    },
+                                    "typeName": {
+                                        "id": 8510,
+                                        "name": "bytes",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1930:5:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes_storage_ptr",
+                                            "typeString": "bytes"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 8513,
+                                    "mutability": "mutable",
+                                    "name": "index",
+                                    "nameLocation": "1960:5:40",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8529,
+                                    "src": "1952:13:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 8512,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1952:7:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1929:37:40"
+                        },
+                        "returnParameters": {
+                            "id": 8517,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 8516,
+                                    "mutability": "mutable",
+                                    "name": "result",
+                                    "nameLocation": "1998:6:40",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8529,
+                                    "src": "1990:14:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 8515,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1990:7:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1989:16:40"
+                        },
+                        "scope": 8538,
+                        "src": "1912:166:40",
+                        "stateMutability": "pure",
+                        "virtual": false,
+                        "visibility": "internal"
+                    },
+                    {
+                        "body": {
+                            "id": 8536,
+                            "nodeType": "Block",
+                            "src": "2200:82:40",
+                            "statements": [
+                                {
+                                    "AST": {
+                                        "nodeType": "YulBlock",
+                                        "src": "2219:57:40",
+                                        "statements": [
+                                            {
+                                                "expression": {
+                                                    "arguments": [
+                                                        {
+                                                            "arguments": [
+                                                                {
+                                                                    "name": "data",
+                                                                    "nodeType": "YulIdentifier",
+                                                                    "src": "2244:4:40"
+                                                                },
+                                                                {
+                                                                    "kind": "number",
+                                                                    "nodeType": "YulLiteral",
+                                                                    "src": "2249:2:40",
+                                                                    "type": "",
+                                                                    "value": "32"
+                                                                }
+                                                            ],
+                                                            "functionName": {
+                                                                "name": "add",
+                                                                "nodeType": "YulIdentifier",
+                                                                "src": "2240:3:40"
+                                                            },
+                                                            "nodeType": "YulFunctionCall",
+                                                            "src": "2240:12:40"
+                                                        },
+                                                        {
+                                                            "arguments": [
+                                                                {
+                                                                    "name": "data",
+                                                                    "nodeType": "YulIdentifier",
+                                                                    "src": "2260:4:40"
+                                                                }
+                                                            ],
+                                                            "functionName": {
+                                                                "name": "mload",
+                                                                "nodeType": "YulIdentifier",
+                                                                "src": "2254:5:40"
+                                                            },
+                                                            "nodeType": "YulFunctionCall",
+                                                            "src": "2254:11:40"
+                                                        }
+                                                    ],
+                                                    "functionName": {
+                                                        "name": "revert",
+                                                        "nodeType": "YulIdentifier",
+                                                        "src": "2233:6:40"
+                                                    },
+                                                    "nodeType": "YulFunctionCall",
+                                                    "src": "2233:33:40"
+                                                },
+                                                "nodeType": "YulExpressionStatement",
+                                                "src": "2233:33:40"
+                                            }
+                                        ]
+                                    },
+                                    "evmVersion": "london",
+                                    "externalReferences": [
+                                        {
+                                            "declaration": 8532,
+                                            "isOffset": false,
+                                            "isSlot": false,
+                                            "src": "2244:4:40",
+                                            "valueSize": 1
+                                        },
+                                        {
+                                            "declaration": 8532,
+                                            "isOffset": false,
+                                            "isSlot": false,
+                                            "src": "2260:4:40",
+                                            "valueSize": 1
+                                        }
+                                    ],
+                                    "id": 8535,
+                                    "nodeType": "InlineAssembly",
+                                    "src": "2210:66:40"
+                                }
+                            ]
+                        },
+                        "documentation": {
+                            "id": 8530,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "2084:54:40",
+                            "text": "@notice Re-throw revert with the same revert data."
+                        },
+                        "id": 8537,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "revertWithData",
+                        "nameLocation": "2152:14:40",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 8533,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 8532,
+                                    "mutability": "mutable",
+                                    "name": "data",
+                                    "nameLocation": "2180:4:40",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8537,
+                                    "src": "2167:17:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bytes_memory_ptr",
+                                        "typeString": "bytes"
+                                    },
+                                    "typeName": {
+                                        "id": 8531,
+                                        "name": "bytes",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2167:5:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes_storage_ptr",
+                                            "typeString": "bytes"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2166:19:40"
+                        },
+                        "returnParameters": {
+                            "id": 8534,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "2200:0:40"
+                        },
+                        "scope": 8538,
+                        "src": "2143:139:40",
+                        "stateMutability": "pure",
+                        "virtual": false,
+                        "visibility": "internal"
+                    }
+                ],
+                "scope": 8539,
+                "src": "295:1990:40",
+                "usedErrors": []
+            }
+        ],
+        "src": "0:2285:40"
+    },
+    "compiler": {
+        "name": "solc",
+        "version": "0.8.7+commit.e28d00a7.Emscripten.clang"
+    },
+    "networks": {},
+    "schemaVersion": "3.1.0",
+    "updatedAt": "2023-06-08T13:50:08.522Z",
+    "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "title": "The GSN Solidity Utils Library",
+        "version": 1
+    },
+    "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "notice": "Some library functions used throughout the GSN Solidity codebase.",
+        "version": 1
+    }
+}

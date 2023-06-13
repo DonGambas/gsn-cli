@@ -1,0 +1,419 @@
+{
+    "contractName": "ArbSys",
+    "abi": [
+        {
+            "inputs": [],
+            "name": "arbBlockNumber",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getStorageGasAvailable",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ],
+    "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"arbBlockNumber\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getStorageGasAvailable\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"arbBlockNumber()\":{\"returns\":{\"_0\":\"block number as int\"}},\"getStorageGasAvailable()\":{\"returns\":{\"_0\":\"amount of storage gas available to the caller\"}}},\"title\":\"Precompiled contract that exists in every Arbitrum chain at address(100), 0x0000000000000000000000000000000000000064. Exposes a variety of system-level functionality.\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"arbBlockNumber()\":{\"notice\":\"Get Arbitrum block number (distinct from L1 block number; Arbitrum genesis block has block number 0)\"},\"getStorageGasAvailable()\":{\"notice\":\"get the caller's amount of available storage gas\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/arbitrum/ArbSys.sol\":\"ArbSys\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/arbitrum/ArbSys.sol\":{\"keccak256\":\"0x101af06ee07468c600f513ee59e1c525d4899bce9796623a508ce2b810ec21a0\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://38d802dbf4e985150c5b83573f3a0cd34f8dad1c7b89eb22d42b477f14961f07\",\"dweb:/ipfs/Qme4yVYaWUk8xQzxtVNwE7VT1nxGNJrFh7fo4PiwpXsmdt\"]}},\"version\":1}",
+    "bytecode": "0x",
+    "deployedBytecode": "0x",
+    "immutableReferences": {},
+    "sourceMap": "",
+    "deployedSourceMap": "",
+    "source": "pragma solidity ^0.8.0;\n\n// SPDX-License-Identifier: GPL-3.0-only\n\n/**\n* @title Precompiled contract that exists in every Arbitrum chain at address(100), 0x0000000000000000000000000000000000000064. Exposes a variety of system-level functionality.\n */\ninterface ArbSys {\n\n    /**\n    * @notice Get Arbitrum block number (distinct from L1 block number; Arbitrum genesis block has block number 0)\n    * @return block number as int\n     */\n    function arbBlockNumber() external view returns (uint);\n\n    /**\n     * @notice get the caller's amount of available storage gas\n     * @return amount of storage gas available to the caller\n     */\n    function getStorageGasAvailable() external view returns (uint256);\n}",
+    "sourcePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/arbitrum/ArbSys.sol",
+    "ast": {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/arbitrum/ArbSys.sol",
+        "exportedSymbols": {
+            "ArbSys": [
+                4466
+            ]
+        },
+        "id": 4467,
+        "license": "GPL-3.0-only",
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 4452,
+                "literals": [
+                    "solidity",
+                    "^",
+                    "0.8",
+                    ".0"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "0:23:7"
+            },
+            {
+                "abstract": false,
+                "baseContracts": [],
+                "contractDependencies": [],
+                "contractKind": "interface",
+                "documentation": {
+                    "id": 4453,
+                    "nodeType": "StructuredDocumentation",
+                    "src": "67:183:7",
+                    "text": " @title Precompiled contract that exists in every Arbitrum chain at address(100), 0x0000000000000000000000000000000000000064. Exposes a variety of system-level functionality."
+                },
+                "fullyImplemented": false,
+                "id": 4466,
+                "linearizedBaseContracts": [
+                    4466
+                ],
+                "name": "ArbSys",
+                "nameLocation": "261:6:7",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "documentation": {
+                            "id": 4454,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "275:160:7",
+                            "text": " @notice Get Arbitrum block number (distinct from L1 block number; Arbitrum genesis block has block number 0)\n @return block number as int"
+                        },
+                        "functionSelector": "a3b1b31d",
+                        "id": 4459,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "arbBlockNumber",
+                        "nameLocation": "449:14:7",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 4455,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "463:2:7"
+                        },
+                        "returnParameters": {
+                            "id": 4458,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 4457,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 4459,
+                                    "src": "489:4:7",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 4456,
+                                        "name": "uint",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "489:4:7",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "488:6:7"
+                        },
+                        "scope": 4466,
+                        "src": "440:55:7",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "documentation": {
+                            "id": 4460,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "501:136:7",
+                            "text": " @notice get the caller's amount of available storage gas\n @return amount of storage gas available to the caller"
+                        },
+                        "functionSelector": "a94597ff",
+                        "id": 4465,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getStorageGasAvailable",
+                        "nameLocation": "651:22:7",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 4461,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "673:2:7"
+                        },
+                        "returnParameters": {
+                            "id": 4464,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 4463,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 4465,
+                                    "src": "699:7:7",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 4462,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "699:7:7",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "698:9:7"
+                        },
+                        "scope": 4466,
+                        "src": "642:66:7",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    }
+                ],
+                "scope": 4467,
+                "src": "251:459:7",
+                "usedErrors": []
+            }
+        ],
+        "src": "0:710:7"
+    },
+    "legacyAST": {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/arbitrum/ArbSys.sol",
+        "exportedSymbols": {
+            "ArbSys": [
+                4466
+            ]
+        },
+        "id": 4467,
+        "license": "GPL-3.0-only",
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 4452,
+                "literals": [
+                    "solidity",
+                    "^",
+                    "0.8",
+                    ".0"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "0:23:7"
+            },
+            {
+                "abstract": false,
+                "baseContracts": [],
+                "contractDependencies": [],
+                "contractKind": "interface",
+                "documentation": {
+                    "id": 4453,
+                    "nodeType": "StructuredDocumentation",
+                    "src": "67:183:7",
+                    "text": " @title Precompiled contract that exists in every Arbitrum chain at address(100), 0x0000000000000000000000000000000000000064. Exposes a variety of system-level functionality."
+                },
+                "fullyImplemented": false,
+                "id": 4466,
+                "linearizedBaseContracts": [
+                    4466
+                ],
+                "name": "ArbSys",
+                "nameLocation": "261:6:7",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "documentation": {
+                            "id": 4454,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "275:160:7",
+                            "text": " @notice Get Arbitrum block number (distinct from L1 block number; Arbitrum genesis block has block number 0)\n @return block number as int"
+                        },
+                        "functionSelector": "a3b1b31d",
+                        "id": 4459,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "arbBlockNumber",
+                        "nameLocation": "449:14:7",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 4455,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "463:2:7"
+                        },
+                        "returnParameters": {
+                            "id": 4458,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 4457,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 4459,
+                                    "src": "489:4:7",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 4456,
+                                        "name": "uint",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "489:4:7",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "488:6:7"
+                        },
+                        "scope": 4466,
+                        "src": "440:55:7",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "documentation": {
+                            "id": 4460,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "501:136:7",
+                            "text": " @notice get the caller's amount of available storage gas\n @return amount of storage gas available to the caller"
+                        },
+                        "functionSelector": "a94597ff",
+                        "id": 4465,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getStorageGasAvailable",
+                        "nameLocation": "651:22:7",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 4461,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "673:2:7"
+                        },
+                        "returnParameters": {
+                            "id": 4464,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 4463,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 4465,
+                                    "src": "699:7:7",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 4462,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "699:7:7",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "698:9:7"
+                        },
+                        "scope": 4466,
+                        "src": "642:66:7",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    }
+                ],
+                "scope": 4467,
+                "src": "251:459:7",
+                "usedErrors": []
+            }
+        ],
+        "src": "0:710:7"
+    },
+    "compiler": {
+        "name": "solc",
+        "version": "0.8.7+commit.e28d00a7.Emscripten.clang"
+    },
+    "networks": {},
+    "schemaVersion": "3.1.0",
+    "updatedAt": "2023-06-08T13:50:08.467Z",
+    "devdoc": {
+        "kind": "dev",
+        "methods": {
+            "arbBlockNumber()": {
+                "returns": {
+                    "_0": "block number as int"
+                }
+            },
+            "getStorageGasAvailable()": {
+                "returns": {
+                    "_0": "amount of storage gas available to the caller"
+                }
+            }
+        },
+        "title": "Precompiled contract that exists in every Arbitrum chain at address(100), 0x0000000000000000000000000000000000000064. Exposes a variety of system-level functionality.",
+        "version": 1
+    },
+    "userdoc": {
+        "kind": "user",
+        "methods": {
+            "arbBlockNumber()": {
+                "notice": "Get Arbitrum block number (distinct from L1 block number; Arbitrum genesis block has block number 0)"
+            },
+            "getStorageGasAvailable()": {
+                "notice": "get the caller's amount of available storage gas"
+            }
+        },
+        "version": 1
+    }
+}

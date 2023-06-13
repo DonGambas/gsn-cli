@@ -1,0 +1,1231 @@
+{
+  "contractName": "TestRelayHubValidator",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "domainSeparatorName",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "from",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "to",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "gas",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "nonce",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "data",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "validUntilTime",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct IForwarder.ForwardRequest",
+              "name": "request",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "maxFeePerGas",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "maxPriorityFeePerGas",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "transactionCalldataGasUsed",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "address",
+                  "name": "relayWorker",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "paymaster",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "forwarder",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "paymasterData",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "clientId",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct GsnTypes.RelayData",
+              "name": "relayData",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct GsnTypes.RelayRequest",
+          "name": "relayRequest",
+          "type": "tuple"
+        },
+        {
+          "internalType": "bytes",
+          "name": "signature",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes",
+          "name": "approvalData",
+          "type": "bytes"
+        }
+      ],
+      "name": "dummyRelayCall",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "buf",
+          "type": "bytes"
+        }
+      ],
+      "name": "dynamicParamSize",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"string\",\"name\":\"domainSeparatorName\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"gas\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"validUntilTime\",\"type\":\"uint256\"}],\"internalType\":\"struct IForwarder.ForwardRequest\",\"name\":\"request\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"maxFeePerGas\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxPriorityFeePerGas\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"transactionCalldataGasUsed\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"relayWorker\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"paymaster\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"forwarder\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"paymasterData\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"clientId\",\"type\":\"uint256\"}],\"internalType\":\"struct GsnTypes.RelayData\",\"name\":\"relayData\",\"type\":\"tuple\"}],\"internalType\":\"struct GsnTypes.RelayRequest\",\"name\":\"relayRequest\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"approvalData\",\"type\":\"bytes\"}],\"name\":\"dummyRelayCall\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"buf\",\"type\":\"bytes\"}],\"name\":\"dynamicParamSize\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestRelayHubValidator.sol\":\"TestRelayHubValidator\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/forwarder/IForwarder.sol\":{\"keccak256\":\"0xef3d770001c3245db4408cdd0afdfc622695ccfe31f28b74571d05158bbf83f8\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://08949174ed05b596d89c8f1eeedfeb254993b84054bbc1ff6081ad926f5db406\",\"dweb:/ipfs/QmNQtKzHpie4Esocxuc9YrPtGQyA928a1a5TWbVc7cPoqk\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestRelayHubValidator.sol\":{\"keccak256\":\"0xf9ceb839c3e38343cdc10c2c8776c8dd42448d20295fc58748e839926d6f2d1b\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://8424656cdc8e8a42a297d3f04f70a14dfe484b6b4c691c9391fa0e3297d74bb8\",\"dweb:/ipfs/QmeJz3mACPmir2y5HBeJMjrGvG8NtXYJ5mgtxm7KBowy4i\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnTypes.sol\":{\"keccak256\":\"0xfc3ed2bbd925e24facf0c3bb96d57dd7fc5bcc4a684b5473f04e8d209b758805\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://cb57b5b38d3e588f119ae45174891f2049d1d0de160a12b81a20335cd8bf731b\",\"dweb:/ipfs/Qmf6xfbdLbTKEpnzxwnSaRy1YZJtLYTZh8URqry86oyoSU\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/RelayHubValidator.sol\":{\"keccak256\":\"0xd510edd4bb9a11beae2e610f850ca7dcc5a8947c73080bf04c41e2c3c28c87af\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://548657a37cbcfacfc7a425ac61f126831cac3d4a8228e698ab57b38db2cbd29d\",\"dweb:/ipfs/QmbT6SADeNBsXiaV57rjL4cTH2DT6SMsSWyz6CwXs2KcZk\"]},\"@openzeppelin/contracts/interfaces/IERC165.sol\":{\"keccak256\":\"0xd04b0f06e0666f29cf7cccc82894de541e19bb30a765b107b1e40bb7fe5f7d7a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7b652499d098e88d8d878374616bb58434301061cae2253298b3f374044e0ddb\",\"dweb:/ipfs/QmbhAzctqo5jrSKU6idHdVyqfmzCcDbNUPvmx4GiXxfA6q\"]},\"@openzeppelin/contracts/utils/introspection/IERC165.sol\":{\"keccak256\":\"0x447a5f3ddc18419d41ff92b3773fb86471b1db25773e07f877f548918a185bf1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://be161e54f24e5c6fae81a12db1a8ae87bc5ae1b0ddc805d82a1440a68455088f\",\"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506103f8806100206000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c806321b3a7e41461003b5780638787309d14610050575b600080fd5b61004e610049366004610230565b610075565b005b61006361005e3660046101ee565b61008e565b60405190815260200160405180910390f35b610084888887878787876100a1565b5050505050505050565b600061009a838361017f565b9392505050565b60006100c66100b36020880188610367565b6100c19060c0810190610300565b61017f565b6100e16100d38880610347565b6100c19060a0810190610300565b6100eb858561017f565b6100f5888861017f565b6100ff8c8c61017f565b61010b906102c461037d565b610115919061037d565b61011f919061037d565b610129919061037d565b610133919061037d565b90503681146100845760405162461bcd60e51b81526020600482015260146024820152736578747261206d73672e6461746120627974657360601b604482015260640160405180910390fd5b600061018e601f600019610395565b61019983601f61037d565b61009a9116602061037d565b60008083601f8401126101b757600080fd5b50813567ffffffffffffffff8111156101cf57600080fd5b6020830191508360208285010111156101e757600080fd5b9250929050565b6000806020838503121561020157600080fd5b823567ffffffffffffffff81111561021857600080fd5b610224858286016101a5565b90969095509350505050565b60008060008060008060008060a0898b03121561024c57600080fd5b883567ffffffffffffffff8082111561026457600080fd5b6102708c838d016101a5565b909a50985060208b0135975060408b013591508082111561029057600080fd5b908a01906040828d0312156102a457600080fd5b90955060608a013590808211156102ba57600080fd5b6102c68c838d016101a5565b909650945060808b01359150808211156102df57600080fd5b506102ec8b828c016101a5565b999c989b5096995094979396929594505050565b6000808335601e1984360301811261031757600080fd5b83018035915067ffffffffffffffff82111561033257600080fd5b6020019150368190038213156101e757600080fd5b6000823560de1983360301811261035d57600080fd5b9190910192915050565b6000823560fe1983360301811261035d57600080fd5b60008219821115610390576103906103ac565b500190565b6000828210156103a7576103a76103ac565b500390565b634e487b7160e01b600052601160045260246000fdfea264697066735822122079b547b5ba7704b9a7a5fc056f8e52d8c5fe17c91e4771165f73de3497af123664736f6c63430008070033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100365760003560e01c806321b3a7e41461003b5780638787309d14610050575b600080fd5b61004e610049366004610230565b610075565b005b61006361005e3660046101ee565b61008e565b60405190815260200160405180910390f35b610084888887878787876100a1565b5050505050505050565b600061009a838361017f565b9392505050565b60006100c66100b36020880188610367565b6100c19060c0810190610300565b61017f565b6100e16100d38880610347565b6100c19060a0810190610300565b6100eb858561017f565b6100f5888861017f565b6100ff8c8c61017f565b61010b906102c461037d565b610115919061037d565b61011f919061037d565b610129919061037d565b610133919061037d565b90503681146100845760405162461bcd60e51b81526020600482015260146024820152736578747261206d73672e6461746120627974657360601b604482015260640160405180910390fd5b600061018e601f600019610395565b61019983601f61037d565b61009a9116602061037d565b60008083601f8401126101b757600080fd5b50813567ffffffffffffffff8111156101cf57600080fd5b6020830191508360208285010111156101e757600080fd5b9250929050565b6000806020838503121561020157600080fd5b823567ffffffffffffffff81111561021857600080fd5b610224858286016101a5565b90969095509350505050565b60008060008060008060008060a0898b03121561024c57600080fd5b883567ffffffffffffffff8082111561026457600080fd5b6102708c838d016101a5565b909a50985060208b0135975060408b013591508082111561029057600080fd5b908a01906040828d0312156102a457600080fd5b90955060608a013590808211156102ba57600080fd5b6102c68c838d016101a5565b909650945060808b01359150808211156102df57600080fd5b506102ec8b828c016101a5565b999c989b5096995094979396929594505050565b6000808335601e1984360301811261031757600080fd5b83018035915067ffffffffffffffff82111561033257600080fd5b6020019150368190038213156101e757600080fd5b6000823560de1983360301811261035d57600080fd5b9190910192915050565b6000823560fe1983360301811261035d57600080fd5b60008219821115610390576103906103ac565b500190565b6000828210156103a7576103a76103ac565b500390565b634e487b7160e01b600052601160045260246000fdfea264697066735822122079b547b5ba7704b9a7a5fc056f8e52d8c5fe17c91e4771165f73de3497af123664736f6c63430008070033",
+  "immutableReferences": {},
+  "sourceMap": "129:712:33:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "129:712:33:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;266:376;;;;;;:::i;:::-;;:::i;:::-;;698:141;;;;;;:::i;:::-;;:::i;:::-;;;2624:25:63;;;2612:2;2597:18;698:141:33;;;;;;;266:376;533:102;576:19;;597:12;611:9;;622:12;;533:42;:102::i;:::-;266:376;;;;;;;;:::o;698:141::-;767:7;793:39;828:3;;793:34;:39::i;:::-;786:46;698:141;-1:-1:-1;;;698:141:33:o;510:1245:43:-;1281:26;1540:54;1557:22;;;;:12;:22;:::i;:::-;:36;;;;;;;:::i;:::-;1540:16;:54::i;:::-;1482:43;1499:20;:12;;:20;:::i;:::-;:25;;;;;;;:::i;1482:43::-;1437:30;1454:12;;1437:16;:30::i;:::-;1395:27;1412:9;;1395:16;:27::i;:::-;1336:44;1359:19;;1336:16;:44::i;:::-;1310:70;;:11;:70;:::i;:::-;:112;;;;:::i;:::-;:157;;;;:::i;:::-;:215;;;;:::i;:::-;:284;;;;:::i;:::-;1281:313;-1:-1:-1;1707:8:43;1685:37;;1677:71;;;;-1:-1:-1;;;1677:71:43;;2331:2:63;1677:71:43;;;2313:21:63;2370:2;2350:18;;;2343:30;-1:-1:-1;;;2389:18:63;;;2382:50;2449:18;;1677:71:43;;;;;;;1969:153;2038:7;2091:22;2111:2;-1:-1:-1;;2091:22:43;:::i;:::-;2071:15;:3;2084:2;2071:15;:::i;:::-;2064:51;;2070:44;2064:2;:51;:::i;14:347:63:-;65:8;75:6;129:3;122:4;114:6;110:17;106:27;96:55;;147:1;144;137:12;96:55;-1:-1:-1;170:20:63;;213:18;202:30;;199:50;;;245:1;242;235:12;199:50;282:4;274:6;270:17;258:29;;334:3;327:4;318:6;310;306:19;302:30;299:39;296:59;;;351:1;348;341:12;296:59;14:347;;;;;:::o;366:409::-;436:6;444;497:2;485:9;476:7;472:23;468:32;465:52;;;513:1;510;503:12;465:52;553:9;540:23;586:18;578:6;575:30;572:50;;;618:1;615;608:12;572:50;657:58;707:7;698:6;687:9;683:22;657:58;:::i;:::-;734:8;;631:84;;-1:-1:-1;366:409:63;-1:-1:-1;;;;366:409:63:o;780:1344::-;941:6;949;957;965;973;981;989;997;1050:3;1038:9;1029:7;1025:23;1021:33;1018:53;;;1067:1;1064;1057:12;1018:53;1107:9;1094:23;1136:18;1177:2;1169:6;1166:14;1163:34;;;1193:1;1190;1183:12;1163:34;1232:58;1282:7;1273:6;1262:9;1258:22;1232:58;:::i;:::-;1309:8;;-1:-1:-1;1206:84:63;-1:-1:-1;1391:2:63;1376:18;;1363:32;;-1:-1:-1;1448:2:63;1433:18;;1420:32;;-1:-1:-1;1464:16:63;;;1461:36;;;1493:1;1490;1483:12;1461:36;1516:24;;;;1574:2;1556:16;;;1552:25;1549:45;;;1590:1;1587;1580:12;1549:45;1613:2;;-1:-1:-1;1668:2:63;1653:18;;1640:32;;1684:16;;;1681:36;;;1713:1;1710;1703:12;1681:36;1752:60;1804:7;1793:8;1782:9;1778:24;1752:60;:::i;:::-;1831:8;;-1:-1:-1;1726:86:63;-1:-1:-1;1919:3:63;1904:19;;1891:33;;-1:-1:-1;1936:16:63;;;1933:36;;;1965:1;1962;1955:12;1933:36;;2004:60;2056:7;2045:8;2034:9;2030:24;2004:60;:::i;:::-;780:1344;;;;-1:-1:-1;780:1344:63;;-1:-1:-1;780:1344:63;;;;;;2083:8;-1:-1:-1;;;780:1344:63:o;2660:521::-;2737:4;2743:6;2803:11;2790:25;2897:2;2893:7;2882:8;2866:14;2862:29;2858:43;2838:18;2834:68;2824:96;;2916:1;2913;2906:12;2824:96;2943:33;;2995:20;;;-1:-1:-1;3038:18:63;3027:30;;3024:50;;;3070:1;3067;3060:12;3024:50;3103:4;3091:17;;-1:-1:-1;3134:14:63;3130:27;;;3120:38;;3117:58;;;3171:1;3168;3161:12;3186:332;3286:4;3344:11;3331:25;3438:3;3434:8;3423;3407:14;3403:29;3399:44;3379:18;3375:69;3365:97;;3458:1;3455;3448:12;3365:97;3479:33;;;;;3186:332;-1:-1:-1;;3186:332:63:o;3523:327::-;3618:4;3676:11;3663:25;3770:3;3766:8;3755;3739:14;3735:29;3731:44;3711:18;3707:69;3697:97;;3790:1;3787;3780:12;3855:128;3895:3;3926:1;3922:6;3919:1;3916:13;3913:39;;;3932:18;;:::i;:::-;-1:-1:-1;3968:9:63;;3855:128::o;3988:125::-;4028:4;4056:1;4053;4050:8;4047:34;;;4061:18;;:::i;:::-;-1:-1:-1;4098:9:63;;3988:125::o;4118:127::-;4179:10;4174:3;4170:20;4167:1;4160:31;4210:4;4207:1;4200:15;4234:4;4231:1;4224:15",
+  "source": "pragma solidity ^0.8.0;\npragma abicoder v2;\n\n// SPDX-License-Identifier: GPL-3.0-only\n\nimport \"../utils/RelayHubValidator.sol\";\n\ncontract TestRelayHubValidator {\n\n    //for testing purposes, we must be called from a method with same param signature as RelayCall\n    function dummyRelayCall(\n        string calldata domainSeparatorName,\n        uint256, //paymasterMaxAcceptanceBudget,\n        GsnTypes.RelayRequest calldata relayRequest,\n        bytes calldata signature,\n        bytes calldata approvalData\n    ) external {\n        RelayHubValidator.verifyTransactionPacking(domainSeparatorName, relayRequest, signature, approvalData);\n    }\n\n    // helper method for verifyTransactionPacking\n    function dynamicParamSize(bytes calldata buf) external pure returns (uint256) {\n        return RelayHubValidator.dynamicParamSize(buf);\n    }\n}",
+  "sourcePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestRelayHubValidator.sol",
+  "ast": {
+    "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestRelayHubValidator.sol",
+    "exportedSymbols": {
+      "GsnTypes": [
+        8458
+      ],
+      "IERC165": [
+        12318
+      ],
+      "IForwarder": [
+        5129
+      ],
+      "RelayHubValidator": [
+        9465
+      ],
+      "TestRelayHubValidator": [
+        7724
+      ]
+    },
+    "id": 7725,
+    "license": "GPL-3.0-only",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7684,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:33"
+      },
+      {
+        "id": 7685,
+        "literals": [
+          "abicoder",
+          "v2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "24:19:33"
+      },
+      {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/RelayHubValidator.sol",
+        "file": "../utils/RelayHubValidator.sol",
+        "id": 7686,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 7725,
+        "sourceUnit": 9466,
+        "src": "87:40:33",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 7724,
+        "linearizedBaseContracts": [
+          7724
+        ],
+        "name": "TestRelayHubValidator",
+        "nameLocation": "138:21:33",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 7709,
+              "nodeType": "Block",
+              "src": "523:119:33",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 7703,
+                        "name": "domainSeparatorName",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7688,
+                        "src": "576:19:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_calldata_ptr",
+                          "typeString": "string calldata"
+                        }
+                      },
+                      {
+                        "id": 7704,
+                        "name": "relayRequest",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7693,
+                        "src": "597:12:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_RelayRequest_$8457_calldata_ptr",
+                          "typeString": "struct GsnTypes.RelayRequest calldata"
+                        }
+                      },
+                      {
+                        "id": 7705,
+                        "name": "signature",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7695,
+                        "src": "611:9:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      },
+                      {
+                        "id": 7706,
+                        "name": "approvalData",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7697,
+                        "src": "622:12:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_calldata_ptr",
+                          "typeString": "string calldata"
+                        },
+                        {
+                          "typeIdentifier": "t_struct$_RelayRequest_$8457_calldata_ptr",
+                          "typeString": "struct GsnTypes.RelayRequest calldata"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      ],
+                      "expression": {
+                        "id": 7700,
+                        "name": "RelayHubValidator",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 9465,
+                        "src": "533:17:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_RelayHubValidator_$9465_$",
+                          "typeString": "type(library RelayHubValidator)"
+                        }
+                      },
+                      "id": 7702,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "verifyTransactionPacking",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 9438,
+                      "src": "533:42:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_string_calldata_ptr_$_t_struct$_RelayRequest_$8457_calldata_ptr_$_t_bytes_calldata_ptr_$_t_bytes_calldata_ptr_$returns$__$",
+                        "typeString": "function (string calldata,struct GsnTypes.RelayRequest calldata,bytes calldata,bytes calldata) pure"
+                      }
+                    },
+                    "id": 7707,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "533:102:33",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7708,
+                  "nodeType": "ExpressionStatement",
+                  "src": "533:102:33"
+                }
+              ]
+            },
+            "functionSelector": "21b3a7e4",
+            "id": 7710,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "dummyRelayCall",
+            "nameLocation": "275:14:33",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7698,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7688,
+                  "mutability": "mutable",
+                  "name": "domainSeparatorName",
+                  "nameLocation": "315:19:33",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7710,
+                  "src": "299:35:33",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 7687,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "299:6:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7690,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7710,
+                  "src": "344:7:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7689,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "344:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7693,
+                  "mutability": "mutable",
+                  "name": "relayRequest",
+                  "nameLocation": "424:12:33",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7710,
+                  "src": "393:43:33",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_RelayRequest_$8457_calldata_ptr",
+                    "typeString": "struct GsnTypes.RelayRequest"
+                  },
+                  "typeName": {
+                    "id": 7692,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 7691,
+                      "name": "GsnTypes.RelayRequest",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 8457,
+                      "src": "393:21:33"
+                    },
+                    "referencedDeclaration": 8457,
+                    "src": "393:21:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_RelayRequest_$8457_storage_ptr",
+                      "typeString": "struct GsnTypes.RelayRequest"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7695,
+                  "mutability": "mutable",
+                  "name": "signature",
+                  "nameLocation": "461:9:33",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7710,
+                  "src": "446:24:33",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 7694,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "446:5:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7697,
+                  "mutability": "mutable",
+                  "name": "approvalData",
+                  "nameLocation": "495:12:33",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7710,
+                  "src": "480:27:33",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 7696,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "480:5:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "289:224:33"
+            },
+            "returnParameters": {
+              "id": 7699,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "523:0:33"
+            },
+            "scope": 7724,
+            "src": "266:376:33",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7722,
+              "nodeType": "Block",
+              "src": "776:63:33",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 7719,
+                        "name": "buf",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7712,
+                        "src": "828:3:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      ],
+                      "expression": {
+                        "id": 7717,
+                        "name": "RelayHubValidator",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 9465,
+                        "src": "793:17:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_RelayHubValidator_$9465_$",
+                          "typeString": "type(library RelayHubValidator)"
+                        }
+                      },
+                      "id": 7718,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "dynamicParamSize",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 9464,
+                      "src": "793:34:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_bytes_calldata_ptr_$returns$_t_uint256_$",
+                        "typeString": "function (bytes calldata) pure returns (uint256)"
+                      }
+                    },
+                    "id": 7720,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "793:39:33",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 7716,
+                  "id": 7721,
+                  "nodeType": "Return",
+                  "src": "786:46:33"
+                }
+              ]
+            },
+            "functionSelector": "8787309d",
+            "id": 7723,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "dynamicParamSize",
+            "nameLocation": "707:16:33",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7713,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7712,
+                  "mutability": "mutable",
+                  "name": "buf",
+                  "nameLocation": "739:3:33",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7723,
+                  "src": "724:18:33",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 7711,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "724:5:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "723:20:33"
+            },
+            "returnParameters": {
+              "id": 7716,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7715,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7723,
+                  "src": "767:7:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7714,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "767:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "766:9:33"
+            },
+            "scope": 7724,
+            "src": "698:141:33",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 7725,
+        "src": "129:712:33",
+        "usedErrors": []
+      }
+    ],
+    "src": "0:841:33"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestRelayHubValidator.sol",
+    "exportedSymbols": {
+      "GsnTypes": [
+        8458
+      ],
+      "IERC165": [
+        12318
+      ],
+      "IForwarder": [
+        5129
+      ],
+      "RelayHubValidator": [
+        9465
+      ],
+      "TestRelayHubValidator": [
+        7724
+      ]
+    },
+    "id": 7725,
+    "license": "GPL-3.0-only",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7684,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:33"
+      },
+      {
+        "id": 7685,
+        "literals": [
+          "abicoder",
+          "v2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "24:19:33"
+      },
+      {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/RelayHubValidator.sol",
+        "file": "../utils/RelayHubValidator.sol",
+        "id": 7686,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 7725,
+        "sourceUnit": 9466,
+        "src": "87:40:33",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 7724,
+        "linearizedBaseContracts": [
+          7724
+        ],
+        "name": "TestRelayHubValidator",
+        "nameLocation": "138:21:33",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 7709,
+              "nodeType": "Block",
+              "src": "523:119:33",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 7703,
+                        "name": "domainSeparatorName",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7688,
+                        "src": "576:19:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_calldata_ptr",
+                          "typeString": "string calldata"
+                        }
+                      },
+                      {
+                        "id": 7704,
+                        "name": "relayRequest",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7693,
+                        "src": "597:12:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_RelayRequest_$8457_calldata_ptr",
+                          "typeString": "struct GsnTypes.RelayRequest calldata"
+                        }
+                      },
+                      {
+                        "id": 7705,
+                        "name": "signature",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7695,
+                        "src": "611:9:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      },
+                      {
+                        "id": 7706,
+                        "name": "approvalData",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7697,
+                        "src": "622:12:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_calldata_ptr",
+                          "typeString": "string calldata"
+                        },
+                        {
+                          "typeIdentifier": "t_struct$_RelayRequest_$8457_calldata_ptr",
+                          "typeString": "struct GsnTypes.RelayRequest calldata"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      ],
+                      "expression": {
+                        "id": 7700,
+                        "name": "RelayHubValidator",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 9465,
+                        "src": "533:17:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_RelayHubValidator_$9465_$",
+                          "typeString": "type(library RelayHubValidator)"
+                        }
+                      },
+                      "id": 7702,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "verifyTransactionPacking",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 9438,
+                      "src": "533:42:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_string_calldata_ptr_$_t_struct$_RelayRequest_$8457_calldata_ptr_$_t_bytes_calldata_ptr_$_t_bytes_calldata_ptr_$returns$__$",
+                        "typeString": "function (string calldata,struct GsnTypes.RelayRequest calldata,bytes calldata,bytes calldata) pure"
+                      }
+                    },
+                    "id": 7707,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "533:102:33",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7708,
+                  "nodeType": "ExpressionStatement",
+                  "src": "533:102:33"
+                }
+              ]
+            },
+            "functionSelector": "21b3a7e4",
+            "id": 7710,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "dummyRelayCall",
+            "nameLocation": "275:14:33",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7698,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7688,
+                  "mutability": "mutable",
+                  "name": "domainSeparatorName",
+                  "nameLocation": "315:19:33",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7710,
+                  "src": "299:35:33",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 7687,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "299:6:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7690,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7710,
+                  "src": "344:7:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7689,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "344:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7693,
+                  "mutability": "mutable",
+                  "name": "relayRequest",
+                  "nameLocation": "424:12:33",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7710,
+                  "src": "393:43:33",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_RelayRequest_$8457_calldata_ptr",
+                    "typeString": "struct GsnTypes.RelayRequest"
+                  },
+                  "typeName": {
+                    "id": 7692,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 7691,
+                      "name": "GsnTypes.RelayRequest",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 8457,
+                      "src": "393:21:33"
+                    },
+                    "referencedDeclaration": 8457,
+                    "src": "393:21:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_RelayRequest_$8457_storage_ptr",
+                      "typeString": "struct GsnTypes.RelayRequest"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7695,
+                  "mutability": "mutable",
+                  "name": "signature",
+                  "nameLocation": "461:9:33",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7710,
+                  "src": "446:24:33",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 7694,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "446:5:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7697,
+                  "mutability": "mutable",
+                  "name": "approvalData",
+                  "nameLocation": "495:12:33",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7710,
+                  "src": "480:27:33",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 7696,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "480:5:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "289:224:33"
+            },
+            "returnParameters": {
+              "id": 7699,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "523:0:33"
+            },
+            "scope": 7724,
+            "src": "266:376:33",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 7722,
+              "nodeType": "Block",
+              "src": "776:63:33",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 7719,
+                        "name": "buf",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7712,
+                        "src": "828:3:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      ],
+                      "expression": {
+                        "id": 7717,
+                        "name": "RelayHubValidator",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 9465,
+                        "src": "793:17:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_RelayHubValidator_$9465_$",
+                          "typeString": "type(library RelayHubValidator)"
+                        }
+                      },
+                      "id": 7718,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "dynamicParamSize",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 9464,
+                      "src": "793:34:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_bytes_calldata_ptr_$returns$_t_uint256_$",
+                        "typeString": "function (bytes calldata) pure returns (uint256)"
+                      }
+                    },
+                    "id": 7720,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "793:39:33",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 7716,
+                  "id": 7721,
+                  "nodeType": "Return",
+                  "src": "786:46:33"
+                }
+              ]
+            },
+            "functionSelector": "8787309d",
+            "id": 7723,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "dynamicParamSize",
+            "nameLocation": "707:16:33",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7713,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7712,
+                  "mutability": "mutable",
+                  "name": "buf",
+                  "nameLocation": "739:3:33",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7723,
+                  "src": "724:18:33",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 7711,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "724:5:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "723:20:33"
+            },
+            "returnParameters": {
+              "id": 7716,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7715,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7723,
+                  "src": "767:7:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7714,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "767:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "766:9:33"
+            },
+            "scope": 7724,
+            "src": "698:141:33",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 7725,
+        "src": "129:712:33",
+        "usedErrors": []
+      }
+    ],
+    "src": "0:841:33"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.7+commit.e28d00a7.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2023-06-08T13:50:08.511Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

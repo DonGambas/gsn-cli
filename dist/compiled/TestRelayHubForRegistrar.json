@@ -1,0 +1,1738 @@
+{
+    "contractName": "TestRelayHubForRegistrar",
+    "abi": [
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "name": "isStaked",
+            "outputs": [
+                {
+                    "internalType": "bool",
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "relayManager",
+                    "type": "address"
+                },
+                {
+                    "internalType": "bool",
+                    "name": "_isStaked",
+                    "type": "bool"
+                }
+            ],
+            "name": "setRelayManagerStaked",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "relayManager",
+                    "type": "address"
+                }
+            ],
+            "name": "verifyCanRegister",
+            "outputs": [],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "relayManager",
+                    "type": "address"
+                }
+            ],
+            "name": "verifyRelayManagerStaked",
+            "outputs": [],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "relayManager",
+                    "type": "address"
+                }
+            ],
+            "name": "onRelayServerRegistered",
+            "outputs": [],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ],
+    "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"isStaked\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"relayManager\",\"type\":\"address\"}],\"name\":\"onRelayServerRegistered\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"relayManager\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"_isStaked\",\"type\":\"bool\"}],\"name\":\"setRelayManagerStaked\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"relayManager\",\"type\":\"address\"}],\"name\":\"verifyCanRegister\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"relayManager\",\"type\":\"address\"}],\"name\":\"verifyRelayManagerStaked\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestRelayHubForRegistrar.sol\":\"TestRelayHubForRegistrar\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/RelayHub.sol\":{\"keccak256\":\"0x648b59b36277a18170de742ab21f7f67d2beb817332b34fbd4b9eeccf820fcce\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://809ae9342d57c8d6ff6d6579f8c6c238f4df7eb9155b2b0ba3351630550a4d7b\",\"dweb:/ipfs/QmdH2AKJTEHE9WcZMt1rqGs5qCFF7d2HGoWRowYdSK9H4w\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/forwarder/IForwarder.sol\":{\"keccak256\":\"0xef3d770001c3245db4408cdd0afdfc622695ccfe31f28b74571d05158bbf83f8\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://08949174ed05b596d89c8f1eeedfeb254993b84054bbc1ff6081ad926f5db406\",\"dweb:/ipfs/QmNQtKzHpie4Esocxuc9YrPtGQyA928a1a5TWbVc7cPoqk\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/interfaces/IERC2771Recipient.sol\":{\"keccak256\":\"0x92a3665ec2fc3d2ab78cf8a08451b2ab6466dc7fae3c215150be2132500406fa\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://364eee344363535733b4cc1a7748e1fc8b10786f6df6c0e2bc0082bcb2477e0e\",\"dweb:/ipfs/QmfCwWAxFqU4woSqu3g5BFPASEA7eCSwcwUSHM9EoYhYdu\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/interfaces/IPaymaster.sol\":{\"keccak256\":\"0x205617108fad6f3543fc12773e9d25998e944852e8ed9d71f79cb799ae299246\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://4903018f63b15211f2714edcf1c56f5c0bee6fea07efaaf908d3a78d07fb6d84\",\"dweb:/ipfs/Qmezexeh6GszFUHW2dgTGWTfb613Ni3tfjLqAtdAYAxCpQ\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/interfaces/IRelayHub.sol\":{\"keccak256\":\"0x19dcbf5e1bfaa413b6800ad84ffedd2989b401cede299f009ff62c33e03ccfae\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://bb5cb7bee7de97770e374b4cad1265c636a740dc7a2013d686a89d9398ba3098\",\"dweb:/ipfs/QmSqhNkFwDtS1EnupbQWduDm78N6s8c1zqXf5aLqZF69Xx\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/interfaces/IRelayRegistrar.sol\":{\"keccak256\":\"0xece9624dac85ba58f820860722fcfe7ea331159c8b3f172dd6450350fc1d35f0\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://3dae31c7fe1bbfbf7d7d73fddea3d2a5b27a15a2ec5f3bd9c17bd9e3f16caf74\",\"dweb:/ipfs/QmULwg82urTQx2fQDHYQoCve3QWJmGQXCPoMNB4Twafh1D\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/interfaces/IStakeManager.sol\":{\"keccak256\":\"0x27535f3677a2c373862d8672725632fdcabdf5d0e784f80c158063f55be68b5a\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://904ad156bf1cac29f9e13619ee0ee41e602b6cf1fafedea0a1d3be7a7accc654\",\"dweb:/ipfs/QmXVy5gfYXSWYFrkmL2u9jctZDXupiNWbif5tFVpVZMPww\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestRelayHubForRegistrar.sol\":{\"keccak256\":\"0x43bfd03aa57f5ba902aa4bfbcf9dfb0a7e12f8c4d519370377144ebf40f68b7e\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://4586b1595afdbfeb78c9458577187a204ce0f32983b7b0bb776c476126ee9171\",\"dweb:/ipfs/QmSgepsb1jdoVApbPs8mUkLJiooHyvyp9d8H7iWb5m4VNQ\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnEip712Library.sol\":{\"keccak256\":\"0xc35980f371cab5d9af3e1ead06f82b2afb705a8dbb2a5f53793f0179c485c274\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://dd7732d690c7959df567ee3e4863b0045583506fbae3c87b684b6173fd126968\",\"dweb:/ipfs/QmUbcUAqxKZTQS5ZwwPVnfNAtCmas4pPWQhRWXXwWQEeef\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnTypes.sol\":{\"keccak256\":\"0xfc3ed2bbd925e24facf0c3bb96d57dd7fc5bcc4a684b5473f04e8d209b758805\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://cb57b5b38d3e588f119ae45174891f2049d1d0de160a12b81a20335cd8bf731b\",\"dweb:/ipfs/Qmf6xfbdLbTKEpnzxwnSaRy1YZJtLYTZh8URqry86oyoSU\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnUtils.sol\":{\"keccak256\":\"0x8616968305b6127f4cb43209502e074c3964230a66c703e6b8623b03e5ec6442\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://2b1f1163fee75613024b38c25e17649933919f4a47a5ba5e8c3ea046023eb1ad\",\"dweb:/ipfs/QmNWReZE8BQ82eXahdKjnNjQWHuH9L9wcTcnKgyV5ypKCa\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/MinLibBytes.sol\":{\"keccak256\":\"0xa61a3d8fcd89182975d0bd17b86c22b6affd2f7bf26db66b1ddb2ee396f122ab\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2e0bc21e2c8c2f483aee9d5bc003fa77dc7afddbaa7cc99560581a416cfdef11\",\"dweb:/ipfs/QmbwLE7AJpoH2LVeeHxewq3tf1vXhLNUdYsubWxzDGKfTr\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/RelayHubValidator.sol\":{\"keccak256\":\"0xd510edd4bb9a11beae2e610f850ca7dcc5a8947c73080bf04c41e2c3c28c87af\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://548657a37cbcfacfc7a425ac61f126831cac3d4a8228e698ab57b38db2cbd29d\",\"dweb:/ipfs/QmbT6SADeNBsXiaV57rjL4cTH2DT6SMsSWyz6CwXs2KcZk\"]},\"@openzeppelin/contracts/access/Ownable.sol\":{\"keccak256\":\"0xa94b34880e3c1b0b931662cb1c09e5dfa6662f31cba80e07c5ee71cd135c9673\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://40fb1b5102468f783961d0af743f91b9980cf66b50d1d12009f6bb1869cea4d2\",\"dweb:/ipfs/QmYqEbJML4jB1GHbzD4cUZDtJg5wVwNm3vDJq1GbyDus8y\"]},\"@openzeppelin/contracts/interfaces/IERC165.sol\":{\"keccak256\":\"0xd04b0f06e0666f29cf7cccc82894de541e19bb30a765b107b1e40bb7fe5f7d7a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7b652499d098e88d8d878374616bb58434301061cae2253298b3f374044e0ddb\",\"dweb:/ipfs/QmbhAzctqo5jrSKU6idHdVyqfmzCcDbNUPvmx4GiXxfA6q\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x9750c6b834f7b43000631af5cc30001c5f547b3ceb3635488f140f60e897ea6b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5a7d5b1ef5d8d5889ad2ed89d8619c09383b80b72ab226e0fe7bde1636481e34\",\"dweb:/ipfs/QmebXWgtEfumQGBdVeM6c71McLixYXQP5Bk6kKXuoY4Bmr\"]},\"@openzeppelin/contracts/utils/Address.sol\":{\"keccak256\":\"0xd6153ce99bcdcce22b124f755e72553295be6abcd63804cfdffceb188b8bef10\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://35c47bece3c03caaa07fab37dd2bb3413bfbca20db7bd9895024390e0a469487\",\"dweb:/ipfs/QmPGWT2x3QHcKxqe6gRmAkdakhbaRgx3DLzcakHz5M4eXG\"]},\"@openzeppelin/contracts/utils/Context.sol\":{\"keccak256\":\"0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6df0ddf21ce9f58271bdfaa85cde98b200ef242a05a3f85c2bc10a8294800a92\",\"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3\"]},\"@openzeppelin/contracts/utils/introspection/ERC165.sol\":{\"keccak256\":\"0xd10975de010d89fd1c78dc5e8a9a7e7f496198085c151648f20cba166b32582b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://fb0048dee081f6fffa5f74afc3fb328483c2a30504e94a0ddd2a5114d731ec4d\",\"dweb:/ipfs/QmZptt1nmYoA5SgjwnSgWqgUSDgm4q52Yos3xhnMv3MV43\"]},\"@openzeppelin/contracts/utils/introspection/ERC165Checker.sol\":{\"keccak256\":\"0xc65c83c1039508fa7a42a09a3c6a32babd1c438ba4dbb23581255e784b5d5eed\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a1b3b38db0f76429db899909025e534c366415e9ea8b5ddc4c8901e6a7fc1461\",\"dweb:/ipfs/QmYv1KxyHjLEky9JWNSsSfpGJbiCxFyzVFgTwQKpiqYGUg\"]},\"@openzeppelin/contracts/utils/introspection/IERC165.sol\":{\"keccak256\":\"0x447a5f3ddc18419d41ff92b3773fb86471b1db25773e07f877f548918a185bf1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://be161e54f24e5c6fae81a12db1a8ae87bc5ae1b0ddc805d82a1440a68455088f\",\"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy\"]},\"@openzeppelin/contracts/utils/math/Math.sol\":{\"keccak256\":\"0xd15c3e400531f00203839159b2b8e7209c5158b35618f570c695b7e47f12e9f0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b600b852e0597aa69989cc263111f02097e2827edc1bdc70306303e3af5e9929\",\"dweb:/ipfs/QmU4WfM28A1nDqghuuGeFmN3CnVrk6opWtiF65K4vhFPeC\"]},\"hardhat/console.sol\":{\"keccak256\":\"0x72b6a1d297cd3b033d7c2e4a7e7864934bb767db6453623f1c3082c6534547f4\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a8cb8681076e765c214e0d51cac989325f6b98e315eaae06ee0cbd5a9f084763\",\"dweb:/ipfs/QmNWGHi4zmjxQTYN3NMGnJd49jBT5dE4bxTdWEaDuJrC6N\"]}},\"version\":1}",
+    "bytecode": "0x608060405234801561001057600080fd5b506102f7806100206000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c80634f7de0311461005c5780636177fd1814610071578063e4c557dc146100a8578063e6e22e12146100e1578063f8ba1e98146100f4575b600080fd5b61006f61006a366004610263565b610107565b005b61009461007f366004610263565b60006020819052908152604090205460ff1681565b604051901515815260200160405180910390f35b61006f6100b6366004610285565b6001600160a01b03919091166000908152602081905260409020805460ff1916911515919091179055565b61006f6100ef366004610263565b610177565b61006f610102366004610263565b6101df565b6001600160a01b03811660009081526020819052604090205460ff166101745760405162461bcd60e51b815260206004820181905260248201527f6f6e52656c617953657276657252656769737465726564206e6f207374616b6560448201526064015b60405180910390fd5b50565b6001600160a01b03811660009081526020819052604090205460ff166101745760405162461bcd60e51b815260206004820181905260248201527f76657269667952656c61794d616e616765725374616b65643a206973206e6f74604482015260640161016b565b6001600160a01b03811660009081526020819052604090205460ff166101745760405162461bcd60e51b815260206004820152601960248201527f76657269667943616e52656769737465723a2063616e6e6f7400000000000000604482015260640161016b565b80356001600160a01b038116811461025e57600080fd5b919050565b60006020828403121561027557600080fd5b61027e82610247565b9392505050565b6000806040838503121561029857600080fd5b6102a183610247565b9150602083013580151581146102b657600080fd5b80915050925092905056fea2646970667358221220ea79b9babb6dad5ab5ef890c1b14f64070294392c6534748f9293de4e7e555e964736f6c63430008070033",
+    "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c80634f7de0311461005c5780636177fd1814610071578063e4c557dc146100a8578063e6e22e12146100e1578063f8ba1e98146100f4575b600080fd5b61006f61006a366004610263565b610107565b005b61009461007f366004610263565b60006020819052908152604090205460ff1681565b604051901515815260200160405180910390f35b61006f6100b6366004610285565b6001600160a01b03919091166000908152602081905260409020805460ff1916911515919091179055565b61006f6100ef366004610263565b610177565b61006f610102366004610263565b6101df565b6001600160a01b03811660009081526020819052604090205460ff166101745760405162461bcd60e51b815260206004820181905260248201527f6f6e52656c617953657276657252656769737465726564206e6f207374616b6560448201526064015b60405180910390fd5b50565b6001600160a01b03811660009081526020819052604090205460ff166101745760405162461bcd60e51b815260206004820181905260248201527f76657269667952656c61794d616e616765725374616b65643a206973206e6f74604482015260640161016b565b6001600160a01b03811660009081526020819052604090205460ff166101745760405162461bcd60e51b815260206004820152601960248201527f76657269667943616e52656769737465723a2063616e6e6f7400000000000000604482015260640161016b565b80356001600160a01b038116811461025e57600080fd5b919050565b60006020828403121561027557600080fd5b61027e82610247565b9392505050565b6000806040838503121561029857600080fd5b6102a183610247565b9150602083013580151581146102b657600080fd5b80915050925092905056fea2646970667358221220ea79b9babb6dad5ab5ef890c1b14f64070294392c6534748f9293de4e7e555e964736f6c63430008070033",
+    "immutableReferences": {},
+    "sourceMap": "94:683:32:-:0;;;;;;;;;;;;;;;;;;;",
+    "deployedSourceMap": "94:683:32:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;622:153;;;;;;:::i;:::-;;:::i;:::-;;134:40;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;900:14:63;;893:22;875:41;;863:2;848:18;134:40:32;;;;;;;181:129;;;;;;:::i;:::-;-1:-1:-1;;;;;269:22:32;;;;:8;:22;;;;;;;;;;:34;;-1:-1:-1;;269:34:32;;;;;;;;;;181:129;462:154;;;;;;:::i;:::-;;:::i;316:140::-;;;;;;:::i;:::-;;:::i;622:153::-;-1:-1:-1;;;;;709:22:32;;:8;:22;;;;;;;;;;;;;701:67;;;;-1:-1:-1;;;701:67:32;;1129:2:63;701:67:32;;;1111:21:63;;;1148:18;;;1141:30;1207:34;1187:18;;;1180:62;1259:18;;701:67:32;;;;;;;;;622:153;:::o;462:154::-;-1:-1:-1;;;;;550:22:32;;:8;:22;;;;;;;;;;;;;542:67;;;;-1:-1:-1;;;542:67:32;;1844:2:63;542:67:32;;;1826:21:63;;;1863:18;;;1856:30;1922:34;1902:18;;;1895:62;1974:18;;542:67:32;1642:356:63;316:140:32;-1:-1:-1;;;;;397:22:32;;:8;:22;;;;;;;;;;;;;389:60;;;;-1:-1:-1;;;389:60:32;;1490:2:63;389:60:32;;;1472:21:63;1529:2;1509:18;;;1502:30;1568:27;1548:18;;;1541:55;1613:18;;389:60:32;1288:349:63;14:173;82:20;;-1:-1:-1;;;;;131:31:63;;121:42;;111:70;;177:1;174;167:12;111:70;14:173;;;:::o;192:186::-;251:6;304:2;292:9;283:7;279:23;275:32;272:52;;;320:1;317;310:12;272:52;343:29;362:9;343:29;:::i;:::-;333:39;192:186;-1:-1:-1;;;192:186:63:o;383:347::-;448:6;456;509:2;497:9;488:7;484:23;480:32;477:52;;;525:1;522;515:12;477:52;548:29;567:9;548:29;:::i;:::-;538:39;;627:2;616:9;612:18;599:32;674:5;667:13;660:21;653:5;650:32;640:60;;696:1;693;686:12;640:60;719:5;709:15;;;383:347;;;;;:::o",
+    "source": "pragma solidity ^0.8.0;\n\n// SPDX-License-Identifier: GPL-3.0-only\n\nimport \"../RelayHub.sol\";\n\ncontract TestRelayHubForRegistrar {\n    mapping(address => bool) public isStaked;\n\n    function setRelayManagerStaked(address relayManager, bool _isStaked) external {\n        isStaked[relayManager] = _isStaked;\n    }\n\n    function verifyCanRegister(address relayManager) external view {\n        require(isStaked[relayManager], \"verifyCanRegister: cannot\");\n    }\n\n    function verifyRelayManagerStaked(address relayManager) external view {\n        require(isStaked[relayManager], \"verifyRelayManagerStaked: is not\");\n    }\n\n    function onRelayServerRegistered(address relayManager) external view {\n        require(isStaked[relayManager], \"onRelayServerRegistered no stake\");\n    }\n}",
+    "sourcePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestRelayHubForRegistrar.sol",
+    "ast": {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestRelayHubForRegistrar.sol",
+        "exportedSymbols": {
+            "Address": [
+                11452
+            ],
+            "Context": [
+                11474
+            ],
+            "ERC165": [
+                12112
+            ],
+            "ERC165Checker": [
+                12306
+            ],
+            "GsnEip712Library": [
+                8430
+            ],
+            "GsnTypes": [
+                8458
+            ],
+            "GsnUtils": [
+                8538
+            ],
+            "IERC165": [
+                12318
+            ],
+            "IERC20": [
+                10815
+            ],
+            "IERC2771Recipient": [
+                5374
+            ],
+            "IForwarder": [
+                5129
+            ],
+            "IPaymaster": [
+                5447
+            ],
+            "IRelayHub": [
+                5896
+            ],
+            "IRelayRegistrar": [
+                5994
+            ],
+            "IStakeManager": [
+                6284
+            ],
+            "Math": [
+                12822
+            ],
+            "MinLibBytes": [
+                8653
+            ],
+            "Ownable": [
+                10148
+            ],
+            "RelayHub": [
+                3330
+            ],
+            "RelayHubValidator": [
+                9465
+            ],
+            "TestRelayHubForRegistrar": [
+                7682
+            ],
+            "console": [
+                20886
+            ]
+        },
+        "id": 7683,
+        "license": "GPL-3.0-only",
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 7623,
+                "literals": [
+                    "solidity",
+                    "^",
+                    "0.8",
+                    ".0"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "0:23:32"
+            },
+            {
+                "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/RelayHub.sol",
+                "file": "../RelayHub.sol",
+                "id": 7624,
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "ImportDirective",
+                "scope": 7683,
+                "sourceUnit": 3331,
+                "src": "67:25:32",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "abstract": false,
+                "baseContracts": [],
+                "contractDependencies": [],
+                "contractKind": "contract",
+                "fullyImplemented": true,
+                "id": 7682,
+                "linearizedBaseContracts": [
+                    7682
+                ],
+                "name": "TestRelayHubForRegistrar",
+                "nameLocation": "103:24:32",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "constant": false,
+                        "functionSelector": "6177fd18",
+                        "id": 7628,
+                        "mutability": "mutable",
+                        "name": "isStaked",
+                        "nameLocation": "166:8:32",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 7682,
+                        "src": "134:40:32",
+                        "stateVariable": true,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                            "typeString": "mapping(address => bool)"
+                        },
+                        "typeName": {
+                            "id": 7627,
+                            "keyType": {
+                                "id": 7625,
+                                "name": "address",
+                                "nodeType": "ElementaryTypeName",
+                                "src": "142:7:32",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_address",
+                                    "typeString": "address"
+                                }
+                            },
+                            "nodeType": "Mapping",
+                            "src": "134:24:32",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                                "typeString": "mapping(address => bool)"
+                            },
+                            "valueType": {
+                                "id": 7626,
+                                "name": "bool",
+                                "nodeType": "ElementaryTypeName",
+                                "src": "153:4:32",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_bool",
+                                    "typeString": "bool"
+                                }
+                            }
+                        },
+                        "visibility": "public"
+                    },
+                    {
+                        "body": {
+                            "id": 7641,
+                            "nodeType": "Block",
+                            "src": "259:51:32",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "id": 7639,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "leftHandSide": {
+                                            "baseExpression": {
+                                                "id": 7635,
+                                                "name": "isStaked",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 7628,
+                                                "src": "269:8:32",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                                                    "typeString": "mapping(address => bool)"
+                                                }
+                                            },
+                                            "id": 7637,
+                                            "indexExpression": {
+                                                "id": 7636,
+                                                "name": "relayManager",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 7630,
+                                                "src": "278:12:32",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            },
+                                            "isConstant": false,
+                                            "isLValue": true,
+                                            "isPure": false,
+                                            "lValueRequested": true,
+                                            "nodeType": "IndexAccess",
+                                            "src": "269:22:32",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_bool",
+                                                "typeString": "bool"
+                                            }
+                                        },
+                                        "nodeType": "Assignment",
+                                        "operator": "=",
+                                        "rightHandSide": {
+                                            "id": 7638,
+                                            "name": "_isStaked",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [],
+                                            "referencedDeclaration": 7632,
+                                            "src": "294:9:32",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_bool",
+                                                "typeString": "bool"
+                                            }
+                                        },
+                                        "src": "269:34:32",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bool",
+                                            "typeString": "bool"
+                                        }
+                                    },
+                                    "id": 7640,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "269:34:32"
+                                }
+                            ]
+                        },
+                        "functionSelector": "e4c557dc",
+                        "id": 7642,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "setRelayManagerStaked",
+                        "nameLocation": "190:21:32",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 7633,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 7630,
+                                    "mutability": "mutable",
+                                    "name": "relayManager",
+                                    "nameLocation": "220:12:32",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 7642,
+                                    "src": "212:20:32",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 7629,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "212:7:32",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 7632,
+                                    "mutability": "mutable",
+                                    "name": "_isStaked",
+                                    "nameLocation": "239:9:32",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 7642,
+                                    "src": "234:14:32",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bool",
+                                        "typeString": "bool"
+                                    },
+                                    "typeName": {
+                                        "id": 7631,
+                                        "name": "bool",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "234:4:32",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bool",
+                                            "typeString": "bool"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "211:38:32"
+                        },
+                        "returnParameters": {
+                            "id": 7634,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "259:0:32"
+                        },
+                        "scope": 7682,
+                        "src": "181:129:32",
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "body": {
+                            "id": 7654,
+                            "nodeType": "Block",
+                            "src": "379:77:32",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "arguments": [
+                                            {
+                                                "baseExpression": {
+                                                    "id": 7648,
+                                                    "name": "isStaked",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 7628,
+                                                    "src": "397:8:32",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                                                        "typeString": "mapping(address => bool)"
+                                                    }
+                                                },
+                                                "id": 7650,
+                                                "indexExpression": {
+                                                    "id": 7649,
+                                                    "name": "relayManager",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 7644,
+                                                    "src": "406:12:32",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_address",
+                                                        "typeString": "address"
+                                                    }
+                                                },
+                                                "isConstant": false,
+                                                "isLValue": true,
+                                                "isPure": false,
+                                                "lValueRequested": false,
+                                                "nodeType": "IndexAccess",
+                                                "src": "397:22:32",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                }
+                                            },
+                                            {
+                                                "hexValue": "76657269667943616e52656769737465723a2063616e6e6f74",
+                                                "id": 7651,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": true,
+                                                "kind": "string",
+                                                "lValueRequested": false,
+                                                "nodeType": "Literal",
+                                                "src": "421:27:32",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_stringliteral_a662353babf499367e8443227d192910206ba51c267cae175548aed9e0befef7",
+                                                    "typeString": "literal_string \"verifyCanRegister: cannot\""
+                                                },
+                                                "value": "verifyCanRegister: cannot"
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                },
+                                                {
+                                                    "typeIdentifier": "t_stringliteral_a662353babf499367e8443227d192910206ba51c267cae175548aed9e0befef7",
+                                                    "typeString": "literal_string \"verifyCanRegister: cannot\""
+                                                }
+                                            ],
+                                            "id": 7647,
+                                            "name": "require",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [
+                                                4294967278,
+                                                4294967278
+                                            ],
+                                            "referencedDeclaration": 4294967278,
+                                            "src": "389:7:32",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                                                "typeString": "function (bool,string memory) pure"
+                                            }
+                                        },
+                                        "id": 7652,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "389:60:32",
+                                        "tryCall": false,
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "id": 7653,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "389:60:32"
+                                }
+                            ]
+                        },
+                        "functionSelector": "f8ba1e98",
+                        "id": 7655,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "verifyCanRegister",
+                        "nameLocation": "325:17:32",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 7645,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 7644,
+                                    "mutability": "mutable",
+                                    "name": "relayManager",
+                                    "nameLocation": "351:12:32",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 7655,
+                                    "src": "343:20:32",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 7643,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "343:7:32",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "342:22:32"
+                        },
+                        "returnParameters": {
+                            "id": 7646,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "379:0:32"
+                        },
+                        "scope": 7682,
+                        "src": "316:140:32",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "body": {
+                            "id": 7667,
+                            "nodeType": "Block",
+                            "src": "532:84:32",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "arguments": [
+                                            {
+                                                "baseExpression": {
+                                                    "id": 7661,
+                                                    "name": "isStaked",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 7628,
+                                                    "src": "550:8:32",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                                                        "typeString": "mapping(address => bool)"
+                                                    }
+                                                },
+                                                "id": 7663,
+                                                "indexExpression": {
+                                                    "id": 7662,
+                                                    "name": "relayManager",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 7657,
+                                                    "src": "559:12:32",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_address",
+                                                        "typeString": "address"
+                                                    }
+                                                },
+                                                "isConstant": false,
+                                                "isLValue": true,
+                                                "isPure": false,
+                                                "lValueRequested": false,
+                                                "nodeType": "IndexAccess",
+                                                "src": "550:22:32",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                }
+                                            },
+                                            {
+                                                "hexValue": "76657269667952656c61794d616e616765725374616b65643a206973206e6f74",
+                                                "id": 7664,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": true,
+                                                "kind": "string",
+                                                "lValueRequested": false,
+                                                "nodeType": "Literal",
+                                                "src": "574:34:32",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_stringliteral_dfba94bdf85bcb24a989a800d954df25a1725fad23dcea14d4be477e2a9fd08c",
+                                                    "typeString": "literal_string \"verifyRelayManagerStaked: is not\""
+                                                },
+                                                "value": "verifyRelayManagerStaked: is not"
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                },
+                                                {
+                                                    "typeIdentifier": "t_stringliteral_dfba94bdf85bcb24a989a800d954df25a1725fad23dcea14d4be477e2a9fd08c",
+                                                    "typeString": "literal_string \"verifyRelayManagerStaked: is not\""
+                                                }
+                                            ],
+                                            "id": 7660,
+                                            "name": "require",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [
+                                                4294967278,
+                                                4294967278
+                                            ],
+                                            "referencedDeclaration": 4294967278,
+                                            "src": "542:7:32",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                                                "typeString": "function (bool,string memory) pure"
+                                            }
+                                        },
+                                        "id": 7665,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "542:67:32",
+                                        "tryCall": false,
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "id": 7666,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "542:67:32"
+                                }
+                            ]
+                        },
+                        "functionSelector": "e6e22e12",
+                        "id": 7668,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "verifyRelayManagerStaked",
+                        "nameLocation": "471:24:32",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 7658,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 7657,
+                                    "mutability": "mutable",
+                                    "name": "relayManager",
+                                    "nameLocation": "504:12:32",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 7668,
+                                    "src": "496:20:32",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 7656,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "496:7:32",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "495:22:32"
+                        },
+                        "returnParameters": {
+                            "id": 7659,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "532:0:32"
+                        },
+                        "scope": 7682,
+                        "src": "462:154:32",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "body": {
+                            "id": 7680,
+                            "nodeType": "Block",
+                            "src": "691:84:32",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "arguments": [
+                                            {
+                                                "baseExpression": {
+                                                    "id": 7674,
+                                                    "name": "isStaked",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 7628,
+                                                    "src": "709:8:32",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                                                        "typeString": "mapping(address => bool)"
+                                                    }
+                                                },
+                                                "id": 7676,
+                                                "indexExpression": {
+                                                    "id": 7675,
+                                                    "name": "relayManager",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 7670,
+                                                    "src": "718:12:32",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_address",
+                                                        "typeString": "address"
+                                                    }
+                                                },
+                                                "isConstant": false,
+                                                "isLValue": true,
+                                                "isPure": false,
+                                                "lValueRequested": false,
+                                                "nodeType": "IndexAccess",
+                                                "src": "709:22:32",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                }
+                                            },
+                                            {
+                                                "hexValue": "6f6e52656c617953657276657252656769737465726564206e6f207374616b65",
+                                                "id": 7677,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": true,
+                                                "kind": "string",
+                                                "lValueRequested": false,
+                                                "nodeType": "Literal",
+                                                "src": "733:34:32",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_stringliteral_62128184db8ffe1ad9d9145f1e56c71d54711ff081595a50f751ec7acc135cf2",
+                                                    "typeString": "literal_string \"onRelayServerRegistered no stake\""
+                                                },
+                                                "value": "onRelayServerRegistered no stake"
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                },
+                                                {
+                                                    "typeIdentifier": "t_stringliteral_62128184db8ffe1ad9d9145f1e56c71d54711ff081595a50f751ec7acc135cf2",
+                                                    "typeString": "literal_string \"onRelayServerRegistered no stake\""
+                                                }
+                                            ],
+                                            "id": 7673,
+                                            "name": "require",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [
+                                                4294967278,
+                                                4294967278
+                                            ],
+                                            "referencedDeclaration": 4294967278,
+                                            "src": "701:7:32",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                                                "typeString": "function (bool,string memory) pure"
+                                            }
+                                        },
+                                        "id": 7678,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "701:67:32",
+                                        "tryCall": false,
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "id": 7679,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "701:67:32"
+                                }
+                            ]
+                        },
+                        "functionSelector": "4f7de031",
+                        "id": 7681,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "onRelayServerRegistered",
+                        "nameLocation": "631:23:32",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 7671,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 7670,
+                                    "mutability": "mutable",
+                                    "name": "relayManager",
+                                    "nameLocation": "663:12:32",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 7681,
+                                    "src": "655:20:32",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 7669,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "655:7:32",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "654:22:32"
+                        },
+                        "returnParameters": {
+                            "id": 7672,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "691:0:32"
+                        },
+                        "scope": 7682,
+                        "src": "622:153:32",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    }
+                ],
+                "scope": 7683,
+                "src": "94:683:32",
+                "usedErrors": []
+            }
+        ],
+        "src": "0:777:32"
+    },
+    "legacyAST": {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestRelayHubForRegistrar.sol",
+        "exportedSymbols": {
+            "Address": [
+                11452
+            ],
+            "Context": [
+                11474
+            ],
+            "ERC165": [
+                12112
+            ],
+            "ERC165Checker": [
+                12306
+            ],
+            "GsnEip712Library": [
+                8430
+            ],
+            "GsnTypes": [
+                8458
+            ],
+            "GsnUtils": [
+                8538
+            ],
+            "IERC165": [
+                12318
+            ],
+            "IERC20": [
+                10815
+            ],
+            "IERC2771Recipient": [
+                5374
+            ],
+            "IForwarder": [
+                5129
+            ],
+            "IPaymaster": [
+                5447
+            ],
+            "IRelayHub": [
+                5896
+            ],
+            "IRelayRegistrar": [
+                5994
+            ],
+            "IStakeManager": [
+                6284
+            ],
+            "Math": [
+                12822
+            ],
+            "MinLibBytes": [
+                8653
+            ],
+            "Ownable": [
+                10148
+            ],
+            "RelayHub": [
+                3330
+            ],
+            "RelayHubValidator": [
+                9465
+            ],
+            "TestRelayHubForRegistrar": [
+                7682
+            ],
+            "console": [
+                20886
+            ]
+        },
+        "id": 7683,
+        "license": "GPL-3.0-only",
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 7623,
+                "literals": [
+                    "solidity",
+                    "^",
+                    "0.8",
+                    ".0"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "0:23:32"
+            },
+            {
+                "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/RelayHub.sol",
+                "file": "../RelayHub.sol",
+                "id": 7624,
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "ImportDirective",
+                "scope": 7683,
+                "sourceUnit": 3331,
+                "src": "67:25:32",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "abstract": false,
+                "baseContracts": [],
+                "contractDependencies": [],
+                "contractKind": "contract",
+                "fullyImplemented": true,
+                "id": 7682,
+                "linearizedBaseContracts": [
+                    7682
+                ],
+                "name": "TestRelayHubForRegistrar",
+                "nameLocation": "103:24:32",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "constant": false,
+                        "functionSelector": "6177fd18",
+                        "id": 7628,
+                        "mutability": "mutable",
+                        "name": "isStaked",
+                        "nameLocation": "166:8:32",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 7682,
+                        "src": "134:40:32",
+                        "stateVariable": true,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                            "typeString": "mapping(address => bool)"
+                        },
+                        "typeName": {
+                            "id": 7627,
+                            "keyType": {
+                                "id": 7625,
+                                "name": "address",
+                                "nodeType": "ElementaryTypeName",
+                                "src": "142:7:32",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_address",
+                                    "typeString": "address"
+                                }
+                            },
+                            "nodeType": "Mapping",
+                            "src": "134:24:32",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                                "typeString": "mapping(address => bool)"
+                            },
+                            "valueType": {
+                                "id": 7626,
+                                "name": "bool",
+                                "nodeType": "ElementaryTypeName",
+                                "src": "153:4:32",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_bool",
+                                    "typeString": "bool"
+                                }
+                            }
+                        },
+                        "visibility": "public"
+                    },
+                    {
+                        "body": {
+                            "id": 7641,
+                            "nodeType": "Block",
+                            "src": "259:51:32",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "id": 7639,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "leftHandSide": {
+                                            "baseExpression": {
+                                                "id": 7635,
+                                                "name": "isStaked",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 7628,
+                                                "src": "269:8:32",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                                                    "typeString": "mapping(address => bool)"
+                                                }
+                                            },
+                                            "id": 7637,
+                                            "indexExpression": {
+                                                "id": 7636,
+                                                "name": "relayManager",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 7630,
+                                                "src": "278:12:32",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            },
+                                            "isConstant": false,
+                                            "isLValue": true,
+                                            "isPure": false,
+                                            "lValueRequested": true,
+                                            "nodeType": "IndexAccess",
+                                            "src": "269:22:32",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_bool",
+                                                "typeString": "bool"
+                                            }
+                                        },
+                                        "nodeType": "Assignment",
+                                        "operator": "=",
+                                        "rightHandSide": {
+                                            "id": 7638,
+                                            "name": "_isStaked",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [],
+                                            "referencedDeclaration": 7632,
+                                            "src": "294:9:32",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_bool",
+                                                "typeString": "bool"
+                                            }
+                                        },
+                                        "src": "269:34:32",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bool",
+                                            "typeString": "bool"
+                                        }
+                                    },
+                                    "id": 7640,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "269:34:32"
+                                }
+                            ]
+                        },
+                        "functionSelector": "e4c557dc",
+                        "id": 7642,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "setRelayManagerStaked",
+                        "nameLocation": "190:21:32",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 7633,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 7630,
+                                    "mutability": "mutable",
+                                    "name": "relayManager",
+                                    "nameLocation": "220:12:32",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 7642,
+                                    "src": "212:20:32",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 7629,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "212:7:32",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 7632,
+                                    "mutability": "mutable",
+                                    "name": "_isStaked",
+                                    "nameLocation": "239:9:32",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 7642,
+                                    "src": "234:14:32",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bool",
+                                        "typeString": "bool"
+                                    },
+                                    "typeName": {
+                                        "id": 7631,
+                                        "name": "bool",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "234:4:32",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bool",
+                                            "typeString": "bool"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "211:38:32"
+                        },
+                        "returnParameters": {
+                            "id": 7634,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "259:0:32"
+                        },
+                        "scope": 7682,
+                        "src": "181:129:32",
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "body": {
+                            "id": 7654,
+                            "nodeType": "Block",
+                            "src": "379:77:32",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "arguments": [
+                                            {
+                                                "baseExpression": {
+                                                    "id": 7648,
+                                                    "name": "isStaked",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 7628,
+                                                    "src": "397:8:32",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                                                        "typeString": "mapping(address => bool)"
+                                                    }
+                                                },
+                                                "id": 7650,
+                                                "indexExpression": {
+                                                    "id": 7649,
+                                                    "name": "relayManager",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 7644,
+                                                    "src": "406:12:32",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_address",
+                                                        "typeString": "address"
+                                                    }
+                                                },
+                                                "isConstant": false,
+                                                "isLValue": true,
+                                                "isPure": false,
+                                                "lValueRequested": false,
+                                                "nodeType": "IndexAccess",
+                                                "src": "397:22:32",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                }
+                                            },
+                                            {
+                                                "hexValue": "76657269667943616e52656769737465723a2063616e6e6f74",
+                                                "id": 7651,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": true,
+                                                "kind": "string",
+                                                "lValueRequested": false,
+                                                "nodeType": "Literal",
+                                                "src": "421:27:32",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_stringliteral_a662353babf499367e8443227d192910206ba51c267cae175548aed9e0befef7",
+                                                    "typeString": "literal_string \"verifyCanRegister: cannot\""
+                                                },
+                                                "value": "verifyCanRegister: cannot"
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                },
+                                                {
+                                                    "typeIdentifier": "t_stringliteral_a662353babf499367e8443227d192910206ba51c267cae175548aed9e0befef7",
+                                                    "typeString": "literal_string \"verifyCanRegister: cannot\""
+                                                }
+                                            ],
+                                            "id": 7647,
+                                            "name": "require",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [
+                                                4294967278,
+                                                4294967278
+                                            ],
+                                            "referencedDeclaration": 4294967278,
+                                            "src": "389:7:32",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                                                "typeString": "function (bool,string memory) pure"
+                                            }
+                                        },
+                                        "id": 7652,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "389:60:32",
+                                        "tryCall": false,
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "id": 7653,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "389:60:32"
+                                }
+                            ]
+                        },
+                        "functionSelector": "f8ba1e98",
+                        "id": 7655,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "verifyCanRegister",
+                        "nameLocation": "325:17:32",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 7645,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 7644,
+                                    "mutability": "mutable",
+                                    "name": "relayManager",
+                                    "nameLocation": "351:12:32",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 7655,
+                                    "src": "343:20:32",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 7643,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "343:7:32",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "342:22:32"
+                        },
+                        "returnParameters": {
+                            "id": 7646,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "379:0:32"
+                        },
+                        "scope": 7682,
+                        "src": "316:140:32",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "body": {
+                            "id": 7667,
+                            "nodeType": "Block",
+                            "src": "532:84:32",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "arguments": [
+                                            {
+                                                "baseExpression": {
+                                                    "id": 7661,
+                                                    "name": "isStaked",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 7628,
+                                                    "src": "550:8:32",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                                                        "typeString": "mapping(address => bool)"
+                                                    }
+                                                },
+                                                "id": 7663,
+                                                "indexExpression": {
+                                                    "id": 7662,
+                                                    "name": "relayManager",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 7657,
+                                                    "src": "559:12:32",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_address",
+                                                        "typeString": "address"
+                                                    }
+                                                },
+                                                "isConstant": false,
+                                                "isLValue": true,
+                                                "isPure": false,
+                                                "lValueRequested": false,
+                                                "nodeType": "IndexAccess",
+                                                "src": "550:22:32",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                }
+                                            },
+                                            {
+                                                "hexValue": "76657269667952656c61794d616e616765725374616b65643a206973206e6f74",
+                                                "id": 7664,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": true,
+                                                "kind": "string",
+                                                "lValueRequested": false,
+                                                "nodeType": "Literal",
+                                                "src": "574:34:32",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_stringliteral_dfba94bdf85bcb24a989a800d954df25a1725fad23dcea14d4be477e2a9fd08c",
+                                                    "typeString": "literal_string \"verifyRelayManagerStaked: is not\""
+                                                },
+                                                "value": "verifyRelayManagerStaked: is not"
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                },
+                                                {
+                                                    "typeIdentifier": "t_stringliteral_dfba94bdf85bcb24a989a800d954df25a1725fad23dcea14d4be477e2a9fd08c",
+                                                    "typeString": "literal_string \"verifyRelayManagerStaked: is not\""
+                                                }
+                                            ],
+                                            "id": 7660,
+                                            "name": "require",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [
+                                                4294967278,
+                                                4294967278
+                                            ],
+                                            "referencedDeclaration": 4294967278,
+                                            "src": "542:7:32",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                                                "typeString": "function (bool,string memory) pure"
+                                            }
+                                        },
+                                        "id": 7665,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "542:67:32",
+                                        "tryCall": false,
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "id": 7666,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "542:67:32"
+                                }
+                            ]
+                        },
+                        "functionSelector": "e6e22e12",
+                        "id": 7668,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "verifyRelayManagerStaked",
+                        "nameLocation": "471:24:32",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 7658,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 7657,
+                                    "mutability": "mutable",
+                                    "name": "relayManager",
+                                    "nameLocation": "504:12:32",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 7668,
+                                    "src": "496:20:32",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 7656,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "496:7:32",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "495:22:32"
+                        },
+                        "returnParameters": {
+                            "id": 7659,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "532:0:32"
+                        },
+                        "scope": 7682,
+                        "src": "462:154:32",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "body": {
+                            "id": 7680,
+                            "nodeType": "Block",
+                            "src": "691:84:32",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "arguments": [
+                                            {
+                                                "baseExpression": {
+                                                    "id": 7674,
+                                                    "name": "isStaked",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 7628,
+                                                    "src": "709:8:32",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                                                        "typeString": "mapping(address => bool)"
+                                                    }
+                                                },
+                                                "id": 7676,
+                                                "indexExpression": {
+                                                    "id": 7675,
+                                                    "name": "relayManager",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 7670,
+                                                    "src": "718:12:32",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_address",
+                                                        "typeString": "address"
+                                                    }
+                                                },
+                                                "isConstant": false,
+                                                "isLValue": true,
+                                                "isPure": false,
+                                                "lValueRequested": false,
+                                                "nodeType": "IndexAccess",
+                                                "src": "709:22:32",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                }
+                                            },
+                                            {
+                                                "hexValue": "6f6e52656c617953657276657252656769737465726564206e6f207374616b65",
+                                                "id": 7677,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": true,
+                                                "kind": "string",
+                                                "lValueRequested": false,
+                                                "nodeType": "Literal",
+                                                "src": "733:34:32",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_stringliteral_62128184db8ffe1ad9d9145f1e56c71d54711ff081595a50f751ec7acc135cf2",
+                                                    "typeString": "literal_string \"onRelayServerRegistered no stake\""
+                                                },
+                                                "value": "onRelayServerRegistered no stake"
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                },
+                                                {
+                                                    "typeIdentifier": "t_stringliteral_62128184db8ffe1ad9d9145f1e56c71d54711ff081595a50f751ec7acc135cf2",
+                                                    "typeString": "literal_string \"onRelayServerRegistered no stake\""
+                                                }
+                                            ],
+                                            "id": 7673,
+                                            "name": "require",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [
+                                                4294967278,
+                                                4294967278
+                                            ],
+                                            "referencedDeclaration": 4294967278,
+                                            "src": "701:7:32",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                                                "typeString": "function (bool,string memory) pure"
+                                            }
+                                        },
+                                        "id": 7678,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "701:67:32",
+                                        "tryCall": false,
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "id": 7679,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "701:67:32"
+                                }
+                            ]
+                        },
+                        "functionSelector": "4f7de031",
+                        "id": 7681,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "onRelayServerRegistered",
+                        "nameLocation": "631:23:32",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 7671,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 7670,
+                                    "mutability": "mutable",
+                                    "name": "relayManager",
+                                    "nameLocation": "663:12:32",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 7681,
+                                    "src": "655:20:32",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 7669,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "655:7:32",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "654:22:32"
+                        },
+                        "returnParameters": {
+                            "id": 7672,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "691:0:32"
+                        },
+                        "scope": 7682,
+                        "src": "622:153:32",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    }
+                ],
+                "scope": 7683,
+                "src": "94:683:32",
+                "usedErrors": []
+            }
+        ],
+        "src": "0:777:32"
+    },
+    "compiler": {
+        "name": "solc",
+        "version": "0.8.7+commit.e28d00a7.Emscripten.clang"
+    },
+    "networks": {},
+    "schemaVersion": "3.1.0",
+    "updatedAt": "2023-06-08T13:50:08.510Z",
+    "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+    },
+    "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+    }
+}

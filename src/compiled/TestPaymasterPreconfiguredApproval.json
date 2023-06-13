@@ -1,0 +1,2678 @@
+{
+  "contractName": "TestPaymasterPreconfiguredApproval",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "success",
+          "type": "bool"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "actualCharge",
+          "type": "uint256"
+        }
+      ],
+      "name": "SampleRecipientPostCall",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [],
+      "name": "SampleRecipientPreCall",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "CALLDATA_SIZE_LIMIT",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "FORWARDER_HUB_OVERHEAD",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "PAYMASTER_ACCEPTANCE_BUDGET",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "POST_RELAYED_CALL_GAS_LIMIT",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "PRE_RELAYED_CALL_GAS_LIMIT",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "deposit",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "expectedApprovalData",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getGasAndDataLimits",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "acceptanceBudget",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "preRelayedCallGasLimit",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "postRelayedCallGasLimit",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "calldataSizeLimit",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct IPaymaster.GasAndDataLimits",
+          "name": "limits",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getRelayHub",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getTrustedForwarder",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "context",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bool",
+          "name": "success",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "gasUseWithoutPost",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "maxFeePerGas",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "maxPriorityFeePerGas",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "transactionCalldataGasUsed",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "relayWorker",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "paymaster",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "forwarder",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "paymasterData",
+              "type": "bytes"
+            },
+            {
+              "internalType": "uint256",
+              "name": "clientId",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct GsnTypes.RelayData",
+          "name": "relayData",
+          "type": "tuple"
+        }
+      ],
+      "name": "postRelayedCall",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "from",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "to",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "gas",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "nonce",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "data",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "validUntilTime",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct IForwarder.ForwardRequest",
+              "name": "request",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "maxFeePerGas",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "maxPriorityFeePerGas",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "transactionCalldataGasUsed",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "address",
+                  "name": "relayWorker",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "paymaster",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "forwarder",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "paymasterData",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "clientId",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct GsnTypes.RelayData",
+              "name": "relayData",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct GsnTypes.RelayRequest",
+          "name": "relayRequest",
+          "type": "tuple"
+        },
+        {
+          "internalType": "bytes",
+          "name": "signature",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes",
+          "name": "approvalData",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxPossibleGas",
+          "type": "uint256"
+        }
+      ],
+      "name": "preRelayedCall",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IRelayHub",
+          "name": "hub",
+          "type": "address"
+        }
+      ],
+      "name": "setRelayHub",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "forwarder",
+          "type": "address"
+        }
+      ],
+      "name": "setTrustedForwarder",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "versionPaymaster",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address payable",
+          "name": "destination",
+          "type": "address"
+        }
+      ],
+      "name": "withdrawAll",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address payable",
+          "name": "target",
+          "type": "address"
+        }
+      ],
+      "name": "withdrawRelayHubDepositTo",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "val",
+          "type": "bytes"
+        }
+      ],
+      "name": "setExpectedApprovalData",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"actualCharge\",\"type\":\"uint256\"}],\"name\":\"SampleRecipientPostCall\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"SampleRecipientPreCall\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"CALLDATA_SIZE_LIMIT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"FORWARDER_HUB_OVERHEAD\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"PAYMASTER_ACCEPTANCE_BUDGET\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"POST_RELAYED_CALL_GAS_LIMIT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"PRE_RELAYED_CALL_GAS_LIMIT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"deposit\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"expectedApprovalData\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getGasAndDataLimits\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"acceptanceBudget\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"preRelayedCallGasLimit\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"postRelayedCallGasLimit\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"calldataSizeLimit\",\"type\":\"uint256\"}],\"internalType\":\"struct IPaymaster.GasAndDataLimits\",\"name\":\"limits\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getRelayHub\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getTrustedForwarder\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"context\",\"type\":\"bytes\"},{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"gasUseWithoutPost\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"maxFeePerGas\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxPriorityFeePerGas\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"transactionCalldataGasUsed\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"relayWorker\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"paymaster\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"forwarder\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"paymasterData\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"clientId\",\"type\":\"uint256\"}],\"internalType\":\"struct GsnTypes.RelayData\",\"name\":\"relayData\",\"type\":\"tuple\"}],\"name\":\"postRelayedCall\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"gas\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"validUntilTime\",\"type\":\"uint256\"}],\"internalType\":\"struct IForwarder.ForwardRequest\",\"name\":\"request\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"maxFeePerGas\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxPriorityFeePerGas\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"transactionCalldataGasUsed\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"relayWorker\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"paymaster\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"forwarder\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"paymasterData\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"clientId\",\"type\":\"uint256\"}],\"internalType\":\"struct GsnTypes.RelayData\",\"name\":\"relayData\",\"type\":\"tuple\"}],\"internalType\":\"struct GsnTypes.RelayRequest\",\"name\":\"relayRequest\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"approvalData\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"maxPossibleGas\",\"type\":\"uint256\"}],\"name\":\"preRelayedCall\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"},{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"val\",\"type\":\"bytes\"}],\"name\":\"setExpectedApprovalData\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IRelayHub\",\"name\":\"hub\",\"type\":\"address\"}],\"name\":\"setRelayHub\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"forwarder\",\"type\":\"address\"}],\"name\":\"setTrustedForwarder\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"versionPaymaster\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address payable\",\"name\":\"destination\",\"type\":\"address\"}],\"name\":\"withdrawAll\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address payable\",\"name\":\"target\",\"type\":\"address\"}],\"name\":\"withdrawRelayHubDepositTo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"getGasAndDataLimits()\":{\"returns\":{\"limits\":\"An instance of the `GasAndDataLimits` struct ##### `acceptanceBudget` If the transactions consumes more than `acceptanceBudget` this Paymaster will be charged for gas no matter what. Transaction that gets rejected after consuming more than `acceptanceBudget` gas is on this Paymaster's expense. Should be set to an amount gas this Paymaster expects to spend deciding whether to accept or reject a request. This includes gas consumed by calculations in the `preRelayedCall`, `Forwarder` and the recipient contract. :warning: **Warning** :warning: As long this value is above `preRelayedCallGasLimit` (see defaults in `BasePaymaster`), the Paymaster is guaranteed it will never pay for rejected transactions. If this value is below `preRelayedCallGasLimit`, it might might make Paymaster open to a \\\"griefing\\\" attack. The relayers should prefer lower `acceptanceBudget`, as it improves their chances of being compensated. From a Relay's point of view, this is the highest gas value a bad Paymaster may cost the relay, since the paymaster will pay anything above that value regardless of whether the transaction succeeds or reverts. Specifying value too high might make the call rejected by relayers (see `maxAcceptanceBudget` in server config). ##### `preRelayedCallGasLimit` The max gas usage of preRelayedCall. Any revert of the `preRelayedCall` is a request rejection by the paymaster. As long as `acceptanceBudget` is above `preRelayedCallGasLimit`, any such revert is not payed by the paymaster. ##### `postRelayedCallGasLimit` The max gas usage of postRelayedCall. The Paymaster is not charged for the maximum, only for actually used gas. Note that an OOG will revert the inner transaction, but the paymaster will be charged for it anyway.\"}},\"getRelayHub()\":{\"returns\":{\"_0\":\"The address of the `RelayHub` that is trusted by this Paymaster to execute the requests.\"}},\"getTrustedForwarder()\":{\"returns\":{\"_0\":\"The address of the `Forwarder` that is trusted by this Paymaster to execute the requests.\"}},\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"postRelayedCall(bytes,bool,uint256,(uint256,uint256,uint256,address,address,address,bytes,uint256))\":{\"params\":{\"context\":\"The call context, as returned by the preRelayedCall\",\"gasUseWithoutPost\":\"The actual amount of gas used by the entire transaction, EXCEPT        the gas used by the postRelayedCall itself.\",\"relayData\":\"The relay params of the request. can be used by relayHub.calculateCharge()\",\"success\":\"`true` if the relayed call succeeded, false if it reverted\"}},\"preRelayedCall(((address,address,uint256,uint256,uint256,bytes,uint256),(uint256,uint256,uint256,address,address,address,bytes,uint256)),bytes,bytes,uint256)\":{\"params\":{\"approvalData\":\"- extra dapp-specific data (e.g. signature from trusted party)\",\"maxPossibleGas\":\"- based on values returned from `getGasAndDataLimits` the RelayHub will calculate the maximum possible amount of gas the user may be charged for. In order to convert this value to wei, the Paymaster has to call \\\"relayHub.calculateCharge()\\\"\",\"relayRequest\":\"- the full relay request structure\",\"signature\":\"- user's EIP712-compatible signature of the `relayRequest`. Note that in most cases the paymaster shouldn't try use it at all. It is always checked by the forwarder immediately after preRelayedCall returns.\"},\"returns\":{\"_0\":\"A byte array to be passed to postRelayedCall. Can contain any data needed by this Paymaster in any form or be empty if no extra data is needed.\",\"_1\":\"The flag that allows a Paymaster to \\\"delegate\\\" the rejection to the recipient code. It also means the Paymaster trust the recipient to reject fast: both preRelayedCall, forwarder check and recipient checks must fit into the GasLimits.acceptanceBudget, otherwise the TX is paid by the Paymaster. `true` if the Paymaster wants to reject the TX if the recipient reverts. `false` if the Paymaster wants rejects by the recipient to be completed on chain and paid by the Paymaster.\"}},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"supportsInterface(bytes4)\":{\"details\":\"Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"},\"versionPaymaster()\":{\"returns\":{\"_0\":\"version The SemVer string of this Paymaster's version.\"}},\"withdrawRelayHubDepositTo(uint256,address)\":{\"params\":{\"amount\":\"The amount to be subtracted from the sender.\",\"target\":\"The target to which the amount will be transferred.\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"getGasAndDataLimits()\":{\"notice\":\"Return the Gas Limits for Paymaster's functions and maximum msg.data length values for this Paymaster. This function allows different paymasters to have different properties without changes to the RelayHub.\"},\"getTrustedForwarder()\":{\"notice\":\":warning: **Warning** :warning: using incorrect Forwarder may cause the Paymaster to agreeing to pay for invalid transactions.\"},\"postRelayedCall(bytes,bool,uint256,(uint256,uint256,uint256,address,address,address,bytes,uint256))\":{\"notice\":\"This method is called after the actual relayed function call. It may be used to record the transaction (e.g. charge the caller by some contract logic) for this call. Revert in this functions causes a revert of the client's relayed call (and preRelayedCall(), but the Paymaster is still committed to pay the relay for the entire transaction.\"},\"preRelayedCall(((address,address,uint256,uint256,uint256,bytes,uint256),(uint256,uint256,uint256,address,address,address,bytes,uint256)),bytes,bytes,uint256)\":{\"notice\":\"Called by the Relay in view mode and later by the `RelayHub` on-chain to validate that the Paymaster agrees to pay for this call. The request is considered to be rejected by the Paymaster in one of the following conditions:  - `preRelayedCall()` method reverts  - the `Forwarder` reverts because of nonce or signature error  - the `Paymaster` returned `rejectOnRecipientRevert: true` and the recipient contract reverted    (and all that did not consume more than `acceptanceBudget` gas). In any of the above cases, all Paymaster calls and the recipient call are reverted. In any other case the Paymaster will pay for the gas cost of the transaction. Note that even if `postRelayedCall` is reverted the Paymaster will be charged.\"},\"setRelayHub(address)\":{\"notice\":\"The owner of the Paymaster can change the instance of the RelayHub this Paymaster works with. :warning: **Warning** :warning: The deposit on the previous RelayHub must be withdrawn first.\"},\"setTrustedForwarder(address)\":{\"notice\":\"The owner of the Paymaster can change the instance of the Forwarder this Paymaster works with.the Recipients must trust this Forwarder as well in order for the configuration to remain functional.\"},\"withdrawRelayHubDepositTo(uint256,address)\":{\"notice\":\"Withdraw deposit from the RelayHub.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestPaymasterPreconfiguredApproval.sol\":\"TestPaymasterPreconfiguredApproval\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/BasePaymaster.sol\":{\"keccak256\":\"0x89c669597c94431753f0e043015677d0a2261121d8dee5db04baa9e0bd60506e\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://195cad8f002b5fd930f007f6f582a8d2193574422c74d65fc556ae58d4227f76\",\"dweb:/ipfs/QmPxDaWYdZfB1kwKCxVMFw92h59RarKXkyadcVT5LT5avd\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/forwarder/IForwarder.sol\":{\"keccak256\":\"0xef3d770001c3245db4408cdd0afdfc622695ccfe31f28b74571d05158bbf83f8\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://08949174ed05b596d89c8f1eeedfeb254993b84054bbc1ff6081ad926f5db406\",\"dweb:/ipfs/QmNQtKzHpie4Esocxuc9YrPtGQyA928a1a5TWbVc7cPoqk\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/interfaces/IERC2771Recipient.sol\":{\"keccak256\":\"0x92a3665ec2fc3d2ab78cf8a08451b2ab6466dc7fae3c215150be2132500406fa\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://364eee344363535733b4cc1a7748e1fc8b10786f6df6c0e2bc0082bcb2477e0e\",\"dweb:/ipfs/QmfCwWAxFqU4woSqu3g5BFPASEA7eCSwcwUSHM9EoYhYdu\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/interfaces/IPaymaster.sol\":{\"keccak256\":\"0x205617108fad6f3543fc12773e9d25998e944852e8ed9d71f79cb799ae299246\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://4903018f63b15211f2714edcf1c56f5c0bee6fea07efaaf908d3a78d07fb6d84\",\"dweb:/ipfs/Qmezexeh6GszFUHW2dgTGWTfb613Ni3tfjLqAtdAYAxCpQ\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/interfaces/IRelayHub.sol\":{\"keccak256\":\"0x19dcbf5e1bfaa413b6800ad84ffedd2989b401cede299f009ff62c33e03ccfae\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://bb5cb7bee7de97770e374b4cad1265c636a740dc7a2013d686a89d9398ba3098\",\"dweb:/ipfs/QmSqhNkFwDtS1EnupbQWduDm78N6s8c1zqXf5aLqZF69Xx\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/interfaces/IStakeManager.sol\":{\"keccak256\":\"0x27535f3677a2c373862d8672725632fdcabdf5d0e784f80c158063f55be68b5a\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://904ad156bf1cac29f9e13619ee0ee41e602b6cf1fafedea0a1d3be7a7accc654\",\"dweb:/ipfs/QmXVy5gfYXSWYFrkmL2u9jctZDXupiNWbif5tFVpVZMPww\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestPaymasterEverythingAccepted.sol\":{\"keccak256\":\"0xd21014ab3a4ada1c21486db36c971e30be61451e519eaa61f3f074908247c607\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://2956d687a5691de930f698a22a1ff62b151792fbfd4e4a928a5cf6d982e03921\",\"dweb:/ipfs/QmNgkGYL4vqUu6jHHHsRfdCFLnvRQ7WTatkVVJoW2YwJtX\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestPaymasterPreconfiguredApproval.sol\":{\"keccak256\":\"0xf59469959904a73d772b8539ae5f3d0e4a5926396aa082f6cd96e12a05116f52\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://a46a252e9b8b6d5612afba028e5b3572b48196e4ae70c20dca497eb2a4e2e5b3\",\"dweb:/ipfs/QmdM2VxKjAmQbEhDezmtndpAk3nn97LqLPSTmXkH1tnzXj\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnEip712Library.sol\":{\"keccak256\":\"0xc35980f371cab5d9af3e1ead06f82b2afb705a8dbb2a5f53793f0179c485c274\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://dd7732d690c7959df567ee3e4863b0045583506fbae3c87b684b6173fd126968\",\"dweb:/ipfs/QmUbcUAqxKZTQS5ZwwPVnfNAtCmas4pPWQhRWXXwWQEeef\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnTypes.sol\":{\"keccak256\":\"0xfc3ed2bbd925e24facf0c3bb96d57dd7fc5bcc4a684b5473f04e8d209b758805\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://cb57b5b38d3e588f119ae45174891f2049d1d0de160a12b81a20335cd8bf731b\",\"dweb:/ipfs/Qmf6xfbdLbTKEpnzxwnSaRy1YZJtLYTZh8URqry86oyoSU\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/GsnUtils.sol\":{\"keccak256\":\"0x8616968305b6127f4cb43209502e074c3964230a66c703e6b8623b03e5ec6442\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://2b1f1163fee75613024b38c25e17649933919f4a47a5ba5e8c3ea046023eb1ad\",\"dweb:/ipfs/QmNWReZE8BQ82eXahdKjnNjQWHuH9L9wcTcnKgyV5ypKCa\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/utils/MinLibBytes.sol\":{\"keccak256\":\"0xa61a3d8fcd89182975d0bd17b86c22b6affd2f7bf26db66b1ddb2ee396f122ab\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2e0bc21e2c8c2f483aee9d5bc003fa77dc7afddbaa7cc99560581a416cfdef11\",\"dweb:/ipfs/QmbwLE7AJpoH2LVeeHxewq3tf1vXhLNUdYsubWxzDGKfTr\"]},\"@openzeppelin/contracts/access/Ownable.sol\":{\"keccak256\":\"0xa94b34880e3c1b0b931662cb1c09e5dfa6662f31cba80e07c5ee71cd135c9673\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://40fb1b5102468f783961d0af743f91b9980cf66b50d1d12009f6bb1869cea4d2\",\"dweb:/ipfs/QmYqEbJML4jB1GHbzD4cUZDtJg5wVwNm3vDJq1GbyDus8y\"]},\"@openzeppelin/contracts/interfaces/IERC165.sol\":{\"keccak256\":\"0xd04b0f06e0666f29cf7cccc82894de541e19bb30a765b107b1e40bb7fe5f7d7a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7b652499d098e88d8d878374616bb58434301061cae2253298b3f374044e0ddb\",\"dweb:/ipfs/QmbhAzctqo5jrSKU6idHdVyqfmzCcDbNUPvmx4GiXxfA6q\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x9750c6b834f7b43000631af5cc30001c5f547b3ceb3635488f140f60e897ea6b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5a7d5b1ef5d8d5889ad2ed89d8619c09383b80b72ab226e0fe7bde1636481e34\",\"dweb:/ipfs/QmebXWgtEfumQGBdVeM6c71McLixYXQP5Bk6kKXuoY4Bmr\"]},\"@openzeppelin/contracts/utils/Context.sol\":{\"keccak256\":\"0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6df0ddf21ce9f58271bdfaa85cde98b200ef242a05a3f85c2bc10a8294800a92\",\"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3\"]},\"@openzeppelin/contracts/utils/introspection/ERC165.sol\":{\"keccak256\":\"0xd10975de010d89fd1c78dc5e8a9a7e7f496198085c151648f20cba166b32582b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://fb0048dee081f6fffa5f74afc3fb328483c2a30504e94a0ddd2a5114d731ec4d\",\"dweb:/ipfs/QmZptt1nmYoA5SgjwnSgWqgUSDgm4q52Yos3xhnMv3MV43\"]},\"@openzeppelin/contracts/utils/introspection/ERC165Checker.sol\":{\"keccak256\":\"0xc65c83c1039508fa7a42a09a3c6a32babd1c438ba4dbb23581255e784b5d5eed\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a1b3b38db0f76429db899909025e534c366415e9ea8b5ddc4c8901e6a7fc1461\",\"dweb:/ipfs/QmYv1KxyHjLEky9JWNSsSfpGJbiCxFyzVFgTwQKpiqYGUg\"]},\"@openzeppelin/contracts/utils/introspection/IERC165.sol\":{\"keccak256\":\"0x447a5f3ddc18419d41ff92b3773fb86471b1db25773e07f877f548918a185bf1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://be161e54f24e5c6fae81a12db1a8ae87bc5ae1b0ddc805d82a1440a68455088f\",\"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5061001a3361001f565b61006f565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b61164b8061007e6000396000f3fe6080604052600436106101385760003560e01c8063a6d6f0b1116100ab578063d0e30db01161006f578063d0e30db014610438578063da74222814610440578063df463a6614610460578063f2fde38b14610475578063f9c002f714610495578063fa09e630146104ac57600080fd5b8063a6d6f0b114610385578063b039a88f146103a5578063b90b41cf146103ed578063bbdaa3c914610403578063ce1b815f1461041a57600080fd5b8063738e65bb116100fd578063738e65bb146102be57806376fa01c3146102e05780637bb05264146103005780637bdf2ec7146103205780638da5cb5b14610352578063921276ea1461037057600080fd5b8062be5dd4146101fc57806301ffc9a7146102335780632d14c4b7146102635780635c5e3db114610285578063715018a6146102a957600080fd5b366101f7576001546001600160a01b03166101965760405162461bcd60e51b81526020600482015260196024820152781c995b185e481a1d58881859191c995cdcc81b9bdd081cd95d603a1b60448201526064015b60405180910390fd5b60015460405163aa67c91960e01b81523060048201526001600160a01b039091169063aa67c9199034906024016000604051808303818588803b1580156101dc57600080fd5b505af11580156101f0573d6000803e3d6000fd5b5050505050005b600080fd5b34801561020857600080fd5b5061021c610217366004611220565b6104cc565b60405161022a92919061148c565b60405180910390f35b34801561023f57600080fd5b5061025361024e3660046110b5565b610513565b604051901515815260200161022a565b34801561026f57600080fd5b5061028361027e3660046112de565b610565565b005b34801561029157600080fd5b5061029b61290481565b60405190815260200161022a565b3480156102b557600080fd5b506102836105d7565b3480156102ca57600080fd5b506102d36105eb565b60405161022a9190611479565b3480156102ec57600080fd5b506102836102fb3660046110df565b610679565b34801561030c57600080fd5b5061028361031b36600461107b565b610695565b34801561032c57600080fd5b506001546001600160a01b03165b6040516001600160a01b03909116815260200161022a565b34801561035e57600080fd5b506000546001600160a01b031661033a565b34801561037c57600080fd5b506102d3610725565b34801561039157600080fd5b506102836103a036600461116f565b610745565b3480156103b157600080fd5b506103ba61075c565b60405161022a91908151815260208083015190820152604080830151908201526060918201519181019190915260800190565b3480156103f957600080fd5b5061029b61c35081565b34801561040f57600080fd5b5061029b6201adb081565b34801561042657600080fd5b506002546001600160a01b031661033a565b6102836107c5565b34801561044c57600080fd5b5061028361045b36600461107b565b610873565b34801561046c57600080fd5b5061029b610903565b34801561048157600080fd5b5061028361049036600461107b565b610915565b3480156104a157600080fd5b5061029b620186a081565b3480156104b857600080fd5b506102836104c736600461107b565b61098e565b606060006104d8610a16565b6104e188610a70565b6104ea88610b08565b6104f48585610b72565b6040805160208101909152600080825291509150965096945050505050565b60006001600160e01b031982166370d596f560e11b148061054457506001600160e01b03198216630704183b60e11b145b8061055f57506301ffc9a760e01b6001600160e01b03198316145b92915050565b61056d610bea565b60015460405163f3fef3a360e01b81526001600160a01b038381166004830152602482018590529091169063f3fef3a390604401600060405180830381600087803b1580156105bb57600080fd5b505af11580156105cf573d6000803e3d6000fd5b505050505050565b6105df610bea565b6105e96000610c44565b565b600380546105f890611579565b80601f016020809104026020016040519081016040528092919081815260200182805461062490611579565b80156106715780601f1061064657610100808354040283529160200191610671565b820191906000526020600020905b81548152906001019060200180831161065457829003601f168201915b505050505081565b610681610a16565b61068e8585858585610c94565b5050505050565b61069d610bea565b6106b76001600160a01b03821663e9fb30f760e01b610cd6565b6107035760405162461bcd60e51b815260206004820152601f60248201527f746172676574206973206e6f7420612076616c6964204952656c617948756200604482015260640161018d565b600180546001600160a01b0319166001600160a01b0392909216919091179055565b60606040518060600160405280602881526020016115ee60289139905090565b8051610758906003906020840190610f99565b5050565b6107876040518060800160405280600081526020016000815260200160008152602001600081525090565b604051806080016040528061c350620186a06107a39190611523565b8152602001620186a081526020016201adb08152602001612904815250905090565b6001546001600160a01b03166108195760405162461bcd60e51b81526020600482015260196024820152781c995b185e481a1d58881859191c995cdcc81b9bdd081cd95d603a1b604482015260640161018d565b60015460405163aa67c91960e01b81523060048201526001600160a01b039091169063aa67c9199034906024016000604051808303818588803b15801561085f57600080fd5b505af115801561068e573d6000803e3d6000fd5b61087b610bea565b6108956001600160a01b0382166309788f9960e21b610cd6565b6108e15760405162461bcd60e51b815260206004820181905260248201527f746172676574206973206e6f7420612076616c69642049466f72776172646572604482015260640161018d565b600280546001600160a01b0319166001600160a01b0392909216919091179055565b61091261c350620186a0611523565b81565b61091d610bea565b6001600160a01b0381166109825760405162461bcd60e51b815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201526564647265737360d01b606482015260840161018d565b61098b81610c44565b50565b6001546040516370a0823160e01b81523060048201526000916001600160a01b0316906370a082319060240160206040518083038186803b1580156109d257600080fd5b505afa1580156109e6573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610a0a91906112c5565b90506107588183610565565b6001546001600160a01b031633146105e95760405162461bcd60e51b815260206004820152601e60248201527f63616e206f6e6c792062652063616c6c65642062792052656c61794875620000604482015260640161018d565b610a7d602082018261150d565b610a8e9060c081019060a00161107b565b6001600160a01b0316610aa96002546001600160a01b031690565b6001600160a01b031614610aff5760405162461bcd60e51b815260206004820152601860248201527f466f72776172646572206973206e6f7420747275737465640000000000000000604482015260640161018d565b61098b81610cf9565b610b15602082018261150d565b610b239060c08101906114b0565b15905061098b5760405162461bcd60e51b815260206004820152601c60248201527f73686f756c642068617665206e6f207061796d61737465724461746100000000604482015260640161018d565b8181604051610b829291906113d4565b60405180910390206003604051610b999190611400565b60405180910390201482826003604051602001610bb89392919061140c565b60405160208183030381529060405290610be55760405162461bcd60e51b815260040161018d9190611479565b505050565b6000546001600160a01b031633146105e95760405162461bcd60e51b815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604482015260640161018d565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b604080518415158152602081018490527f8c7dc6f54401600ae78b31aec3dec125cfa5b7bcbf4ff3cbc5bfd818ba082b49910160405180910390a15050505050565b6000610ce183610edd565b8015610cf25750610cf28383610f10565b9392505050565b600080610d0683806114f7565b610d1790604081019060200161107b565b6001600160a01b031663572b6c0560e01b610d35602086018661150d565b610d469060c081019060a00161107b565b6040516001600160a01b03909116602482015260440160408051601f198184030181529181526020820180516001600160e01b03166001600160e01b0319909416939093179092529051610d9a91906113e4565b600060405180830381855afa9150503d8060008114610dd5576040519150601f19603f3d011682016040523d82523d6000602084013e610dda565b606091505b509150915081610e2c5760405162461bcd60e51b815260206004820152601c60248201527f697354727573746564466f727761726465723a20726576657274656400000000604482015260640161018d565b8051602014610e7d5760405162461bcd60e51b815260206004820181905260248201527f697354727573746564466f727761726465723a2062616420726573706f6e7365604482015260640161018d565b80806020019051810190610e919190611098565b610be55760405162461bcd60e51b815260206004820152601f60248201527f696e76616c696420666f7277617264657220666f7220726563697069656e7400604482015260640161018d565b6000610ef0826301ffc9a760e01b610f10565b801561055f5750610f09826001600160e01b0319610f10565b1592915050565b604080516001600160e01b03198316602480830191909152825180830390910181526044909101909152602080820180516001600160e01b03166301ffc9a760e01b178152825160009392849283928392918391908a617530fa92503d91506000519050828015610f82575060208210155b8015610f8e5750600081115b979650505050505050565b828054610fa590611579565b90600052602060002090601f016020900481019282610fc7576000855561100d565b82601f10610fe057805160ff191683800117855561100d565b8280016001018555821561100d579182015b8281111561100d578251825591602001919060010190610ff2565b5061101992915061101d565b5090565b5b80821115611019576000815560010161101e565b60008083601f84011261104457600080fd5b50813567ffffffffffffffff81111561105c57600080fd5b60208301915083602082850101111561107457600080fd5b9250929050565b60006020828403121561108d57600080fd5b8135610cf2816115ca565b6000602082840312156110aa57600080fd5b8151610cf2816115df565b6000602082840312156110c757600080fd5b81356001600160e01b031981168114610cf257600080fd5b6000806000806000608086880312156110f757600080fd5b853567ffffffffffffffff8082111561110f57600080fd5b61111b89838a01611032565b909750955060208801359150611130826115df565b909350604087013592506060870135908082111561114d57600080fd5b508601610100818903121561116157600080fd5b809150509295509295909350565b60006020828403121561118157600080fd5b813567ffffffffffffffff8082111561119957600080fd5b818401915084601f8301126111ad57600080fd5b8135818111156111bf576111bf6115b4565b604051601f8201601f19908116603f011681019083821181831017156111e7576111e76115b4565b8160405282815287602084870101111561120057600080fd5b826020860160208301376000928101602001929092525095945050505050565b6000806000806000806080878903121561123957600080fd5b863567ffffffffffffffff8082111561125157600080fd5b908801906040828b03121561126557600080fd5b9096506020880135908082111561127b57600080fd5b6112878a838b01611032565b909750955060408901359150808211156112a057600080fd5b506112ad89828a01611032565b979a9699509497949695606090950135949350505050565b6000602082840312156112d757600080fd5b5051919050565b600080604083850312156112f157600080fd5b823591506020830135611303816115ca565b809150509250929050565b60008151808452611326816020860160208601611549565b601f01601f19169290920160200192915050565b8054600090600181811c908083168061135457607f831692505b602080841082141561137657634e487b7160e01b600052602260045260246000fd5b81801561138a576001811461139b576113c8565b60ff198616895284890196506113c8565b60008881526020902060005b868110156113c05781548b8201529085019083016113a7565b505084890196505b50505050505092915050565b8183823760009101908152919050565b600082516113f6818460208701611549565b9190910192915050565b6000610cf2828461133a565b7f746573743a20756e657870656374656420617070726f76616c446174613a2027815282846020830137600083820160208101600081526d2720696e7374656164206f66202760901b815250611465602e82018561133a565b602760f81b81526001019695505050505050565b602081526000610cf2602083018461130e565b60408152600061149f604083018561130e565b905082151560208301529392505050565b6000808335601e198436030181126114c757600080fd5b83018035915067ffffffffffffffff8211156114e257600080fd5b60200191503681900382131561107457600080fd5b6000823560de198336030181126113f657600080fd5b6000823560fe198336030181126113f657600080fd5b6000821982111561154457634e487b7160e01b600052601160045260246000fd5b500190565b60005b8381101561156457818101518382015260200161154c565b83811115611573576000848401525b50505050565b600181811c9082168061158d57607f821691505b602082108114156115ae57634e487b7160e01b600052602260045260246000fd5b50919050565b634e487b7160e01b600052604160045260246000fd5b6001600160a01b038116811461098b57600080fd5b801515811461098b57600080fdfe332e302e302d626574612e332b6f70656e67736e2e746573742d7065612e697061796d6173746572a26469706673582212209bfda730185cbfd3414de5a5a647ca56361bf4608aa60f3735b54cdf8714cf5c64736f6c63430008070033",
+  "deployedBytecode": "0x6080604052600436106101385760003560e01c8063a6d6f0b1116100ab578063d0e30db01161006f578063d0e30db014610438578063da74222814610440578063df463a6614610460578063f2fde38b14610475578063f9c002f714610495578063fa09e630146104ac57600080fd5b8063a6d6f0b114610385578063b039a88f146103a5578063b90b41cf146103ed578063bbdaa3c914610403578063ce1b815f1461041a57600080fd5b8063738e65bb116100fd578063738e65bb146102be57806376fa01c3146102e05780637bb05264146103005780637bdf2ec7146103205780638da5cb5b14610352578063921276ea1461037057600080fd5b8062be5dd4146101fc57806301ffc9a7146102335780632d14c4b7146102635780635c5e3db114610285578063715018a6146102a957600080fd5b366101f7576001546001600160a01b03166101965760405162461bcd60e51b81526020600482015260196024820152781c995b185e481a1d58881859191c995cdcc81b9bdd081cd95d603a1b60448201526064015b60405180910390fd5b60015460405163aa67c91960e01b81523060048201526001600160a01b039091169063aa67c9199034906024016000604051808303818588803b1580156101dc57600080fd5b505af11580156101f0573d6000803e3d6000fd5b5050505050005b600080fd5b34801561020857600080fd5b5061021c610217366004611220565b6104cc565b60405161022a92919061148c565b60405180910390f35b34801561023f57600080fd5b5061025361024e3660046110b5565b610513565b604051901515815260200161022a565b34801561026f57600080fd5b5061028361027e3660046112de565b610565565b005b34801561029157600080fd5b5061029b61290481565b60405190815260200161022a565b3480156102b557600080fd5b506102836105d7565b3480156102ca57600080fd5b506102d36105eb565b60405161022a9190611479565b3480156102ec57600080fd5b506102836102fb3660046110df565b610679565b34801561030c57600080fd5b5061028361031b36600461107b565b610695565b34801561032c57600080fd5b506001546001600160a01b03165b6040516001600160a01b03909116815260200161022a565b34801561035e57600080fd5b506000546001600160a01b031661033a565b34801561037c57600080fd5b506102d3610725565b34801561039157600080fd5b506102836103a036600461116f565b610745565b3480156103b157600080fd5b506103ba61075c565b60405161022a91908151815260208083015190820152604080830151908201526060918201519181019190915260800190565b3480156103f957600080fd5b5061029b61c35081565b34801561040f57600080fd5b5061029b6201adb081565b34801561042657600080fd5b506002546001600160a01b031661033a565b6102836107c5565b34801561044c57600080fd5b5061028361045b36600461107b565b610873565b34801561046c57600080fd5b5061029b610903565b34801561048157600080fd5b5061028361049036600461107b565b610915565b3480156104a157600080fd5b5061029b620186a081565b3480156104b857600080fd5b506102836104c736600461107b565b61098e565b606060006104d8610a16565b6104e188610a70565b6104ea88610b08565b6104f48585610b72565b6040805160208101909152600080825291509150965096945050505050565b60006001600160e01b031982166370d596f560e11b148061054457506001600160e01b03198216630704183b60e11b145b8061055f57506301ffc9a760e01b6001600160e01b03198316145b92915050565b61056d610bea565b60015460405163f3fef3a360e01b81526001600160a01b038381166004830152602482018590529091169063f3fef3a390604401600060405180830381600087803b1580156105bb57600080fd5b505af11580156105cf573d6000803e3d6000fd5b505050505050565b6105df610bea565b6105e96000610c44565b565b600380546105f890611579565b80601f016020809104026020016040519081016040528092919081815260200182805461062490611579565b80156106715780601f1061064657610100808354040283529160200191610671565b820191906000526020600020905b81548152906001019060200180831161065457829003601f168201915b505050505081565b610681610a16565b61068e8585858585610c94565b5050505050565b61069d610bea565b6106b76001600160a01b03821663e9fb30f760e01b610cd6565b6107035760405162461bcd60e51b815260206004820152601f60248201527f746172676574206973206e6f7420612076616c6964204952656c617948756200604482015260640161018d565b600180546001600160a01b0319166001600160a01b0392909216919091179055565b60606040518060600160405280602881526020016115ee60289139905090565b8051610758906003906020840190610f99565b5050565b6107876040518060800160405280600081526020016000815260200160008152602001600081525090565b604051806080016040528061c350620186a06107a39190611523565b8152602001620186a081526020016201adb08152602001612904815250905090565b6001546001600160a01b03166108195760405162461bcd60e51b81526020600482015260196024820152781c995b185e481a1d58881859191c995cdcc81b9bdd081cd95d603a1b604482015260640161018d565b60015460405163aa67c91960e01b81523060048201526001600160a01b039091169063aa67c9199034906024016000604051808303818588803b15801561085f57600080fd5b505af115801561068e573d6000803e3d6000fd5b61087b610bea565b6108956001600160a01b0382166309788f9960e21b610cd6565b6108e15760405162461bcd60e51b815260206004820181905260248201527f746172676574206973206e6f7420612076616c69642049466f72776172646572604482015260640161018d565b600280546001600160a01b0319166001600160a01b0392909216919091179055565b61091261c350620186a0611523565b81565b61091d610bea565b6001600160a01b0381166109825760405162461bcd60e51b815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201526564647265737360d01b606482015260840161018d565b61098b81610c44565b50565b6001546040516370a0823160e01b81523060048201526000916001600160a01b0316906370a082319060240160206040518083038186803b1580156109d257600080fd5b505afa1580156109e6573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610a0a91906112c5565b90506107588183610565565b6001546001600160a01b031633146105e95760405162461bcd60e51b815260206004820152601e60248201527f63616e206f6e6c792062652063616c6c65642062792052656c61794875620000604482015260640161018d565b610a7d602082018261150d565b610a8e9060c081019060a00161107b565b6001600160a01b0316610aa96002546001600160a01b031690565b6001600160a01b031614610aff5760405162461bcd60e51b815260206004820152601860248201527f466f72776172646572206973206e6f7420747275737465640000000000000000604482015260640161018d565b61098b81610cf9565b610b15602082018261150d565b610b239060c08101906114b0565b15905061098b5760405162461bcd60e51b815260206004820152601c60248201527f73686f756c642068617665206e6f207061796d61737465724461746100000000604482015260640161018d565b8181604051610b829291906113d4565b60405180910390206003604051610b999190611400565b60405180910390201482826003604051602001610bb89392919061140c565b60405160208183030381529060405290610be55760405162461bcd60e51b815260040161018d9190611479565b505050565b6000546001600160a01b031633146105e95760405162461bcd60e51b815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604482015260640161018d565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b604080518415158152602081018490527f8c7dc6f54401600ae78b31aec3dec125cfa5b7bcbf4ff3cbc5bfd818ba082b49910160405180910390a15050505050565b6000610ce183610edd565b8015610cf25750610cf28383610f10565b9392505050565b600080610d0683806114f7565b610d1790604081019060200161107b565b6001600160a01b031663572b6c0560e01b610d35602086018661150d565b610d469060c081019060a00161107b565b6040516001600160a01b03909116602482015260440160408051601f198184030181529181526020820180516001600160e01b03166001600160e01b0319909416939093179092529051610d9a91906113e4565b600060405180830381855afa9150503d8060008114610dd5576040519150601f19603f3d011682016040523d82523d6000602084013e610dda565b606091505b509150915081610e2c5760405162461bcd60e51b815260206004820152601c60248201527f697354727573746564466f727761726465723a20726576657274656400000000604482015260640161018d565b8051602014610e7d5760405162461bcd60e51b815260206004820181905260248201527f697354727573746564466f727761726465723a2062616420726573706f6e7365604482015260640161018d565b80806020019051810190610e919190611098565b610be55760405162461bcd60e51b815260206004820152601f60248201527f696e76616c696420666f7277617264657220666f7220726563697069656e7400604482015260640161018d565b6000610ef0826301ffc9a760e01b610f10565b801561055f5750610f09826001600160e01b0319610f10565b1592915050565b604080516001600160e01b03198316602480830191909152825180830390910181526044909101909152602080820180516001600160e01b03166301ffc9a760e01b178152825160009392849283928392918391908a617530fa92503d91506000519050828015610f82575060208210155b8015610f8e5750600081115b979650505050505050565b828054610fa590611579565b90600052602060002090601f016020900481019282610fc7576000855561100d565b82601f10610fe057805160ff191683800117855561100d565b8280016001018555821561100d579182015b8281111561100d578251825591602001919060010190610ff2565b5061101992915061101d565b5090565b5b80821115611019576000815560010161101e565b60008083601f84011261104457600080fd5b50813567ffffffffffffffff81111561105c57600080fd5b60208301915083602082850101111561107457600080fd5b9250929050565b60006020828403121561108d57600080fd5b8135610cf2816115ca565b6000602082840312156110aa57600080fd5b8151610cf2816115df565b6000602082840312156110c757600080fd5b81356001600160e01b031981168114610cf257600080fd5b6000806000806000608086880312156110f757600080fd5b853567ffffffffffffffff8082111561110f57600080fd5b61111b89838a01611032565b909750955060208801359150611130826115df565b909350604087013592506060870135908082111561114d57600080fd5b508601610100818903121561116157600080fd5b809150509295509295909350565b60006020828403121561118157600080fd5b813567ffffffffffffffff8082111561119957600080fd5b818401915084601f8301126111ad57600080fd5b8135818111156111bf576111bf6115b4565b604051601f8201601f19908116603f011681019083821181831017156111e7576111e76115b4565b8160405282815287602084870101111561120057600080fd5b826020860160208301376000928101602001929092525095945050505050565b6000806000806000806080878903121561123957600080fd5b863567ffffffffffffffff8082111561125157600080fd5b908801906040828b03121561126557600080fd5b9096506020880135908082111561127b57600080fd5b6112878a838b01611032565b909750955060408901359150808211156112a057600080fd5b506112ad89828a01611032565b979a9699509497949695606090950135949350505050565b6000602082840312156112d757600080fd5b5051919050565b600080604083850312156112f157600080fd5b823591506020830135611303816115ca565b809150509250929050565b60008151808452611326816020860160208601611549565b601f01601f19169290920160200192915050565b8054600090600181811c908083168061135457607f831692505b602080841082141561137657634e487b7160e01b600052602260045260246000fd5b81801561138a576001811461139b576113c8565b60ff198616895284890196506113c8565b60008881526020902060005b868110156113c05781548b8201529085019083016113a7565b505084890196505b50505050505092915050565b8183823760009101908152919050565b600082516113f6818460208701611549565b9190910192915050565b6000610cf2828461133a565b7f746573743a20756e657870656374656420617070726f76616c446174613a2027815282846020830137600083820160208101600081526d2720696e7374656164206f66202760901b815250611465602e82018561133a565b602760f81b81526001019695505050505050565b602081526000610cf2602083018461130e565b60408152600061149f604083018561130e565b905082151560208301529392505050565b6000808335601e198436030181126114c757600080fd5b83018035915067ffffffffffffffff8211156114e257600080fd5b60200191503681900382131561107457600080fd5b6000823560de198336030181126113f657600080fd5b6000823560fe198336030181126113f657600080fd5b6000821982111561154457634e487b7160e01b600052601160045260246000fd5b500190565b60005b8381101561156457818101518382015260200161154c565b83811115611573576000848401525b50505050565b600181811c9082168061158d57607f821691505b602082108114156115ae57634e487b7160e01b600052602260045260246000fd5b50919050565b634e487b7160e01b600052604160045260246000fd5b6001600160a01b038116811461098b57600080fd5b801515811461098b57600080fdfe332e302e302d626574612e332b6f70656e67736e2e746573742d7065612e697061796d6173746572a26469706673582212209bfda730185cbfd3414de5a5a647ca56361bf4608aa60f3735b54cdf8714cf5c64736f6c63430008070033",
+  "immutableReferences": {},
+  "sourceMap": "136:910:26:-:0;;;;;;;;;;;;-1:-1:-1;936:32:47;719:10:55;936:18:47;:32::i;:::-;136:910:26;;2433:187:47;2506:16;2525:6;;-1:-1:-1;;;;;2541:17:47;;;-1:-1:-1;;;;;;2541:17:47;;;;;;2573:40;;2525:6;;;;;;;2573:40;;2506:16;2573:40;2496:124;2433:187;:::o;136:910:26:-;;;;;;;",
+  "deployedSourceMap": "136:910:26:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4642:8:0;;-1:-1:-1;;;;;4642:8:0;4626:69;;;;-1:-1:-1;;;4626:69:0;;11531:2:63;4626:69:0;;;11513:21:63;11570:2;11550:18;;;11543:30;-1:-1:-1;;;11589:18:63;;;11582:55;11654:18;;4626:69:0;;;;;;;;;4705:8;;:51;;-1:-1:-1;;;4705:51:0;;4750:4;4705:51;;;8080::63;-1:-1:-1;;;;;4705:8:0;;;;:19;;4731:9;;8053:18:63;;4705:51:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;136:910:26;;;;;5154:533:0;;;;;;;;;;-1:-1:-1;5154:533:0;;;;;:::i;:::-;;:::i;:::-;;;;;;;;:::i;:::-;;;;;;;;1461:283;;;;;;;;;;-1:-1:-1;1461:283:0;;;;;:::i;:::-;;:::i;:::-;;;8602:14:63;;8595:22;8577:41;;8565:2;8550:18;1461:283:0;8437:187:63;4975:142:0;;;;;;;;;;-1:-1:-1;4975:142:0;;;;;:::i;:::-;;:::i;:::-;;1375:51;;;;;;;;;;;;1421:5;1375:51;;;;;14431:25:63;;;14419:2;14404:18;1375:51:0;14285:177:63;1831:101:47;;;;;;;;;;;;;:::i;222:33:26:-;;;;;;;;;;;;;:::i;:::-;;;;;;;:::i;6140:309:0:-;;;;;;;;;;-1:-1:-1;6140:309:0;;;;;:::i;:::-;;:::i;3551:197::-;;;;;;;;;;-1:-1:-1;3551:197:0;;;;;:::i;:::-;;:::i;829:103::-;;;;;;;;;;-1:-1:-1;916:8:0;;-1:-1:-1;;;;;916:8:0;829:103;;;-1:-1:-1;;;;;8098:32:63;;;8080:51;;8068:2;8053:18;829:103:0;7934:203:63;1201:85:47;;;;;;;;;;-1:-1:-1;1247:7:47;1273:6;-1:-1:-1;;;;;1273:6:47;1201:85;;222:148:24;;;;;;;;;;;;;:::i;262:101:26:-;;;;;;;;;;-1:-1:-1;262:101:26;;;;;:::i;:::-;;:::i;1781:362:0:-;;;;;;;;;;;;;:::i;:::-;;;;;;14071:13:63;;14053:32;;14141:4;14129:17;;;14123:24;14101:20;;;14094:54;14204:4;14192:17;;;14186:24;14164:20;;;14157:54;14267:4;14255:17;;;14249:24;14227:20;;;14220:54;;;;14040:3;14025:19;;13838:442;1003:54:0;;;;;;;;;;;;1052:5;1003:54;;1198:60;;;;;;;;;;;;1252:6;1198:60;;4234:118;;;;;;;;;;-1:-1:-1;4328:17:0;;-1:-1:-1;;;;;4328:17:0;4234:118;;1381:181:24;;;:::i;3997:231:0:-;;;;;;;;;;-1:-1:-1;3997:231:0;;;;;:::i;:::-;;:::i;1264:105::-;;;;;;;;;;;;;:::i;2081:198:47:-;;;;;;;;;;-1:-1:-1;2081:198:47;;;;;:::i;:::-;;:::i;1133:59:0:-;;;;;;;;;;;;1186:6;1133:59;;1568:180:24;;;;;;;;;;-1:-1:-1;1568:180:24;;;;;:::i;:::-;;:::i;5154:533:0:-;5379:12;5393:4;5409:21;:19;:21::i;:::-;5440:30;5457:12;5440:16;:30::i;:::-;5516:34;5537:12;5516:20;:34::i;:::-;5560:33;5580:12;;5560:19;:33::i;:::-;1020:17:26;;;;;;;;;-1:-1:-1;1020:17:26;;;5603:77:0;;;;5154:533;;;;;;;;;:::o;1461:283::-;1563:4;-1:-1:-1;;;;;;1586:43:0;;-1:-1:-1;;;1586:43:0;;:99;;-1:-1:-1;;;;;;;1645:40:0;;-1:-1:-1;;;1645:40:0;1586:99;:151;;;-1:-1:-1;;;;;;;;;;937:40:58;;;1701:36:0;1579:158;1461:283;-1:-1:-1;;1461:283:0:o;4975:142::-;1094:13:47;:11;:13::i;:::-;5077:8:0::1;::::0;:33:::1;::::0;-1:-1:-1;;;5077:33:0;;-1:-1:-1;;;;;8350:32:63;;;5077:33:0::1;::::0;::::1;8332:51:63::0;8399:18;;;8392:34;;;5077:8:0;;::::1;::::0;:17:::1;::::0;8305:18:63;;5077:33:0::1;;;;;;;;;;;;;;;;;::::0;::::1;;;;;;;;;;;;::::0;::::1;;;;;;;;;4975:142:::0;;:::o;1831:101:47:-;1094:13;:11;:13::i;:::-;1895:30:::1;1922:1;1895:18;:30::i;:::-;1831:101::o:0;222:33:26:-;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;6140:309:0:-;6347:21;:19;:21::i;:::-;6378:64;6395:7;;6404;6413:17;6432:9;6378:16;:64::i;:::-;6140:309;;;;;:::o;3551:197::-;1094:13:47;:11;:13::i;:::-;3622:59:0::1;-1:-1:-1::0;;;;;3622:30:0;::::1;-1:-1:-1::0;;;3622:30:0::1;:59::i;:::-;3614:103;;;::::0;-1:-1:-1;;;3614:103:0;;13321:2:63;3614:103:0::1;::::0;::::1;13303:21:63::0;13360:2;13340:18;;;13333:30;13399:33;13379:18;;;13372:61;13450:18;;3614:103:0::1;13119:355:63::0;3614:103:0::1;3727:8;:14:::0;;-1:-1:-1;;;;;;3727:14:0::1;-1:-1:-1::0;;;;;3727:14:0;;;::::1;::::0;;;::::1;::::0;;3551:197::o;222:148:24:-;290:13;314:49;;;;;;;;;;;;;;;;;;;222:148;:::o;262:101:26:-;330:26;;;;:20;;:26;;;;;:::i;:::-;;262:101;:::o;1781:362:0:-;1879:41;-1:-1:-1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1879:41:0;1944:192;;;;;;;;1052:5;1186:6;1318:51;;;;:::i;:::-;1944:192;;;;1186:6;1944:192;;;;1252:6;1944:192;;;;1421:5;1944:192;;;1937:199;;1781:362;:::o;1381:181:24:-;1441:8;;-1:-1:-1;;;;;1441:8:24;1425:69;;;;-1:-1:-1;;;1425:69:24;;11531:2:63;1425:69:24;;;11513:21:63;11570:2;11550:18;;;11543:30;-1:-1:-1;;;11589:18:63;;;11582:55;11654:18;;1425:69:24;11329:349:63;1425:69:24;1504:8;;:51;;-1:-1:-1;;;1504:51:24;;1549:4;1504:51;;;8080::63;-1:-1:-1;;;;;1504:8:24;;;;:19;;1530:9;;8053:18:63;;1504:51:24;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3997:231:0;1094:13:47;:11;:13::i;:::-;4088:57:0::1;-1:-1:-1::0;;;;;4088:27:0;::::1;-1:-1:-1::0;;;4088:27:0::1;:57::i;:::-;4080:102;;;::::0;-1:-1:-1;;;4080:102:0;;12238:2:63;4080:102:0::1;::::0;::::1;12220:21:63::0;;;12257:18;;;12250:30;12316:34;12296:18;;;12289:62;12368:18;;4080:102:0::1;12036:356:63::0;4080:102:0::1;4192:17;:29:::0;;-1:-1:-1;;;;;;4192:29:0::1;-1:-1:-1::0;;;;;4192:29:0;;;::::1;::::0;;;::::1;::::0;;3997:231::o;1264:105::-;1318:51;1052:5;1186:6;1318:51;:::i;:::-;1264:105;:::o;2081:198:47:-;1094:13;:11;:13::i;:::-;-1:-1:-1;;;;;2169:22:47;::::1;2161:73;;;::::0;-1:-1:-1;;;2161:73:47;;10767:2:63;2161:73:47::1;::::0;::::1;10749:21:63::0;10806:2;10786:18;;;10779:30;10845:34;10825:18;;;10818:62;-1:-1:-1;;;10896:18:63;;;10889:36;10942:19;;2161:73:47::1;10565:402:63::0;2161:73:47::1;2244:28;2263:8;2244:18;:28::i;:::-;2081:198:::0;:::o;1568:180:24:-;1652:8;;:33;;-1:-1:-1;;;1652:33:24;;1679:4;1652:33;;;8080:51:63;1635:14:24;;-1:-1:-1;;;;;1652:8:24;;:18;;8053::63;;1652:33:24;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;1635:50;;1695:46;1721:6;1729:11;1695:25;:46::i;2621:140:0:-;916:8;;-1:-1:-1;;;;;916:8:0;2692:10;:27;2684:70;;;;-1:-1:-1;;;2684:70:0;;13681:2:63;2684:70:0;;;13663:21:63;13720:2;13700:18;;;13693:30;13759:32;13739:18;;;13732:60;13809:18;;2684:70:0;13479:354:63;2332:283:0;2484:22;;;;:12;:22;:::i;:::-;:32;;;;;;;;;:::i;:::-;-1:-1:-1;;;;;2459:57:0;:21;4328:17;;-1:-1:-1;;;;;4328:17:0;;4234:118;2459:21;-1:-1:-1;;;;;2459:57:0;;2451:94;;;;-1:-1:-1;;;2451:94:0;;11885:2:63;2451:94:0;;;11867:21:63;11924:2;11904:18;;;11897:30;11963:26;11943:18;;;11936:54;12007:18;;2451:94:0;11683:348:63;2451:94:0;2555:53;2595:12;2555:39;:53::i;2950:203::-;3065:22;;;;:12;:22;:::i;:::-;:36;;;;;;;:::i;:::-;:48;;-1:-1:-1;3057:89:0;;;;-1:-1:-1;;;3057:89:0;;10050:2:63;3057:89:0;;;10032:21:63;10089:2;10069:18;;;10062:30;10128;10108:18;;;10101:58;10176:18;;3057:89:0;9848:352:63;369:315:26;513:12;;503:23;;;;;;;:::i;:::-;;;;;;;;478:20;468:31;;;;;;:::i;:::-;;;;;;;;:58;617:12;;649:20;547:128;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;460:217;;;;;-1:-1:-1;;;460:217:26;;;;;;;;:::i;:::-;;369:315;;:::o;1359:130:47:-;1247:7;1273:6;-1:-1:-1;;;;;1273:6:47;719:10:55;1422:23:47;1414:68;;;;-1:-1:-1;;;1414:68:47;;12960:2:63;1414:68:47;;;12942:21:63;;;12979:18;;;12972:30;13038:34;13018:18;;;13011:62;13090:18;;1414:68:47;12758:356:63;2433:187:47;2506:16;2525:6;;-1:-1:-1;;;;;2541:17:47;;;-1:-1:-1;;;;;;2541:17:47;;;;;;2573:40;;2525:6;;;;;;;2573:40;;2506:16;2573:40;2496:124;2433:187;:::o;1043:332:24:-;1317:51;;;8822:14:63;;8815:22;8797:41;;8869:2;8854:18;;8847:34;;;1317:51:24;;8770:18:63;1317:51:24;;;;;;;1043:332;;;;;:::o;1333:274:59:-;1420:4;1527:23;1542:7;1527:14;:23::i;:::-;:73;;;;;1554:46;1579:7;1588:11;1554:24;:46::i;:::-;1520:80;1333:274;-1:-1:-1;;;1333:274:59:o;2158:540:38:-;2260:12;;2294:20;:12;;:20;:::i;:::-;:23;;;;;;;;;:::i;:::-;-1:-1:-1;;;;;2294:34:38;-1:-1:-1;;;2429:22:38;;;;:12;:22;:::i;:::-;:32;;;;;;;;;:::i;:::-;2342:133;;-1:-1:-1;;;;;8098:32:63;;;2342:133:38;;;8080:51:63;8053:18;;2342:133:38;;;-1:-1:-1;;2342:133:38;;;;;;;;;;;;;;-1:-1:-1;;;;;2342:133:38;-1:-1:-1;;;;;;2342:133:38;;;;;;;;;;2294:191;;;;2342:133;2294:191;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2259:226;;;;2503:7;2495:48;;;;-1:-1:-1;;;2495:48:38;;11174:2:63;2495:48:38;;;11156:21:63;11213:2;11193:18;;;11186:30;11252;11232:18;;;11225:58;11300:18;;2495:48:38;10972:352:63;2495:48:38;2561:3;:10;2575:2;2561:16;2553:61;;;;-1:-1:-1;;;2553:61:38;;12599:2:63;2553:61:38;;;12581:21:63;;;12618:18;;;12611:30;12677:34;12657:18;;;12650:62;12729:18;;2553:61:38;12397:356:63;2553:61:38;2643:3;2632:23;;;;;;;;;;;;:::i;:::-;2624:67;;;;-1:-1:-1;;;2624:67:38;;10407:2:63;2624:67:38;;;10389:21:63;10446:2;10426:18;;;10419:30;10485:33;10465:18;;;10458:61;10536:18;;2624:67:38;10205:355:63;704:411:59;768:4;975:60;1000:7;-1:-1:-1;;;975:24:59;:60::i;:::-;:133;;;;-1:-1:-1;1052:56:59;1077:7;-1:-1:-1;;;;;;1052:24:59;:56::i;:::-;1051:57;956:152;704:411;-1:-1:-1;;704:411:59:o;4223:638::-;4385:71;;;-1:-1:-1;;;;;;9054:33:63;;4385:71:59;;;;9036:52:63;;;;4385:71:59;;;;;;;;;;9009:18:63;;;;4385:71:59;;;;;;;;;-1:-1:-1;;;;;4385:71:59;-1:-1:-1;;;4385:71:59;;;4664:20;;4316:4;;4385:71;4316:4;;;;;;4385:71;4316:4;;4664:20;4629:7;4622:5;4611:86;4600:97;;4724:16;4710:30;;4774:4;4768:11;4753:26;;4806:7;:29;;;;;4831:4;4817:10;:18;;4806:29;:48;;;;;4853:1;4839:11;:15;4806:48;4799:55;4223:638;-1:-1:-1;;;;;;;4223:638:59:o;-1:-1:-1:-;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;14:347:63;65:8;75:6;129:3;122:4;114:6;110:17;106:27;96:55;;147:1;144;137:12;96:55;-1:-1:-1;170:20:63;;213:18;202:30;;199:50;;;245:1;242;235:12;199:50;282:4;274:6;270:17;258:29;;334:3;327:4;318:6;310;306:19;302:30;299:39;296:59;;;351:1;348;341:12;296:59;14:347;;;;;:::o;366:247::-;425:6;478:2;466:9;457:7;453:23;449:32;446:52;;;494:1;491;484:12;446:52;533:9;520:23;552:31;577:5;552:31;:::i;878:245::-;945:6;998:2;986:9;977:7;973:23;969:32;966:52;;;1014:1;1011;1004:12;966:52;1046:9;1040:16;1065:28;1087:5;1065:28;:::i;1128:286::-;1186:6;1239:2;1227:9;1218:7;1214:23;1210:32;1207:52;;;1255:1;1252;1245:12;1207:52;1281:23;;-1:-1:-1;;;;;;1333:32:63;;1323:43;;1313:71;;1380:1;1377;1370:12;1419:895;1542:6;1550;1558;1566;1574;1627:3;1615:9;1606:7;1602:23;1598:33;1595:53;;;1644:1;1641;1634:12;1595:53;1684:9;1671:23;1713:18;1754:2;1746:6;1743:14;1740:34;;;1770:1;1767;1760:12;1740:34;1809:58;1859:7;1850:6;1839:9;1835:22;1809:58;:::i;:::-;1886:8;;-1:-1:-1;1783:84:63;-1:-1:-1;1971:2:63;1956:18;;1943:32;;-1:-1:-1;1984:28:63;1943:32;1984:28;:::i;:::-;2031:5;;-1:-1:-1;2083:2:63;2068:18;;2055:32;;-1:-1:-1;2140:2:63;2125:18;;2112:32;;2156:16;;;2153:36;;;2185:1;2182;2175:12;2153:36;-1:-1:-1;2208:24:63;;2266:3;2248:16;;;2244:26;2241:46;;;2283:1;2280;2273:12;2241:46;2306:2;2296:12;;;1419:895;;;;;;;;:::o;2319:921::-;2387:6;2440:2;2428:9;2419:7;2415:23;2411:32;2408:52;;;2456:1;2453;2446:12;2408:52;2496:9;2483:23;2525:18;2566:2;2558:6;2555:14;2552:34;;;2582:1;2579;2572:12;2552:34;2620:6;2609:9;2605:22;2595:32;;2665:7;2658:4;2654:2;2650:13;2646:27;2636:55;;2687:1;2684;2677:12;2636:55;2723:2;2710:16;2745:2;2741;2738:10;2735:36;;;2751:18;;:::i;:::-;2826:2;2820:9;2794:2;2880:13;;-1:-1:-1;;2876:22:63;;;2900:2;2872:31;2868:40;2856:53;;;2924:18;;;2944:22;;;2921:46;2918:72;;;2970:18;;:::i;:::-;3010:10;3006:2;2999:22;3045:2;3037:6;3030:18;3085:7;3080:2;3075;3071;3067:11;3063:20;3060:33;3057:53;;;3106:1;3103;3096:12;3057:53;3162:2;3157;3153;3149:11;3144:2;3136:6;3132:15;3119:46;3207:1;3185:15;;;3202:2;3181:24;3174:35;;;;-1:-1:-1;3189:6:63;2319:921;-1:-1:-1;;;;;2319:921:63:o;3515:1055::-;3655:6;3663;3671;3679;3687;3695;3748:3;3736:9;3727:7;3723:23;3719:33;3716:53;;;3765:1;3762;3755:12;3716:53;3805:9;3792:23;3834:18;3875:2;3867:6;3864:14;3861:34;;;3891:1;3888;3881:12;3861:34;3914:22;;;;3970:2;3952:16;;;3948:25;3945:45;;;3986:1;3983;3976:12;3945:45;4009:2;;-1:-1:-1;4064:2:63;4049:18;;4036:32;;4080:16;;;4077:36;;;4109:1;4106;4099:12;4077:36;4148:60;4200:7;4189:8;4178:9;4174:24;4148:60;:::i;:::-;4227:8;;-1:-1:-1;4122:86:63;-1:-1:-1;4315:2:63;4300:18;;4287:32;;-1:-1:-1;4331:16:63;;;4328:36;;;4360:1;4357;4350:12;4328:36;;4399:60;4451:7;4440:8;4429:9;4425:24;4399:60;:::i;:::-;3515:1055;;;;-1:-1:-1;3515:1055:63;;;;;4560:2;4545:18;;;4532:32;;3515:1055;-1:-1:-1;;;;3515:1055:63:o;4575:184::-;4645:6;4698:2;4686:9;4677:7;4673:23;4669:32;4666:52;;;4714:1;4711;4704:12;4666:52;-1:-1:-1;4737:16:63;;4575:184;-1:-1:-1;4575:184:63:o;4764:323::-;4840:6;4848;4901:2;4889:9;4880:7;4876:23;4872:32;4869:52;;;4917:1;4914;4907:12;4869:52;4953:9;4940:23;4930:33;;5013:2;5002:9;4998:18;4985:32;5026:31;5051:5;5026:31;:::i;:::-;5076:5;5066:15;;;4764:323;;;;;:::o;5092:257::-;5133:3;5171:5;5165:12;5198:6;5193:3;5186:19;5214:63;5270:6;5263:4;5258:3;5254:14;5247:4;5240:5;5236:16;5214:63;:::i;:::-;5331:2;5310:15;-1:-1:-1;;5306:29:63;5297:39;;;;5338:4;5293:50;;5092:257;-1:-1:-1;;5092:257:63:o;5354:971::-;5438:12;;5403:3;;5493:1;5513:18;;;;5566;;;;5593:61;;5647:4;5639:6;5635:17;5625:27;;5593:61;5673:2;5721;5713:6;5710:14;5690:18;5687:38;5684:161;;;5767:10;5762:3;5758:20;5755:1;5748:31;5802:4;5799:1;5792:15;5830:4;5827:1;5820:15;5684:161;5861:18;5888:104;;;;6006:1;6001:318;;;;5854:465;;5888:104;-1:-1:-1;;5921:24:63;;5909:37;;5966:16;;;;-1:-1:-1;5888:104:63;;6001:318;15734:1;15727:14;;;15771:4;15758:18;;6094:1;6108:165;6122:6;6119:1;6116:13;6108:165;;;6200:14;;6187:11;;;6180:35;6243:16;;;;6137:10;;6108:165;;;6112:3;;6302:6;6297:3;6293:16;6286:23;;5854:465;;;;;;;5354:971;;;;:::o;6330:271::-;6513:6;6505;6500:3;6487:33;6469:3;6539:16;;6564:13;;;6539:16;6330:271;-1:-1:-1;6330:271:63:o;6606:274::-;6735:3;6773:6;6767:13;6789:53;6835:6;6830:3;6823:4;6815:6;6811:17;6789:53;:::i;:::-;6858:16;;;;;6606:274;-1:-1:-1;;6606:274:63:o;6885:194::-;7011:3;7036:37;7069:3;7061:6;7036:37;:::i;7084:845::-;7599:34;7594:3;7587:47;7678:6;7670;7665:2;7660:3;7656:12;7643:42;7569:3;7713:6;7708:3;7704:16;7747:2;7743;7739:11;7770:1;7766:2;7759:13;-1:-1:-1;;;7788:2:63;7781:28;;7828:45;7869:2;7865;7861:11;7853:6;7828:45;:::i;:::-;-1:-1:-1;;;7882:15:63;;7921:1;7913:10;;7084:845;-1:-1:-1;;;;;;7084:845:63:o;9099:217::-;9246:2;9235:9;9228:21;9209:4;9266:44;9306:2;9295:9;9291:18;9283:6;9266:44;:::i;9321:298::-;9490:2;9479:9;9472:21;9453:4;9510:44;9550:2;9539:9;9535:18;9527:6;9510:44;:::i;:::-;9502:52;;9604:6;9597:14;9590:22;9585:2;9574:9;9570:18;9563:50;9321:298;;;;;:::o;14467:521::-;14544:4;14550:6;14610:11;14597:25;14704:2;14700:7;14689:8;14673:14;14669:29;14665:43;14645:18;14641:68;14631:96;;14723:1;14720;14713:12;14631:96;14750:33;;14802:20;;;-1:-1:-1;14845:18:63;14834:30;;14831:50;;;14877:1;14874;14867:12;14831:50;14910:4;14898:17;;-1:-1:-1;14941:14:63;14937:27;;;14927:38;;14924:58;;;14978:1;14975;14968:12;14993:332;15093:4;15151:11;15138:25;15245:3;15241:8;15230;15214:14;15210:29;15206:44;15186:18;15182:69;15172:97;;15265:1;15262;15255:12;15330:327;15425:4;15483:11;15470:25;15577:3;15573:8;15562;15546:14;15542:29;15538:44;15518:18;15514:69;15504:97;;15597:1;15594;15587:12;15787:225;15827:3;15858:1;15854:6;15851:1;15848:13;15845:136;;;15903:10;15898:3;15894:20;15891:1;15884:31;15938:4;15935:1;15928:15;15966:4;15963:1;15956:15;15845:136;-1:-1:-1;15997:9:63;;15787:225::o;16017:258::-;16089:1;16099:113;16113:6;16110:1;16107:13;16099:113;;;16189:11;;;16183:18;16170:11;;;16163:39;16135:2;16128:10;16099:113;;;16230:6;16227:1;16224:13;16221:48;;;16265:1;16256:6;16251:3;16247:16;16240:27;16221:48;;16017:258;;;:::o;16280:380::-;16359:1;16355:12;;;;16402;;;16423:61;;16477:4;16469:6;16465:17;16455:27;;16423:61;16530:2;16522:6;16519:14;16499:18;16496:38;16493:161;;;16576:10;16571:3;16567:20;16564:1;16557:31;16611:4;16608:1;16601:15;16639:4;16636:1;16629:15;16493:161;;16280:380;;;:::o;16665:127::-;16726:10;16721:3;16717:20;16714:1;16707:31;16757:4;16754:1;16747:15;16781:4;16778:1;16771:15;16797:131;-1:-1:-1;;;;;16872:31:63;;16862:42;;16852:70;;16918:1;16915;16908:12;16933:118;17019:5;17012:13;17005:21;16998:5;16995:32;16985:60;;17041:1;17038;17031:12",
+  "source": "pragma solidity ^0.8.0;\npragma abicoder v2;\n\n// SPDX-License-Identifier: GPL-3.0-only\n\nimport \"./TestPaymasterEverythingAccepted.sol\";\n\ncontract TestPaymasterPreconfiguredApproval is TestPaymasterEverythingAccepted {\n\n    bytes public expectedApprovalData;\n\n    function setExpectedApprovalData(bytes memory val) public {\n        expectedApprovalData = val;\n    }\n\n    function _verifyApprovalData(bytes calldata approvalData) internal override view {\n        require(keccak256(expectedApprovalData) == keccak256(approvalData),\n            string(abi.encodePacked(\n                \"test: unexpected approvalData: '\", approvalData, \"' instead of '\", expectedApprovalData, \"'\")));\n    }\n\n    function _preRelayedCall(\n        GsnTypes.RelayRequest calldata relayRequest,\n        bytes calldata signature,\n        bytes calldata approvalData,\n        uint256 maxPossibleGas\n    )\n    internal\n    view\n    override\n    returns (bytes memory, bool) {\n        (relayRequest, signature, approvalData, maxPossibleGas);\n        return (\"\",false);\n    }\n}",
+  "sourcePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestPaymasterPreconfiguredApproval.sol",
+  "ast": {
+    "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestPaymasterPreconfiguredApproval.sol",
+    "exportedSymbols": {
+      "BasePaymaster": [
+        397
+      ],
+      "Context": [
+        11474
+      ],
+      "ERC165": [
+        12112
+      ],
+      "ERC165Checker": [
+        12306
+      ],
+      "GsnEip712Library": [
+        8430
+      ],
+      "GsnTypes": [
+        8458
+      ],
+      "GsnUtils": [
+        8538
+      ],
+      "IERC165": [
+        12318
+      ],
+      "IERC20": [
+        10815
+      ],
+      "IERC2771Recipient": [
+        5374
+      ],
+      "IForwarder": [
+        5129
+      ],
+      "IPaymaster": [
+        5447
+      ],
+      "IRelayHub": [
+        5896
+      ],
+      "IStakeManager": [
+        6284
+      ],
+      "MinLibBytes": [
+        8653
+      ],
+      "Ownable": [
+        10148
+      ],
+      "TestPaymasterEverythingAccepted": [
+        7006
+      ],
+      "TestPaymasterPreconfiguredApproval": [
+        7144
+      ]
+    },
+    "id": 7145,
+    "license": "GPL-3.0-only",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7071,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:26"
+      },
+      {
+        "id": 7072,
+        "literals": [
+          "abicoder",
+          "v2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "24:19:26"
+      },
+      {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestPaymasterEverythingAccepted.sol",
+        "file": "./TestPaymasterEverythingAccepted.sol",
+        "id": 7073,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 7145,
+        "sourceUnit": 7007,
+        "src": "87:47:26",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 7074,
+              "name": "TestPaymasterEverythingAccepted",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 7006,
+              "src": "183:31:26"
+            },
+            "id": 7075,
+            "nodeType": "InheritanceSpecifier",
+            "src": "183:31:26"
+          }
+        ],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 7144,
+        "linearizedBaseContracts": [
+          7144,
+          7006,
+          397,
+          12112,
+          10148,
+          11474,
+          5447,
+          12318
+        ],
+        "name": "TestPaymasterPreconfiguredApproval",
+        "nameLocation": "145:34:26",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "738e65bb",
+            "id": 7077,
+            "mutability": "mutable",
+            "name": "expectedApprovalData",
+            "nameLocation": "235:20:26",
+            "nodeType": "VariableDeclaration",
+            "scope": 7144,
+            "src": "222:33:26",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes_storage",
+              "typeString": "bytes"
+            },
+            "typeName": {
+              "id": 7076,
+              "name": "bytes",
+              "nodeType": "ElementaryTypeName",
+              "src": "222:5:26",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes_storage_ptr",
+                "typeString": "bytes"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 7086,
+              "nodeType": "Block",
+              "src": "320:43:26",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 7084,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 7082,
+                      "name": "expectedApprovalData",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 7077,
+                      "src": "330:20:26",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_storage",
+                        "typeString": "bytes storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 7083,
+                      "name": "val",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 7079,
+                      "src": "353:3:26",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_memory_ptr",
+                        "typeString": "bytes memory"
+                      }
+                    },
+                    "src": "330:26:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage",
+                      "typeString": "bytes storage ref"
+                    }
+                  },
+                  "id": 7085,
+                  "nodeType": "ExpressionStatement",
+                  "src": "330:26:26"
+                }
+              ]
+            },
+            "functionSelector": "a6d6f0b1",
+            "id": 7087,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setExpectedApprovalData",
+            "nameLocation": "271:23:26",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7080,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7079,
+                  "mutability": "mutable",
+                  "name": "val",
+                  "nameLocation": "308:3:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7087,
+                  "src": "295:16:26",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 7078,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "295:5:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "294:18:26"
+            },
+            "returnParameters": {
+              "id": 7081,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "320:0:26"
+            },
+            "scope": 7144,
+            "src": "262:101:26",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "baseFunctions": [
+              187
+            ],
+            "body": {
+              "id": 7114,
+              "nodeType": "Block",
+              "src": "450:234:26",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        "id": 7100,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "arguments": [
+                            {
+                              "id": 7095,
+                              "name": "expectedApprovalData",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 7077,
+                              "src": "478:20:26",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes_storage",
+                                "typeString": "bytes storage ref"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_bytes_storage",
+                                "typeString": "bytes storage ref"
+                              }
+                            ],
+                            "id": 7094,
+                            "name": "keccak256",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967288,
+                            "src": "468:9:26",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                              "typeString": "function (bytes memory) pure returns (bytes32)"
+                            }
+                          },
+                          "id": 7096,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "468:31:26",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "arguments": [
+                            {
+                              "id": 7098,
+                              "name": "approvalData",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 7089,
+                              "src": "513:12:26",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes_calldata_ptr",
+                                "typeString": "bytes calldata"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_bytes_calldata_ptr",
+                                "typeString": "bytes calldata"
+                              }
+                            ],
+                            "id": 7097,
+                            "name": "keccak256",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967288,
+                            "src": "503:9:26",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                              "typeString": "function (bytes memory) pure returns (bytes32)"
+                            }
+                          },
+                          "id": 7099,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "503:23:26",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                          }
+                        },
+                        "src": "468:58:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "arguments": [
+                          {
+                            "arguments": [
+                              {
+                                "hexValue": "746573743a20756e657870656374656420617070726f76616c446174613a2027",
+                                "id": 7105,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "kind": "string",
+                                "lValueRequested": false,
+                                "nodeType": "Literal",
+                                "src": "581:34:26",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_stringliteral_b447c81e43aca98252f59b56767ef5cc47f796346223b91602f4f37d4a411bc7",
+                                  "typeString": "literal_string \"test: unexpected approvalData: '\""
+                                },
+                                "value": "test: unexpected approvalData: '"
+                              },
+                              {
+                                "id": 7106,
+                                "name": "approvalData",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 7089,
+                                "src": "617:12:26",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bytes_calldata_ptr",
+                                  "typeString": "bytes calldata"
+                                }
+                              },
+                              {
+                                "hexValue": "2720696e7374656164206f662027",
+                                "id": 7107,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "kind": "string",
+                                "lValueRequested": false,
+                                "nodeType": "Literal",
+                                "src": "631:16:26",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_stringliteral_618827e6468a84ed4e316058ad0762feea9a44b364016c5b30609e242e0390f7",
+                                  "typeString": "literal_string \"' instead of '\""
+                                },
+                                "value": "' instead of '"
+                              },
+                              {
+                                "id": 7108,
+                                "name": "expectedApprovalData",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 7077,
+                                "src": "649:20:26",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bytes_storage",
+                                  "typeString": "bytes storage ref"
+                                }
+                              },
+                              {
+                                "hexValue": "27",
+                                "id": 7109,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "kind": "string",
+                                "lValueRequested": false,
+                                "nodeType": "Literal",
+                                "src": "671:3:26",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_stringliteral_a111f47c4392438c7a3abac74d0f6f440316c2730020cd5facd8390846edb14f",
+                                  "typeString": "literal_string \"'\""
+                                },
+                                "value": "'"
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_stringliteral_b447c81e43aca98252f59b56767ef5cc47f796346223b91602f4f37d4a411bc7",
+                                  "typeString": "literal_string \"test: unexpected approvalData: '\""
+                                },
+                                {
+                                  "typeIdentifier": "t_bytes_calldata_ptr",
+                                  "typeString": "bytes calldata"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_618827e6468a84ed4e316058ad0762feea9a44b364016c5b30609e242e0390f7",
+                                  "typeString": "literal_string \"' instead of '\""
+                                },
+                                {
+                                  "typeIdentifier": "t_bytes_storage",
+                                  "typeString": "bytes storage ref"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_a111f47c4392438c7a3abac74d0f6f440316c2730020cd5facd8390846edb14f",
+                                  "typeString": "literal_string \"'\""
+                                }
+                              ],
+                              "expression": {
+                                "id": 7103,
+                                "name": "abi",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 4294967295,
+                                "src": "547:3:26",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_magic_abi",
+                                  "typeString": "abi"
+                                }
+                              },
+                              "id": 7104,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "memberName": "encodePacked",
+                              "nodeType": "MemberAccess",
+                              "src": "547:16:26",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_abiencodepacked_pure$__$returns$_t_bytes_memory_ptr_$",
+                                "typeString": "function () pure returns (bytes memory)"
+                              }
+                            },
+                            "id": 7110,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "547:128:26",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes_memory_ptr",
+                              "typeString": "bytes memory"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_bytes_memory_ptr",
+                              "typeString": "bytes memory"
+                            }
+                          ],
+                          "id": 7102,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "540:6:26",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_string_storage_ptr_$",
+                            "typeString": "type(string storage pointer)"
+                          },
+                          "typeName": {
+                            "id": 7101,
+                            "name": "string",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "540:6:26",
+                            "typeDescriptions": {}
+                          }
+                        },
+                        "id": 7111,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "540:136:26",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 7093,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "460:7:26",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 7112,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "460:217:26",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7113,
+                  "nodeType": "ExpressionStatement",
+                  "src": "460:217:26"
+                }
+              ]
+            },
+            "id": 7115,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_verifyApprovalData",
+            "nameLocation": "378:19:26",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 7091,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "436:8:26"
+            },
+            "parameters": {
+              "id": 7090,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7089,
+                  "mutability": "mutable",
+                  "name": "approvalData",
+                  "nameLocation": "413:12:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7115,
+                  "src": "398:27:26",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 7088,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "398:5:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "397:29:26"
+            },
+            "returnParameters": {
+              "id": 7092,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "450:0:26"
+            },
+            "scope": 7144,
+            "src": "369:315:26",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "baseFunctions": [
+              6931
+            ],
+            "body": {
+              "id": 7142,
+              "nodeType": "Block",
+              "src": "945:99:26",
+              "statements": [
+                {
+                  "expression": {
+                    "components": [
+                      {
+                        "id": 7132,
+                        "name": "relayRequest",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7118,
+                        "src": "956:12:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_RelayRequest_$8457_calldata_ptr",
+                          "typeString": "struct GsnTypes.RelayRequest calldata"
+                        }
+                      },
+                      {
+                        "id": 7133,
+                        "name": "signature",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7120,
+                        "src": "970:9:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      },
+                      {
+                        "id": 7134,
+                        "name": "approvalData",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7122,
+                        "src": "981:12:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      },
+                      {
+                        "id": 7135,
+                        "name": "maxPossibleGas",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7124,
+                        "src": "995:14:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "id": 7136,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "955:55:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_struct$_RelayRequest_$8457_calldata_ptr_$_t_bytes_calldata_ptr_$_t_bytes_calldata_ptr_$_t_uint256_$",
+                      "typeString": "tuple(struct GsnTypes.RelayRequest calldata,bytes calldata,bytes calldata,uint256)"
+                    }
+                  },
+                  "id": 7137,
+                  "nodeType": "ExpressionStatement",
+                  "src": "955:55:26"
+                },
+                {
+                  "expression": {
+                    "components": [
+                      {
+                        "hexValue": "",
+                        "id": 7138,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1028:2:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+                          "typeString": "literal_string \"\""
+                        },
+                        "value": ""
+                      },
+                      {
+                        "hexValue": "66616c7365",
+                        "id": 7139,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "bool",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1031:5:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        "value": "false"
+                      }
+                    ],
+                    "id": 7140,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "1027:10:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_stringliteral_c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470_$_t_bool_$",
+                      "typeString": "tuple(literal_string \"\",bool)"
+                    }
+                  },
+                  "functionReturnParameters": 7131,
+                  "id": 7141,
+                  "nodeType": "Return",
+                  "src": "1020:17:26"
+                }
+              ]
+            },
+            "id": 7143,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_preRelayedCall",
+            "nameLocation": "699:15:26",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 7126,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "903:8:26"
+            },
+            "parameters": {
+              "id": 7125,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7118,
+                  "mutability": "mutable",
+                  "name": "relayRequest",
+                  "nameLocation": "755:12:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7143,
+                  "src": "724:43:26",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_RelayRequest_$8457_calldata_ptr",
+                    "typeString": "struct GsnTypes.RelayRequest"
+                  },
+                  "typeName": {
+                    "id": 7117,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 7116,
+                      "name": "GsnTypes.RelayRequest",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 8457,
+                      "src": "724:21:26"
+                    },
+                    "referencedDeclaration": 8457,
+                    "src": "724:21:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_RelayRequest_$8457_storage_ptr",
+                      "typeString": "struct GsnTypes.RelayRequest"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7120,
+                  "mutability": "mutable",
+                  "name": "signature",
+                  "nameLocation": "792:9:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7143,
+                  "src": "777:24:26",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 7119,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "777:5:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7122,
+                  "mutability": "mutable",
+                  "name": "approvalData",
+                  "nameLocation": "826:12:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7143,
+                  "src": "811:27:26",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 7121,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "811:5:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7124,
+                  "mutability": "mutable",
+                  "name": "maxPossibleGas",
+                  "nameLocation": "856:14:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7143,
+                  "src": "848:22:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7123,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "848:7:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "714:162:26"
+            },
+            "returnParameters": {
+              "id": 7131,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7128,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7143,
+                  "src": "925:12:26",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 7127,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "925:5:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7130,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7143,
+                  "src": "939:4:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 7129,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "939:4:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "924:20:26"
+            },
+            "scope": 7144,
+            "src": "690:354:26",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 7145,
+        "src": "136:910:26",
+        "usedErrors": []
+      }
+    ],
+    "src": "0:1046:26"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestPaymasterPreconfiguredApproval.sol",
+    "exportedSymbols": {
+      "BasePaymaster": [
+        397
+      ],
+      "Context": [
+        11474
+      ],
+      "ERC165": [
+        12112
+      ],
+      "ERC165Checker": [
+        12306
+      ],
+      "GsnEip712Library": [
+        8430
+      ],
+      "GsnTypes": [
+        8458
+      ],
+      "GsnUtils": [
+        8538
+      ],
+      "IERC165": [
+        12318
+      ],
+      "IERC20": [
+        10815
+      ],
+      "IERC2771Recipient": [
+        5374
+      ],
+      "IForwarder": [
+        5129
+      ],
+      "IPaymaster": [
+        5447
+      ],
+      "IRelayHub": [
+        5896
+      ],
+      "IStakeManager": [
+        6284
+      ],
+      "MinLibBytes": [
+        8653
+      ],
+      "Ownable": [
+        10148
+      ],
+      "TestPaymasterEverythingAccepted": [
+        7006
+      ],
+      "TestPaymasterPreconfiguredApproval": [
+        7144
+      ]
+    },
+    "id": 7145,
+    "license": "GPL-3.0-only",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7071,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:26"
+      },
+      {
+        "id": 7072,
+        "literals": [
+          "abicoder",
+          "v2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "24:19:26"
+      },
+      {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestPaymasterEverythingAccepted.sol",
+        "file": "./TestPaymasterEverythingAccepted.sol",
+        "id": 7073,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 7145,
+        "sourceUnit": 7007,
+        "src": "87:47:26",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 7074,
+              "name": "TestPaymasterEverythingAccepted",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 7006,
+              "src": "183:31:26"
+            },
+            "id": 7075,
+            "nodeType": "InheritanceSpecifier",
+            "src": "183:31:26"
+          }
+        ],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 7144,
+        "linearizedBaseContracts": [
+          7144,
+          7006,
+          397,
+          12112,
+          10148,
+          11474,
+          5447,
+          12318
+        ],
+        "name": "TestPaymasterPreconfiguredApproval",
+        "nameLocation": "145:34:26",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "738e65bb",
+            "id": 7077,
+            "mutability": "mutable",
+            "name": "expectedApprovalData",
+            "nameLocation": "235:20:26",
+            "nodeType": "VariableDeclaration",
+            "scope": 7144,
+            "src": "222:33:26",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes_storage",
+              "typeString": "bytes"
+            },
+            "typeName": {
+              "id": 7076,
+              "name": "bytes",
+              "nodeType": "ElementaryTypeName",
+              "src": "222:5:26",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes_storage_ptr",
+                "typeString": "bytes"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 7086,
+              "nodeType": "Block",
+              "src": "320:43:26",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 7084,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 7082,
+                      "name": "expectedApprovalData",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 7077,
+                      "src": "330:20:26",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_storage",
+                        "typeString": "bytes storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 7083,
+                      "name": "val",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 7079,
+                      "src": "353:3:26",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_memory_ptr",
+                        "typeString": "bytes memory"
+                      }
+                    },
+                    "src": "330:26:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage",
+                      "typeString": "bytes storage ref"
+                    }
+                  },
+                  "id": 7085,
+                  "nodeType": "ExpressionStatement",
+                  "src": "330:26:26"
+                }
+              ]
+            },
+            "functionSelector": "a6d6f0b1",
+            "id": 7087,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setExpectedApprovalData",
+            "nameLocation": "271:23:26",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7080,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7079,
+                  "mutability": "mutable",
+                  "name": "val",
+                  "nameLocation": "308:3:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7087,
+                  "src": "295:16:26",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 7078,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "295:5:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "294:18:26"
+            },
+            "returnParameters": {
+              "id": 7081,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "320:0:26"
+            },
+            "scope": 7144,
+            "src": "262:101:26",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "baseFunctions": [
+              187
+            ],
+            "body": {
+              "id": 7114,
+              "nodeType": "Block",
+              "src": "450:234:26",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        "id": 7100,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "arguments": [
+                            {
+                              "id": 7095,
+                              "name": "expectedApprovalData",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 7077,
+                              "src": "478:20:26",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes_storage",
+                                "typeString": "bytes storage ref"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_bytes_storage",
+                                "typeString": "bytes storage ref"
+                              }
+                            ],
+                            "id": 7094,
+                            "name": "keccak256",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967288,
+                            "src": "468:9:26",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                              "typeString": "function (bytes memory) pure returns (bytes32)"
+                            }
+                          },
+                          "id": 7096,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "468:31:26",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "arguments": [
+                            {
+                              "id": 7098,
+                              "name": "approvalData",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 7089,
+                              "src": "513:12:26",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes_calldata_ptr",
+                                "typeString": "bytes calldata"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_bytes_calldata_ptr",
+                                "typeString": "bytes calldata"
+                              }
+                            ],
+                            "id": 7097,
+                            "name": "keccak256",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967288,
+                            "src": "503:9:26",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                              "typeString": "function (bytes memory) pure returns (bytes32)"
+                            }
+                          },
+                          "id": 7099,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "503:23:26",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                          }
+                        },
+                        "src": "468:58:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "arguments": [
+                          {
+                            "arguments": [
+                              {
+                                "hexValue": "746573743a20756e657870656374656420617070726f76616c446174613a2027",
+                                "id": 7105,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "kind": "string",
+                                "lValueRequested": false,
+                                "nodeType": "Literal",
+                                "src": "581:34:26",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_stringliteral_b447c81e43aca98252f59b56767ef5cc47f796346223b91602f4f37d4a411bc7",
+                                  "typeString": "literal_string \"test: unexpected approvalData: '\""
+                                },
+                                "value": "test: unexpected approvalData: '"
+                              },
+                              {
+                                "id": 7106,
+                                "name": "approvalData",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 7089,
+                                "src": "617:12:26",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bytes_calldata_ptr",
+                                  "typeString": "bytes calldata"
+                                }
+                              },
+                              {
+                                "hexValue": "2720696e7374656164206f662027",
+                                "id": 7107,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "kind": "string",
+                                "lValueRequested": false,
+                                "nodeType": "Literal",
+                                "src": "631:16:26",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_stringliteral_618827e6468a84ed4e316058ad0762feea9a44b364016c5b30609e242e0390f7",
+                                  "typeString": "literal_string \"' instead of '\""
+                                },
+                                "value": "' instead of '"
+                              },
+                              {
+                                "id": 7108,
+                                "name": "expectedApprovalData",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 7077,
+                                "src": "649:20:26",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bytes_storage",
+                                  "typeString": "bytes storage ref"
+                                }
+                              },
+                              {
+                                "hexValue": "27",
+                                "id": 7109,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "kind": "string",
+                                "lValueRequested": false,
+                                "nodeType": "Literal",
+                                "src": "671:3:26",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_stringliteral_a111f47c4392438c7a3abac74d0f6f440316c2730020cd5facd8390846edb14f",
+                                  "typeString": "literal_string \"'\""
+                                },
+                                "value": "'"
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_stringliteral_b447c81e43aca98252f59b56767ef5cc47f796346223b91602f4f37d4a411bc7",
+                                  "typeString": "literal_string \"test: unexpected approvalData: '\""
+                                },
+                                {
+                                  "typeIdentifier": "t_bytes_calldata_ptr",
+                                  "typeString": "bytes calldata"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_618827e6468a84ed4e316058ad0762feea9a44b364016c5b30609e242e0390f7",
+                                  "typeString": "literal_string \"' instead of '\""
+                                },
+                                {
+                                  "typeIdentifier": "t_bytes_storage",
+                                  "typeString": "bytes storage ref"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_a111f47c4392438c7a3abac74d0f6f440316c2730020cd5facd8390846edb14f",
+                                  "typeString": "literal_string \"'\""
+                                }
+                              ],
+                              "expression": {
+                                "id": 7103,
+                                "name": "abi",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 4294967295,
+                                "src": "547:3:26",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_magic_abi",
+                                  "typeString": "abi"
+                                }
+                              },
+                              "id": 7104,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "memberName": "encodePacked",
+                              "nodeType": "MemberAccess",
+                              "src": "547:16:26",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_abiencodepacked_pure$__$returns$_t_bytes_memory_ptr_$",
+                                "typeString": "function () pure returns (bytes memory)"
+                              }
+                            },
+                            "id": 7110,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "547:128:26",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes_memory_ptr",
+                              "typeString": "bytes memory"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_bytes_memory_ptr",
+                              "typeString": "bytes memory"
+                            }
+                          ],
+                          "id": 7102,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "540:6:26",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_string_storage_ptr_$",
+                            "typeString": "type(string storage pointer)"
+                          },
+                          "typeName": {
+                            "id": 7101,
+                            "name": "string",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "540:6:26",
+                            "typeDescriptions": {}
+                          }
+                        },
+                        "id": 7111,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "540:136:26",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 7093,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "460:7:26",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 7112,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "460:217:26",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 7113,
+                  "nodeType": "ExpressionStatement",
+                  "src": "460:217:26"
+                }
+              ]
+            },
+            "id": 7115,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_verifyApprovalData",
+            "nameLocation": "378:19:26",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 7091,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "436:8:26"
+            },
+            "parameters": {
+              "id": 7090,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7089,
+                  "mutability": "mutable",
+                  "name": "approvalData",
+                  "nameLocation": "413:12:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7115,
+                  "src": "398:27:26",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 7088,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "398:5:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "397:29:26"
+            },
+            "returnParameters": {
+              "id": 7092,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "450:0:26"
+            },
+            "scope": 7144,
+            "src": "369:315:26",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "baseFunctions": [
+              6931
+            ],
+            "body": {
+              "id": 7142,
+              "nodeType": "Block",
+              "src": "945:99:26",
+              "statements": [
+                {
+                  "expression": {
+                    "components": [
+                      {
+                        "id": 7132,
+                        "name": "relayRequest",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7118,
+                        "src": "956:12:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_RelayRequest_$8457_calldata_ptr",
+                          "typeString": "struct GsnTypes.RelayRequest calldata"
+                        }
+                      },
+                      {
+                        "id": 7133,
+                        "name": "signature",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7120,
+                        "src": "970:9:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      },
+                      {
+                        "id": 7134,
+                        "name": "approvalData",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7122,
+                        "src": "981:12:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      },
+                      {
+                        "id": 7135,
+                        "name": "maxPossibleGas",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7124,
+                        "src": "995:14:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "id": 7136,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "955:55:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_struct$_RelayRequest_$8457_calldata_ptr_$_t_bytes_calldata_ptr_$_t_bytes_calldata_ptr_$_t_uint256_$",
+                      "typeString": "tuple(struct GsnTypes.RelayRequest calldata,bytes calldata,bytes calldata,uint256)"
+                    }
+                  },
+                  "id": 7137,
+                  "nodeType": "ExpressionStatement",
+                  "src": "955:55:26"
+                },
+                {
+                  "expression": {
+                    "components": [
+                      {
+                        "hexValue": "",
+                        "id": 7138,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1028:2:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+                          "typeString": "literal_string \"\""
+                        },
+                        "value": ""
+                      },
+                      {
+                        "hexValue": "66616c7365",
+                        "id": 7139,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "bool",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1031:5:26",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        "value": "false"
+                      }
+                    ],
+                    "id": 7140,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "1027:10:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_stringliteral_c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470_$_t_bool_$",
+                      "typeString": "tuple(literal_string \"\",bool)"
+                    }
+                  },
+                  "functionReturnParameters": 7131,
+                  "id": 7141,
+                  "nodeType": "Return",
+                  "src": "1020:17:26"
+                }
+              ]
+            },
+            "id": 7143,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_preRelayedCall",
+            "nameLocation": "699:15:26",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 7126,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "903:8:26"
+            },
+            "parameters": {
+              "id": 7125,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7118,
+                  "mutability": "mutable",
+                  "name": "relayRequest",
+                  "nameLocation": "755:12:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7143,
+                  "src": "724:43:26",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_RelayRequest_$8457_calldata_ptr",
+                    "typeString": "struct GsnTypes.RelayRequest"
+                  },
+                  "typeName": {
+                    "id": 7117,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 7116,
+                      "name": "GsnTypes.RelayRequest",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 8457,
+                      "src": "724:21:26"
+                    },
+                    "referencedDeclaration": 8457,
+                    "src": "724:21:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_RelayRequest_$8457_storage_ptr",
+                      "typeString": "struct GsnTypes.RelayRequest"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7120,
+                  "mutability": "mutable",
+                  "name": "signature",
+                  "nameLocation": "792:9:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7143,
+                  "src": "777:24:26",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 7119,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "777:5:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7122,
+                  "mutability": "mutable",
+                  "name": "approvalData",
+                  "nameLocation": "826:12:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7143,
+                  "src": "811:27:26",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 7121,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "811:5:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7124,
+                  "mutability": "mutable",
+                  "name": "maxPossibleGas",
+                  "nameLocation": "856:14:26",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7143,
+                  "src": "848:22:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7123,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "848:7:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "714:162:26"
+            },
+            "returnParameters": {
+              "id": 7131,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7128,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7143,
+                  "src": "925:12:26",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 7127,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "925:5:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7130,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 7143,
+                  "src": "939:4:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 7129,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "939:4:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "924:20:26"
+            },
+            "scope": 7144,
+            "src": "690:354:26",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 7145,
+        "src": "136:910:26",
+        "usedErrors": []
+      }
+    ],
+    "src": "0:1046:26"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.7+commit.e28d00a7.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2023-06-08T13:50:08.500Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "getGasAndDataLimits()": {
+        "returns": {
+          "limits": "An instance of the `GasAndDataLimits` struct ##### `acceptanceBudget` If the transactions consumes more than `acceptanceBudget` this Paymaster will be charged for gas no matter what. Transaction that gets rejected after consuming more than `acceptanceBudget` gas is on this Paymaster's expense. Should be set to an amount gas this Paymaster expects to spend deciding whether to accept or reject a request. This includes gas consumed by calculations in the `preRelayedCall`, `Forwarder` and the recipient contract. :warning: **Warning** :warning: As long this value is above `preRelayedCallGasLimit` (see defaults in `BasePaymaster`), the Paymaster is guaranteed it will never pay for rejected transactions. If this value is below `preRelayedCallGasLimit`, it might might make Paymaster open to a \"griefing\" attack. The relayers should prefer lower `acceptanceBudget`, as it improves their chances of being compensated. From a Relay's point of view, this is the highest gas value a bad Paymaster may cost the relay, since the paymaster will pay anything above that value regardless of whether the transaction succeeds or reverts. Specifying value too high might make the call rejected by relayers (see `maxAcceptanceBudget` in server config). ##### `preRelayedCallGasLimit` The max gas usage of preRelayedCall. Any revert of the `preRelayedCall` is a request rejection by the paymaster. As long as `acceptanceBudget` is above `preRelayedCallGasLimit`, any such revert is not payed by the paymaster. ##### `postRelayedCallGasLimit` The max gas usage of postRelayedCall. The Paymaster is not charged for the maximum, only for actually used gas. Note that an OOG will revert the inner transaction, but the paymaster will be charged for it anyway."
+        }
+      },
+      "getRelayHub()": {
+        "returns": {
+          "_0": "The address of the `RelayHub` that is trusted by this Paymaster to execute the requests."
+        }
+      },
+      "getTrustedForwarder()": {
+        "returns": {
+          "_0": "The address of the `Forwarder` that is trusted by this Paymaster to execute the requests."
+        }
+      },
+      "owner()": {
+        "details": "Returns the address of the current owner."
+      },
+      "postRelayedCall(bytes,bool,uint256,(uint256,uint256,uint256,address,address,address,bytes,uint256))": {
+        "params": {
+          "context": "The call context, as returned by the preRelayedCall",
+          "gasUseWithoutPost": "The actual amount of gas used by the entire transaction, EXCEPT        the gas used by the postRelayedCall itself.",
+          "relayData": "The relay params of the request. can be used by relayHub.calculateCharge()",
+          "success": "`true` if the relayed call succeeded, false if it reverted"
+        }
+      },
+      "preRelayedCall(((address,address,uint256,uint256,uint256,bytes,uint256),(uint256,uint256,uint256,address,address,address,bytes,uint256)),bytes,bytes,uint256)": {
+        "params": {
+          "approvalData": "- extra dapp-specific data (e.g. signature from trusted party)",
+          "maxPossibleGas": "- based on values returned from `getGasAndDataLimits` the RelayHub will calculate the maximum possible amount of gas the user may be charged for. In order to convert this value to wei, the Paymaster has to call \"relayHub.calculateCharge()\"",
+          "relayRequest": "- the full relay request structure",
+          "signature": "- user's EIP712-compatible signature of the `relayRequest`. Note that in most cases the paymaster shouldn't try use it at all. It is always checked by the forwarder immediately after preRelayedCall returns."
+        },
+        "returns": {
+          "_0": "A byte array to be passed to postRelayedCall. Can contain any data needed by this Paymaster in any form or be empty if no extra data is needed.",
+          "_1": "The flag that allows a Paymaster to \"delegate\" the rejection to the recipient code. It also means the Paymaster trust the recipient to reject fast: both preRelayedCall, forwarder check and recipient checks must fit into the GasLimits.acceptanceBudget, otherwise the TX is paid by the Paymaster. `true` if the Paymaster wants to reject the TX if the recipient reverts. `false` if the Paymaster wants rejects by the recipient to be completed on chain and paid by the Paymaster."
+        }
+      },
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+      },
+      "supportsInterface(bytes4)": {
+        "details": "Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas."
+      },
+      "transferOwnership(address)": {
+        "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+      },
+      "versionPaymaster()": {
+        "returns": {
+          "_0": "version The SemVer string of this Paymaster's version."
+        }
+      },
+      "withdrawRelayHubDepositTo(uint256,address)": {
+        "params": {
+          "amount": "The amount to be subtracted from the sender.",
+          "target": "The target to which the amount will be transferred."
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "getGasAndDataLimits()": {
+        "notice": "Return the Gas Limits for Paymaster's functions and maximum msg.data length values for this Paymaster. This function allows different paymasters to have different properties without changes to the RelayHub."
+      },
+      "getTrustedForwarder()": {
+        "notice": ":warning: **Warning** :warning: using incorrect Forwarder may cause the Paymaster to agreeing to pay for invalid transactions."
+      },
+      "postRelayedCall(bytes,bool,uint256,(uint256,uint256,uint256,address,address,address,bytes,uint256))": {
+        "notice": "This method is called after the actual relayed function call. It may be used to record the transaction (e.g. charge the caller by some contract logic) for this call. Revert in this functions causes a revert of the client's relayed call (and preRelayedCall(), but the Paymaster is still committed to pay the relay for the entire transaction."
+      },
+      "preRelayedCall(((address,address,uint256,uint256,uint256,bytes,uint256),(uint256,uint256,uint256,address,address,address,bytes,uint256)),bytes,bytes,uint256)": {
+        "notice": "Called by the Relay in view mode and later by the `RelayHub` on-chain to validate that the Paymaster agrees to pay for this call. The request is considered to be rejected by the Paymaster in one of the following conditions:  - `preRelayedCall()` method reverts  - the `Forwarder` reverts because of nonce or signature error  - the `Paymaster` returned `rejectOnRecipientRevert: true` and the recipient contract reverted    (and all that did not consume more than `acceptanceBudget` gas). In any of the above cases, all Paymaster calls and the recipient call are reverted. In any other case the Paymaster will pay for the gas cost of the transaction. Note that even if `postRelayedCall` is reverted the Paymaster will be charged."
+      },
+      "setRelayHub(address)": {
+        "notice": "The owner of the Paymaster can change the instance of the RelayHub this Paymaster works with. :warning: **Warning** :warning: The deposit on the previous RelayHub must be withdrawn first."
+      },
+      "setTrustedForwarder(address)": {
+        "notice": "The owner of the Paymaster can change the instance of the Forwarder this Paymaster works with.the Recipients must trust this Forwarder as well in order for the configuration to remain functional."
+      },
+      "withdrawRelayHubDepositTo(uint256,address)": {
+        "notice": "Withdraw deposit from the RelayHub."
+      }
+    },
+    "version": 1
+  }
+}

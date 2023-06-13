@@ -1,0 +1,801 @@
+{
+    "contractName": "TestArbSys",
+    "abi": [
+        {
+            "inputs": [],
+            "name": "arbBlockNumber",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getStorageGasAvailable",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ],
+    "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"arbBlockNumber\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getStorageGasAvailable\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"arbBlockNumber()\":{\"returns\":{\"_0\":\"block number as int\"}},\"getStorageGasAvailable()\":{\"returns\":{\"_0\":\"amount of storage gas available to the caller\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"arbBlockNumber()\":{\"notice\":\"Get Arbitrum block number (distinct from L1 block number; Arbitrum genesis block has block number 0)\"},\"getStorageGasAvailable()\":{\"notice\":\"get the caller's amount of available storage gas\"}},\"notice\":\"As there is no way to run Arbitrum chain locally, tests currently need to run on simple hardhat node. If some behavior is needed from ArbSys, it has to be stubbed here.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestArbSys.sol\":\"TestArbSys\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/arbitrum/ArbSys.sol\":{\"keccak256\":\"0x101af06ee07468c600f513ee59e1c525d4899bce9796623a508ce2b810ec21a0\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://38d802dbf4e985150c5b83573f3a0cd34f8dad1c7b89eb22d42b477f14961f07\",\"dweb:/ipfs/Qme4yVYaWUk8xQzxtVNwE7VT1nxGNJrFh7fo4PiwpXsmdt\"]},\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestArbSys.sol\":{\"keccak256\":\"0xf60356bbc4cc3112efcceda857339f658e6c97ffd42ab0da703650833a7ebda3\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://815286405d76d5f910fbcf982350b89208cd3840dc932056a94fca74d83cc21e\",\"dweb:/ipfs/QmT2d1GhfURQ9G7E5upzf9Mpt7fMPMwCGjw4KLWQsspVV4\"]}},\"version\":1}",
+    "bytecode": "0x608060405234801561001057600080fd5b5060d08061001f6000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c8063a3b1b31d146037578063a94597ff14604f575b600080fd5b603d6055565b60405190815260200160405180910390f35b603d6065565b60006060436011606e565b905090565b60005a60609060645b6000816000190483118215151615609557634e487b7160e01b600052601160045260246000fd5b50029056fea2646970667358221220593b99a882cd88072c174d5656e13c89be3f2a3ef4b2a59fe54e2fa026d3ccfd64736f6c63430008070033",
+    "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060325760003560e01c8063a3b1b31d146037578063a94597ff14604f575b600080fd5b603d6055565b60405190815260200160405180910390f35b603d6065565b60006060436011606e565b905090565b60005a60609060645b6000816000190483118215151615609557634e487b7160e01b600052601160045260246000fd5b50029056fea2646970667358221220593b99a882cd88072c174d5656e13c89be3f2a3ef4b2a59fe54e2fa026d3ccfd64736f6c63430008070033",
+    "immutableReferences": {},
+    "sourceMap": "282:532:20:-:0;;;;;;;;;;;;;;;;;;;",
+    "deployedSourceMap": "282:532:20:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;484:104;;;:::i;:::-;;;160:25:63;;;148:2;133:18;484:104:20;;;;;;;594:218;;;:::i;484:104::-;542:4;564:17;:12;579:2;564:17;:::i;:::-;557:24;;484:104;:::o;594:218::-;660:7;790:9;:15;;802:3;196:265:63;236:7;302:1;298;294:6;290:14;287:1;284:21;279:1;272:9;265:17;261:45;258:168;;;348:10;343:3;339:20;336:1;329:31;383:4;380:1;373:15;411:4;408:1;401:15;258:168;-1:-1:-1;446:9:63;;196:265::o",
+    "source": "pragma solidity ^0.8.0;\n\n// SPDX-License-Identifier: GPL-3.0-only\n\nimport \"../arbitrum/ArbSys.sol\";\n\n/**\n* As there is no way to run Arbitrum chain locally, tests currently need to run on simple hardhat node.\n* If some behavior is needed from ArbSys, it has to be stubbed here.\n */\ncontract TestArbSys is ArbSys {\n\n    /**\n    * @notice Get Arbitrum block number (distinct from L1 block number; Arbitrum genesis block has block number 0)\n    * @return block number as int\n     */\n    function arbBlockNumber() external override view returns (uint){\n        return block.number * 17;\n    }\n\n    function getStorageGasAvailable() external override view returns (uint256) {\n        // we need some really large value as for gasleft but also one that does decrease on every call\n        return gasleft() * 100;\n    }\n}",
+    "sourcePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestArbSys.sol",
+    "ast": {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestArbSys.sol",
+        "exportedSymbols": {
+            "ArbSys": [
+                4466
+            ],
+            "TestArbSys": [
+                6380
+            ]
+        },
+        "id": 6381,
+        "license": "GPL-3.0-only",
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 6350,
+                "literals": [
+                    "solidity",
+                    "^",
+                    "0.8",
+                    ".0"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "0:23:20"
+            },
+            {
+                "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/arbitrum/ArbSys.sol",
+                "file": "../arbitrum/ArbSys.sol",
+                "id": 6351,
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "ImportDirective",
+                "scope": 6381,
+                "sourceUnit": 4467,
+                "src": "67:32:20",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "abstract": false,
+                "baseContracts": [
+                    {
+                        "baseName": {
+                            "id": 6353,
+                            "name": "ArbSys",
+                            "nodeType": "IdentifierPath",
+                            "referencedDeclaration": 4466,
+                            "src": "305:6:20"
+                        },
+                        "id": 6354,
+                        "nodeType": "InheritanceSpecifier",
+                        "src": "305:6:20"
+                    }
+                ],
+                "contractDependencies": [],
+                "contractKind": "contract",
+                "documentation": {
+                    "id": 6352,
+                    "nodeType": "StructuredDocumentation",
+                    "src": "101:180:20",
+                    "text": " As there is no way to run Arbitrum chain locally, tests currently need to run on simple hardhat node.\n If some behavior is needed from ArbSys, it has to be stubbed here."
+                },
+                "fullyImplemented": true,
+                "id": 6380,
+                "linearizedBaseContracts": [
+                    6380,
+                    4466
+                ],
+                "name": "TestArbSys",
+                "nameLocation": "291:10:20",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "baseFunctions": [
+                            4459
+                        ],
+                        "body": {
+                            "id": 6366,
+                            "nodeType": "Block",
+                            "src": "547:41:20",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "commonType": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        },
+                                        "id": 6364,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "leftExpression": {
+                                            "expression": {
+                                                "id": 6361,
+                                                "name": "block",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 4294967292,
+                                                "src": "564:5:20",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_magic_block",
+                                                    "typeString": "block"
+                                                }
+                                            },
+                                            "id": 6362,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": false,
+                                            "lValueRequested": false,
+                                            "memberName": "number",
+                                            "nodeType": "MemberAccess",
+                                            "src": "564:12:20",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_uint256",
+                                                "typeString": "uint256"
+                                            }
+                                        },
+                                        "nodeType": "BinaryOperation",
+                                        "operator": "*",
+                                        "rightExpression": {
+                                            "hexValue": "3137",
+                                            "id": 6363,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": true,
+                                            "kind": "number",
+                                            "lValueRequested": false,
+                                            "nodeType": "Literal",
+                                            "src": "579:2:20",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_rational_17_by_1",
+                                                "typeString": "int_const 17"
+                                            },
+                                            "value": "17"
+                                        },
+                                        "src": "564:17:20",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "functionReturnParameters": 6360,
+                                    "id": 6365,
+                                    "nodeType": "Return",
+                                    "src": "557:24:20"
+                                }
+                            ]
+                        },
+                        "documentation": {
+                            "id": 6355,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "319:160:20",
+                            "text": " @notice Get Arbitrum block number (distinct from L1 block number; Arbitrum genesis block has block number 0)\n @return block number as int"
+                        },
+                        "functionSelector": "a3b1b31d",
+                        "id": 6367,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "arbBlockNumber",
+                        "nameLocation": "493:14:20",
+                        "nodeType": "FunctionDefinition",
+                        "overrides": {
+                            "id": 6357,
+                            "nodeType": "OverrideSpecifier",
+                            "overrides": [],
+                            "src": "519:8:20"
+                        },
+                        "parameters": {
+                            "id": 6356,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "507:2:20"
+                        },
+                        "returnParameters": {
+                            "id": 6360,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 6359,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 6367,
+                                    "src": "542:4:20",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 6358,
+                                        "name": "uint",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "542:4:20",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "541:6:20"
+                        },
+                        "scope": 6380,
+                        "src": "484:104:20",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "baseFunctions": [
+                            4465
+                        ],
+                        "body": {
+                            "id": 6378,
+                            "nodeType": "Block",
+                            "src": "669:143:20",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "commonType": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        },
+                                        "id": 6376,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "leftExpression": {
+                                            "arguments": [],
+                                            "expression": {
+                                                "argumentTypes": [],
+                                                "id": 6373,
+                                                "name": "gasleft",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 4294967289,
+                                                "src": "790:7:20",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_function_gasleft_view$__$returns$_t_uint256_$",
+                                                    "typeString": "function () view returns (uint256)"
+                                                }
+                                            },
+                                            "id": 6374,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": false,
+                                            "kind": "functionCall",
+                                            "lValueRequested": false,
+                                            "names": [],
+                                            "nodeType": "FunctionCall",
+                                            "src": "790:9:20",
+                                            "tryCall": false,
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_uint256",
+                                                "typeString": "uint256"
+                                            }
+                                        },
+                                        "nodeType": "BinaryOperation",
+                                        "operator": "*",
+                                        "rightExpression": {
+                                            "hexValue": "313030",
+                                            "id": 6375,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": true,
+                                            "kind": "number",
+                                            "lValueRequested": false,
+                                            "nodeType": "Literal",
+                                            "src": "802:3:20",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_rational_100_by_1",
+                                                "typeString": "int_const 100"
+                                            },
+                                            "value": "100"
+                                        },
+                                        "src": "790:15:20",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "functionReturnParameters": 6372,
+                                    "id": 6377,
+                                    "nodeType": "Return",
+                                    "src": "783:22:20"
+                                }
+                            ]
+                        },
+                        "functionSelector": "a94597ff",
+                        "id": 6379,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getStorageGasAvailable",
+                        "nameLocation": "603:22:20",
+                        "nodeType": "FunctionDefinition",
+                        "overrides": {
+                            "id": 6369,
+                            "nodeType": "OverrideSpecifier",
+                            "overrides": [],
+                            "src": "637:8:20"
+                        },
+                        "parameters": {
+                            "id": 6368,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "625:2:20"
+                        },
+                        "returnParameters": {
+                            "id": 6372,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 6371,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 6379,
+                                    "src": "660:7:20",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 6370,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "660:7:20",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "659:9:20"
+                        },
+                        "scope": 6380,
+                        "src": "594:218:20",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    }
+                ],
+                "scope": 6381,
+                "src": "282:532:20",
+                "usedErrors": []
+            }
+        ],
+        "src": "0:814:20"
+    },
+    "legacyAST": {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/test/TestArbSys.sol",
+        "exportedSymbols": {
+            "ArbSys": [
+                4466
+            ],
+            "TestArbSys": [
+                6380
+            ]
+        },
+        "id": 6381,
+        "license": "GPL-3.0-only",
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 6350,
+                "literals": [
+                    "solidity",
+                    "^",
+                    "0.8",
+                    ".0"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "0:23:20"
+            },
+            {
+                "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/arbitrum/ArbSys.sol",
+                "file": "../arbitrum/ArbSys.sol",
+                "id": 6351,
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "ImportDirective",
+                "scope": 6381,
+                "sourceUnit": 4467,
+                "src": "67:32:20",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "abstract": false,
+                "baseContracts": [
+                    {
+                        "baseName": {
+                            "id": 6353,
+                            "name": "ArbSys",
+                            "nodeType": "IdentifierPath",
+                            "referencedDeclaration": 4466,
+                            "src": "305:6:20"
+                        },
+                        "id": 6354,
+                        "nodeType": "InheritanceSpecifier",
+                        "src": "305:6:20"
+                    }
+                ],
+                "contractDependencies": [],
+                "contractKind": "contract",
+                "documentation": {
+                    "id": 6352,
+                    "nodeType": "StructuredDocumentation",
+                    "src": "101:180:20",
+                    "text": " As there is no way to run Arbitrum chain locally, tests currently need to run on simple hardhat node.\n If some behavior is needed from ArbSys, it has to be stubbed here."
+                },
+                "fullyImplemented": true,
+                "id": 6380,
+                "linearizedBaseContracts": [
+                    6380,
+                    4466
+                ],
+                "name": "TestArbSys",
+                "nameLocation": "291:10:20",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "baseFunctions": [
+                            4459
+                        ],
+                        "body": {
+                            "id": 6366,
+                            "nodeType": "Block",
+                            "src": "547:41:20",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "commonType": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        },
+                                        "id": 6364,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "leftExpression": {
+                                            "expression": {
+                                                "id": 6361,
+                                                "name": "block",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 4294967292,
+                                                "src": "564:5:20",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_magic_block",
+                                                    "typeString": "block"
+                                                }
+                                            },
+                                            "id": 6362,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": false,
+                                            "lValueRequested": false,
+                                            "memberName": "number",
+                                            "nodeType": "MemberAccess",
+                                            "src": "564:12:20",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_uint256",
+                                                "typeString": "uint256"
+                                            }
+                                        },
+                                        "nodeType": "BinaryOperation",
+                                        "operator": "*",
+                                        "rightExpression": {
+                                            "hexValue": "3137",
+                                            "id": 6363,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": true,
+                                            "kind": "number",
+                                            "lValueRequested": false,
+                                            "nodeType": "Literal",
+                                            "src": "579:2:20",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_rational_17_by_1",
+                                                "typeString": "int_const 17"
+                                            },
+                                            "value": "17"
+                                        },
+                                        "src": "564:17:20",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "functionReturnParameters": 6360,
+                                    "id": 6365,
+                                    "nodeType": "Return",
+                                    "src": "557:24:20"
+                                }
+                            ]
+                        },
+                        "documentation": {
+                            "id": 6355,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "319:160:20",
+                            "text": " @notice Get Arbitrum block number (distinct from L1 block number; Arbitrum genesis block has block number 0)\n @return block number as int"
+                        },
+                        "functionSelector": "a3b1b31d",
+                        "id": 6367,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "arbBlockNumber",
+                        "nameLocation": "493:14:20",
+                        "nodeType": "FunctionDefinition",
+                        "overrides": {
+                            "id": 6357,
+                            "nodeType": "OverrideSpecifier",
+                            "overrides": [],
+                            "src": "519:8:20"
+                        },
+                        "parameters": {
+                            "id": 6356,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "507:2:20"
+                        },
+                        "returnParameters": {
+                            "id": 6360,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 6359,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 6367,
+                                    "src": "542:4:20",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 6358,
+                                        "name": "uint",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "542:4:20",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "541:6:20"
+                        },
+                        "scope": 6380,
+                        "src": "484:104:20",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "baseFunctions": [
+                            4465
+                        ],
+                        "body": {
+                            "id": 6378,
+                            "nodeType": "Block",
+                            "src": "669:143:20",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "commonType": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        },
+                                        "id": 6376,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "leftExpression": {
+                                            "arguments": [],
+                                            "expression": {
+                                                "argumentTypes": [],
+                                                "id": 6373,
+                                                "name": "gasleft",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 4294967289,
+                                                "src": "790:7:20",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_function_gasleft_view$__$returns$_t_uint256_$",
+                                                    "typeString": "function () view returns (uint256)"
+                                                }
+                                            },
+                                            "id": 6374,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": false,
+                                            "kind": "functionCall",
+                                            "lValueRequested": false,
+                                            "names": [],
+                                            "nodeType": "FunctionCall",
+                                            "src": "790:9:20",
+                                            "tryCall": false,
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_uint256",
+                                                "typeString": "uint256"
+                                            }
+                                        },
+                                        "nodeType": "BinaryOperation",
+                                        "operator": "*",
+                                        "rightExpression": {
+                                            "hexValue": "313030",
+                                            "id": 6375,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": true,
+                                            "kind": "number",
+                                            "lValueRequested": false,
+                                            "nodeType": "Literal",
+                                            "src": "802:3:20",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_rational_100_by_1",
+                                                "typeString": "int_const 100"
+                                            },
+                                            "value": "100"
+                                        },
+                                        "src": "790:15:20",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "functionReturnParameters": 6372,
+                                    "id": 6377,
+                                    "nodeType": "Return",
+                                    "src": "783:22:20"
+                                }
+                            ]
+                        },
+                        "functionSelector": "a94597ff",
+                        "id": 6379,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getStorageGasAvailable",
+                        "nameLocation": "603:22:20",
+                        "nodeType": "FunctionDefinition",
+                        "overrides": {
+                            "id": 6369,
+                            "nodeType": "OverrideSpecifier",
+                            "overrides": [],
+                            "src": "637:8:20"
+                        },
+                        "parameters": {
+                            "id": 6368,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "625:2:20"
+                        },
+                        "returnParameters": {
+                            "id": 6372,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 6371,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 6379,
+                                    "src": "660:7:20",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 6370,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "660:7:20",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "659:9:20"
+                        },
+                        "scope": 6380,
+                        "src": "594:218:20",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    }
+                ],
+                "scope": 6381,
+                "src": "282:532:20",
+                "usedErrors": []
+            }
+        ],
+        "src": "0:814:20"
+    },
+    "compiler": {
+        "name": "solc",
+        "version": "0.8.7+commit.e28d00a7.Emscripten.clang"
+    },
+    "networks": {},
+    "schemaVersion": "3.1.0",
+    "updatedAt": "2023-06-08T13:50:08.490Z",
+    "devdoc": {
+        "kind": "dev",
+        "methods": {
+            "arbBlockNumber()": {
+                "returns": {
+                    "_0": "block number as int"
+                }
+            },
+            "getStorageGasAvailable()": {
+                "returns": {
+                    "_0": "amount of storage gas available to the caller"
+                }
+            }
+        },
+        "version": 1
+    },
+    "userdoc": {
+        "kind": "user",
+        "methods": {
+            "arbBlockNumber()": {
+                "notice": "Get Arbitrum block number (distinct from L1 block number; Arbitrum genesis block has block number 0)"
+            },
+            "getStorageGasAvailable()": {
+                "notice": "get the caller's amount of available storage gas"
+            }
+        },
+        "notice": "As there is no way to run Arbitrum chain locally, tests currently need to run on simple hardhat node. If some behavior is needed from ArbSys, it has to be stubbed here.",
+        "version": 1
+    }
+}

@@ -1,0 +1,2624 @@
+{
+    "contractName": "IRelayRegistrar",
+    "abi": [
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "relayManager",
+                    "type": "address"
+                },
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "relayHub",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "bytes32[3]",
+                    "name": "relayUrl",
+                    "type": "bytes32[3]"
+                }
+            ],
+            "name": "RelayServerRegistered",
+            "type": "event"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "bytes4",
+                    "name": "interfaceId",
+                    "type": "bytes4"
+                }
+            ],
+            "name": "supportsInterface",
+            "outputs": [
+                {
+                    "internalType": "bool",
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "relayHub",
+                    "type": "address"
+                },
+                {
+                    "internalType": "bytes32[3]",
+                    "name": "url",
+                    "type": "bytes32[3]"
+                }
+            ],
+            "name": "registerRelayServer",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getCreationBlock",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getRelayRegistrationMaxAge",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "setRelayRegistrationMaxAge",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "relayHub",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "relayManager",
+                    "type": "address"
+                }
+            ],
+            "name": "getRelayInfo",
+            "outputs": [
+                {
+                    "components": [
+                        {
+                            "internalType": "uint32",
+                            "name": "lastSeenBlockNumber",
+                            "type": "uint32"
+                        },
+                        {
+                            "internalType": "uint40",
+                            "name": "lastSeenTimestamp",
+                            "type": "uint40"
+                        },
+                        {
+                            "internalType": "uint32",
+                            "name": "firstSeenBlockNumber",
+                            "type": "uint32"
+                        },
+                        {
+                            "internalType": "uint40",
+                            "name": "firstSeenTimestamp",
+                            "type": "uint40"
+                        },
+                        {
+                            "internalType": "bytes32[3]",
+                            "name": "urlParts",
+                            "type": "bytes32[3]"
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "relayManager",
+                            "type": "address"
+                        }
+                    ],
+                    "internalType": "struct IRelayRegistrar.RelayInfo",
+                    "name": "info",
+                    "type": "tuple"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "relayHub",
+                    "type": "address"
+                }
+            ],
+            "name": "readRelayInfos",
+            "outputs": [
+                {
+                    "components": [
+                        {
+                            "internalType": "uint32",
+                            "name": "lastSeenBlockNumber",
+                            "type": "uint32"
+                        },
+                        {
+                            "internalType": "uint40",
+                            "name": "lastSeenTimestamp",
+                            "type": "uint40"
+                        },
+                        {
+                            "internalType": "uint32",
+                            "name": "firstSeenBlockNumber",
+                            "type": "uint32"
+                        },
+                        {
+                            "internalType": "uint40",
+                            "name": "firstSeenTimestamp",
+                            "type": "uint40"
+                        },
+                        {
+                            "internalType": "bytes32[3]",
+                            "name": "urlParts",
+                            "type": "bytes32[3]"
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "relayManager",
+                            "type": "address"
+                        }
+                    ],
+                    "internalType": "struct IRelayRegistrar.RelayInfo[]",
+                    "name": "info",
+                    "type": "tuple[]"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "relayHub",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "oldestBlockNumber",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "oldestBlockTimestamp",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "maxCount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "readRelayInfosInRange",
+            "outputs": [
+                {
+                    "components": [
+                        {
+                            "internalType": "uint32",
+                            "name": "lastSeenBlockNumber",
+                            "type": "uint32"
+                        },
+                        {
+                            "internalType": "uint40",
+                            "name": "lastSeenTimestamp",
+                            "type": "uint40"
+                        },
+                        {
+                            "internalType": "uint32",
+                            "name": "firstSeenBlockNumber",
+                            "type": "uint32"
+                        },
+                        {
+                            "internalType": "uint40",
+                            "name": "firstSeenTimestamp",
+                            "type": "uint40"
+                        },
+                        {
+                            "internalType": "bytes32[3]",
+                            "name": "urlParts",
+                            "type": "bytes32[3]"
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "relayManager",
+                            "type": "address"
+                        }
+                    ],
+                    "internalType": "struct IRelayRegistrar.RelayInfo[]",
+                    "name": "info",
+                    "type": "tuple[]"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ],
+    "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"relayManager\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"relayHub\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32[3]\",\"name\":\"relayUrl\",\"type\":\"bytes32[3]\"}],\"name\":\"RelayServerRegistered\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"getCreationBlock\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"relayHub\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"relayManager\",\"type\":\"address\"}],\"name\":\"getRelayInfo\",\"outputs\":[{\"components\":[{\"internalType\":\"uint32\",\"name\":\"lastSeenBlockNumber\",\"type\":\"uint32\"},{\"internalType\":\"uint40\",\"name\":\"lastSeenTimestamp\",\"type\":\"uint40\"},{\"internalType\":\"uint32\",\"name\":\"firstSeenBlockNumber\",\"type\":\"uint32\"},{\"internalType\":\"uint40\",\"name\":\"firstSeenTimestamp\",\"type\":\"uint40\"},{\"internalType\":\"bytes32[3]\",\"name\":\"urlParts\",\"type\":\"bytes32[3]\"},{\"internalType\":\"address\",\"name\":\"relayManager\",\"type\":\"address\"}],\"internalType\":\"struct IRelayRegistrar.RelayInfo\",\"name\":\"info\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getRelayRegistrationMaxAge\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"relayHub\",\"type\":\"address\"}],\"name\":\"readRelayInfos\",\"outputs\":[{\"components\":[{\"internalType\":\"uint32\",\"name\":\"lastSeenBlockNumber\",\"type\":\"uint32\"},{\"internalType\":\"uint40\",\"name\":\"lastSeenTimestamp\",\"type\":\"uint40\"},{\"internalType\":\"uint32\",\"name\":\"firstSeenBlockNumber\",\"type\":\"uint32\"},{\"internalType\":\"uint40\",\"name\":\"firstSeenTimestamp\",\"type\":\"uint40\"},{\"internalType\":\"bytes32[3]\",\"name\":\"urlParts\",\"type\":\"bytes32[3]\"},{\"internalType\":\"address\",\"name\":\"relayManager\",\"type\":\"address\"}],\"internalType\":\"struct IRelayRegistrar.RelayInfo[]\",\"name\":\"info\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"relayHub\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"oldestBlockNumber\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"oldestBlockTimestamp\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxCount\",\"type\":\"uint256\"}],\"name\":\"readRelayInfosInRange\",\"outputs\":[{\"components\":[{\"internalType\":\"uint32\",\"name\":\"lastSeenBlockNumber\",\"type\":\"uint32\"},{\"internalType\":\"uint40\",\"name\":\"lastSeenTimestamp\",\"type\":\"uint40\"},{\"internalType\":\"uint32\",\"name\":\"firstSeenBlockNumber\",\"type\":\"uint32\"},{\"internalType\":\"uint40\",\"name\":\"firstSeenTimestamp\",\"type\":\"uint40\"},{\"internalType\":\"bytes32[3]\",\"name\":\"urlParts\",\"type\":\"bytes32[3]\"},{\"internalType\":\"address\",\"name\":\"relayManager\",\"type\":\"address\"}],\"internalType\":\"struct IRelayRegistrar.RelayInfo[]\",\"name\":\"info\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"relayHub\",\"type\":\"address\"},{\"internalType\":\"bytes32[3]\",\"name\":\"url\",\"type\":\"bytes32[3]\"}],\"name\":\"registerRelayServer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"setRelayRegistrationMaxAge\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"getCreationBlock()\":{\"returns\":{\"_0\":\"The block number in which the contract has been deployed.\"}},\"getRelayInfo(address,address)\":{\"params\":{\"relayHub\":\"The address of the `RelayHub` contract for which this action is performed.\",\"relayManager\":\"An address of a Relay Manager.\"},\"returns\":{\"info\":\"All the details of the given Relay Manager's registration. Throws if relay not found for `RelayHub`.\"}},\"getRelayRegistrationMaxAge()\":{\"returns\":{\"_0\":\"The maximum age the relay is considered registered by default by this `RelayRegistrar`, in seconds.\"}},\"readRelayInfos(address)\":{\"params\":{\"relayHub\":\"The address of the `RelayHub` contract for which this action is performed.\"},\"returns\":{\"info\":\"The list of `RelayInfo`s of registered Relay Servers\"}},\"readRelayInfosInRange(address,uint256,uint256,uint256)\":{\"params\":{\"maxCount\":\"The maximum amount of relays to be returned by this function.\",\"oldestBlockNumber\":\"The latest block number in which a Relay Server may be registered.\",\"oldestBlockTimestamp\":\"The latest block timestamp in which a Relay Server may be registered.\",\"relayHub\":\"The address of the `RelayHub` contract for which this action is performed.\"},\"returns\":{\"info\":\"The list of `RelayInfo`s of registered Relay Servers\"}},\"registerRelayServer(address,bytes32[3])\":{\"params\":{\"relayHub\":\"The address of the `RelayHub` contract for which this action is performed.\",\"url\":\"The URL of the Relay Server that is listening to the clients' requests.\"}},\"supportsInterface(bytes4)\":{\"details\":\"Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas.\"}},\"title\":\"The RelayRegistrar Interface\",\"version\":1},\"userdoc\":{\"events\":{\"RelayServerRegistered(address,address,bytes32[3])\":{\"notice\":\"Emitted when a relay server registers or updates its details. Looking up these events allows a client to discover registered Relay Servers.\"}},\"kind\":\"user\",\"methods\":{\"readRelayInfos(address)\":{\"notice\":\"Read relay info of registered Relay Server from an on-chain storage.\"},\"readRelayInfosInRange(address,uint256,uint256,uint256)\":{\"notice\":\"Read relay info of registered Relay Server from an on-chain storage.\"},\"registerRelayServer(address,bytes32[3])\":{\"notice\":\"This function is called by Relay Servers in order to register or to update their registration.\"},\"setRelayRegistrationMaxAge(uint256)\":{\"notice\":\"Change the maximum relay registration age.\"}},\"notice\":\"The on-chain registrar for all registered Relay Managers.The client can use an implementation of a `RelayRegistrar` to find relay registration info.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/interfaces/IRelayRegistrar.sol\":\"IRelayRegistrar\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/interfaces/IRelayRegistrar.sol\":{\"keccak256\":\"0xece9624dac85ba58f820860722fcfe7ea331159c8b3f172dd6450350fc1d35f0\",\"license\":\"GPL-3.0-only\",\"urls\":[\"bzz-raw://3dae31c7fe1bbfbf7d7d73fddea3d2a5b27a15a2ec5f3bd9c17bd9e3f16caf74\",\"dweb:/ipfs/QmULwg82urTQx2fQDHYQoCve3QWJmGQXCPoMNB4Twafh1D\"]},\"@openzeppelin/contracts/interfaces/IERC165.sol\":{\"keccak256\":\"0xd04b0f06e0666f29cf7cccc82894de541e19bb30a765b107b1e40bb7fe5f7d7a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7b652499d098e88d8d878374616bb58434301061cae2253298b3f374044e0ddb\",\"dweb:/ipfs/QmbhAzctqo5jrSKU6idHdVyqfmzCcDbNUPvmx4GiXxfA6q\"]},\"@openzeppelin/contracts/utils/introspection/IERC165.sol\":{\"keccak256\":\"0x447a5f3ddc18419d41ff92b3773fb86471b1db25773e07f877f548918a185bf1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://be161e54f24e5c6fae81a12db1a8ae87bc5ae1b0ddc805d82a1440a68455088f\",\"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy\"]}},\"version\":1}",
+    "bytecode": "0x",
+    "deployedBytecode": "0x",
+    "immutableReferences": {},
+    "sourceMap": "",
+    "deployedSourceMap": "",
+    "source": "pragma solidity ^0.8.6;\n\n//SPDX-License-Identifier: GPL-3.0-only\n\nimport \"@openzeppelin/contracts/interfaces/IERC165.sol\";\n\n/**\n * @title The RelayRegistrar Interface\n * @notice The on-chain registrar for all registered Relay Managers.\n *\n * @notice The client can use an implementation of a `RelayRegistrar` to find relay registration info.\n *\n */\ninterface IRelayRegistrar is IERC165 {\n\n    /**\n     * @notice A struct containing all the information necessary to client to interact with the Relay Server.\n     */\n    struct RelayInfo {\n        //last registration block number\n        uint32 lastSeenBlockNumber;\n        //last registration block timestamp\n        uint40 lastSeenTimestamp;\n        //stake (first registration) block number\n        uint32 firstSeenBlockNumber;\n        //stake (first registration) block timestamp\n        uint40 firstSeenTimestamp;\n        bytes32[3] urlParts;\n        address relayManager;\n    }\n\n    /**\n     * @notice Emitted when a relay server registers or updates its details.\n     * Looking up these events allows a client to discover registered Relay Servers.\n     */\n    event RelayServerRegistered(\n        address indexed relayManager,\n        address indexed relayHub,\n        bytes32[3] relayUrl\n    );\n\n    /**\n     * @notice This function is called by Relay Servers in order to register or to update their registration.\n     * @param relayHub The address of the `RelayHub` contract for which this action is performed.\n     * @param url The URL of the Relay Server that is listening to the clients' requests.\n     */\n    function registerRelayServer(\n        address relayHub,\n        bytes32[3] calldata url\n    ) external;\n\n    /**\n     * @return The block number in which the contract has been deployed.\n     */\n    function getCreationBlock() external view returns (uint256);\n\n    /**\n     * @return The maximum age the relay is considered registered by default by this `RelayRegistrar`, in seconds.\n     */\n    function getRelayRegistrationMaxAge() external view returns (uint256);\n\n    /**\n     * @notice Change the maximum relay registration age.\n     */\n    function setRelayRegistrationMaxAge(uint256) external;\n\n    /**\n     * @param relayManager An address of a Relay Manager.\n     * @param relayHub The address of the `RelayHub` contract for which this action is performed.\n     * @return info All the details of the given Relay Manager's registration. Throws if relay not found for `RelayHub`.\n     */\n    function getRelayInfo(address relayHub, address relayManager) external view returns (RelayInfo memory info);\n\n    /**\n     * @notice Read relay info of registered Relay Server from an on-chain storage.\n     * @param relayHub The address of the `RelayHub` contract for which this action is performed.\n     * @return info The list of `RelayInfo`s of registered Relay Servers\n     */\n    function readRelayInfos(\n        address relayHub\n    ) external view returns (\n        RelayInfo[] memory info\n    );\n\n    /**\n     * @notice Read relay info of registered Relay Server from an on-chain storage.\n     * @param relayHub The address of the `RelayHub` contract for which this action is performed.\n     * @param maxCount The maximum amount of relays to be returned by this function.\n     * @param oldestBlockNumber The latest block number in which a Relay Server may be registered.\n     * @param oldestBlockTimestamp The latest block timestamp in which a Relay Server may be registered.\n     * @return info The list of `RelayInfo`s of registered Relay Servers\n     */\n    function readRelayInfosInRange(\n        address relayHub,\n        uint256 oldestBlockNumber,\n        uint256 oldestBlockTimestamp,\n        uint256 maxCount\n    ) external view returns (\n        RelayInfo[] memory info\n    );\n}",
+    "sourcePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/interfaces/IRelayRegistrar.sol",
+    "ast": {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/interfaces/IRelayRegistrar.sol",
+        "exportedSymbols": {
+            "IERC165": [
+                12318
+            ],
+            "IRelayRegistrar": [
+                5994
+            ]
+        },
+        "id": 5995,
+        "license": "GPL-3.0-only",
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 5898,
+                "literals": [
+                    "solidity",
+                    "^",
+                    "0.8",
+                    ".6"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "0:23:17"
+            },
+            {
+                "absolutePath": "@openzeppelin/contracts/interfaces/IERC165.sol",
+                "file": "@openzeppelin/contracts/interfaces/IERC165.sol",
+                "id": 5899,
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "ImportDirective",
+                "scope": 5995,
+                "sourceUnit": 10152,
+                "src": "66:56:17",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "abstract": false,
+                "baseContracts": [
+                    {
+                        "baseName": {
+                            "id": 5901,
+                            "name": "IERC165",
+                            "nodeType": "IdentifierPath",
+                            "referencedDeclaration": 12318,
+                            "src": "378:7:17"
+                        },
+                        "id": 5902,
+                        "nodeType": "InheritanceSpecifier",
+                        "src": "378:7:17"
+                    }
+                ],
+                "contractDependencies": [],
+                "contractKind": "interface",
+                "documentation": {
+                    "id": 5900,
+                    "nodeType": "StructuredDocumentation",
+                    "src": "124:224:17",
+                    "text": " @title The RelayRegistrar Interface\n @notice The on-chain registrar for all registered Relay Managers.\n @notice The client can use an implementation of a `RelayRegistrar` to find relay registration info."
+                },
+                "fullyImplemented": false,
+                "id": 5994,
+                "linearizedBaseContracts": [
+                    5994,
+                    12318
+                ],
+                "name": "IRelayRegistrar",
+                "nameLocation": "359:15:17",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "canonicalName": "IRelayRegistrar.RelayInfo",
+                        "id": 5917,
+                        "members": [
+                            {
+                                "constant": false,
+                                "id": 5904,
+                                "mutability": "mutable",
+                                "name": "lastSeenBlockNumber",
+                                "nameLocation": "594:19:17",
+                                "nodeType": "VariableDeclaration",
+                                "scope": 5917,
+                                "src": "587:26:17",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_uint32",
+                                    "typeString": "uint32"
+                                },
+                                "typeName": {
+                                    "id": 5903,
+                                    "name": "uint32",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "587:6:17",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint32",
+                                        "typeString": "uint32"
+                                    }
+                                },
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 5906,
+                                "mutability": "mutable",
+                                "name": "lastSeenTimestamp",
+                                "nameLocation": "674:17:17",
+                                "nodeType": "VariableDeclaration",
+                                "scope": 5917,
+                                "src": "667:24:17",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_uint40",
+                                    "typeString": "uint40"
+                                },
+                                "typeName": {
+                                    "id": 5905,
+                                    "name": "uint40",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "667:6:17",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint40",
+                                        "typeString": "uint40"
+                                    }
+                                },
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 5908,
+                                "mutability": "mutable",
+                                "name": "firstSeenBlockNumber",
+                                "nameLocation": "758:20:17",
+                                "nodeType": "VariableDeclaration",
+                                "scope": 5917,
+                                "src": "751:27:17",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_uint32",
+                                    "typeString": "uint32"
+                                },
+                                "typeName": {
+                                    "id": 5907,
+                                    "name": "uint32",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "751:6:17",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint32",
+                                        "typeString": "uint32"
+                                    }
+                                },
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 5910,
+                                "mutability": "mutable",
+                                "name": "firstSeenTimestamp",
+                                "nameLocation": "848:18:17",
+                                "nodeType": "VariableDeclaration",
+                                "scope": 5917,
+                                "src": "841:25:17",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_uint40",
+                                    "typeString": "uint40"
+                                },
+                                "typeName": {
+                                    "id": 5909,
+                                    "name": "uint40",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "841:6:17",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint40",
+                                        "typeString": "uint40"
+                                    }
+                                },
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 5914,
+                                "mutability": "mutable",
+                                "name": "urlParts",
+                                "nameLocation": "887:8:17",
+                                "nodeType": "VariableDeclaration",
+                                "scope": 5917,
+                                "src": "876:19:17",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_array$_t_bytes32_$3_storage_ptr",
+                                    "typeString": "bytes32[3]"
+                                },
+                                "typeName": {
+                                    "baseType": {
+                                        "id": 5911,
+                                        "name": "bytes32",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "876:7:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes32",
+                                            "typeString": "bytes32"
+                                        }
+                                    },
+                                    "id": 5913,
+                                    "length": {
+                                        "hexValue": "33",
+                                        "id": 5912,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": true,
+                                        "kind": "number",
+                                        "lValueRequested": false,
+                                        "nodeType": "Literal",
+                                        "src": "884:1:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_rational_3_by_1",
+                                            "typeString": "int_const 3"
+                                        },
+                                        "value": "3"
+                                    },
+                                    "nodeType": "ArrayTypeName",
+                                    "src": "876:10:17",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_bytes32_$3_storage_ptr",
+                                        "typeString": "bytes32[3]"
+                                    }
+                                },
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 5916,
+                                "mutability": "mutable",
+                                "name": "relayManager",
+                                "nameLocation": "913:12:17",
+                                "nodeType": "VariableDeclaration",
+                                "scope": 5917,
+                                "src": "905:20:17",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_address",
+                                    "typeString": "address"
+                                },
+                                "typeName": {
+                                    "id": 5915,
+                                    "name": "address",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "905:7:17",
+                                    "stateMutability": "nonpayable",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    }
+                                },
+                                "visibility": "internal"
+                            }
+                        ],
+                        "name": "RelayInfo",
+                        "nameLocation": "526:9:17",
+                        "nodeType": "StructDefinition",
+                        "scope": 5994,
+                        "src": "519:413:17",
+                        "visibility": "public"
+                    },
+                    {
+                        "anonymous": false,
+                        "documentation": {
+                            "id": 5918,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "938:173:17",
+                            "text": " @notice Emitted when a relay server registers or updates its details.\n Looking up these events allows a client to discover registered Relay Servers."
+                        },
+                        "id": 5928,
+                        "name": "RelayServerRegistered",
+                        "nameLocation": "1122:21:17",
+                        "nodeType": "EventDefinition",
+                        "parameters": {
+                            "id": 5927,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5920,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "relayManager",
+                                    "nameLocation": "1169:12:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5928,
+                                    "src": "1153:28:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 5919,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1153:7:17",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 5922,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "relayHub",
+                                    "nameLocation": "1207:8:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5928,
+                                    "src": "1191:24:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 5921,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1191:7:17",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 5926,
+                                    "indexed": false,
+                                    "mutability": "mutable",
+                                    "name": "relayUrl",
+                                    "nameLocation": "1236:8:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5928,
+                                    "src": "1225:19:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_bytes32_$3_memory_ptr",
+                                        "typeString": "bytes32[3]"
+                                    },
+                                    "typeName": {
+                                        "baseType": {
+                                            "id": 5923,
+                                            "name": "bytes32",
+                                            "nodeType": "ElementaryTypeName",
+                                            "src": "1225:7:17",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_bytes32",
+                                                "typeString": "bytes32"
+                                            }
+                                        },
+                                        "id": 5925,
+                                        "length": {
+                                            "hexValue": "33",
+                                            "id": 5924,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": true,
+                                            "kind": "number",
+                                            "lValueRequested": false,
+                                            "nodeType": "Literal",
+                                            "src": "1233:1:17",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_rational_3_by_1",
+                                                "typeString": "int_const 3"
+                                            },
+                                            "value": "3"
+                                        },
+                                        "nodeType": "ArrayTypeName",
+                                        "src": "1225:10:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_bytes32_$3_storage_ptr",
+                                            "typeString": "bytes32[3]"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1143:107:17"
+                        },
+                        "src": "1116:135:17"
+                    },
+                    {
+                        "documentation": {
+                            "id": 5929,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "1257:309:17",
+                            "text": " @notice This function is called by Relay Servers in order to register or to update their registration.\n @param relayHub The address of the `RelayHub` contract for which this action is performed.\n @param url The URL of the Relay Server that is listening to the clients' requests."
+                        },
+                        "functionSelector": "953f1768",
+                        "id": 5938,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "registerRelayServer",
+                        "nameLocation": "1580:19:17",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 5936,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5931,
+                                    "mutability": "mutable",
+                                    "name": "relayHub",
+                                    "nameLocation": "1617:8:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5938,
+                                    "src": "1609:16:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 5930,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1609:7:17",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 5935,
+                                    "mutability": "mutable",
+                                    "name": "url",
+                                    "nameLocation": "1655:3:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5938,
+                                    "src": "1635:23:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "calldata",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_bytes32_$3_calldata_ptr",
+                                        "typeString": "bytes32[3]"
+                                    },
+                                    "typeName": {
+                                        "baseType": {
+                                            "id": 5932,
+                                            "name": "bytes32",
+                                            "nodeType": "ElementaryTypeName",
+                                            "src": "1635:7:17",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_bytes32",
+                                                "typeString": "bytes32"
+                                            }
+                                        },
+                                        "id": 5934,
+                                        "length": {
+                                            "hexValue": "33",
+                                            "id": 5933,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": true,
+                                            "kind": "number",
+                                            "lValueRequested": false,
+                                            "nodeType": "Literal",
+                                            "src": "1643:1:17",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_rational_3_by_1",
+                                                "typeString": "int_const 3"
+                                            },
+                                            "value": "3"
+                                        },
+                                        "nodeType": "ArrayTypeName",
+                                        "src": "1635:10:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_bytes32_$3_storage_ptr",
+                                            "typeString": "bytes32[3]"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1599:65:17"
+                        },
+                        "returnParameters": {
+                            "id": 5937,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "1673:0:17"
+                        },
+                        "scope": 5994,
+                        "src": "1571:103:17",
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "documentation": {
+                            "id": 5939,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "1680:84:17",
+                            "text": " @return The block number in which the contract has been deployed."
+                        },
+                        "functionSelector": "20ffd56d",
+                        "id": 5944,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getCreationBlock",
+                        "nameLocation": "1778:16:17",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 5940,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "1794:2:17"
+                        },
+                        "returnParameters": {
+                            "id": 5943,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5942,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5944,
+                                    "src": "1820:7:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 5941,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1820:7:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1819:9:17"
+                        },
+                        "scope": 5994,
+                        "src": "1769:60:17",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "documentation": {
+                            "id": 5945,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "1835:126:17",
+                            "text": " @return The maximum age the relay is considered registered by default by this `RelayRegistrar`, in seconds."
+                        },
+                        "functionSelector": "e04e5b4f",
+                        "id": 5950,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getRelayRegistrationMaxAge",
+                        "nameLocation": "1975:26:17",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 5946,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "2001:2:17"
+                        },
+                        "returnParameters": {
+                            "id": 5949,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5948,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5950,
+                                    "src": "2027:7:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 5947,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2027:7:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2026:9:17"
+                        },
+                        "scope": 5994,
+                        "src": "1966:70:17",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "documentation": {
+                            "id": 5951,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "2042:69:17",
+                            "text": " @notice Change the maximum relay registration age."
+                        },
+                        "functionSelector": "c240c456",
+                        "id": 5956,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "setRelayRegistrationMaxAge",
+                        "nameLocation": "2125:26:17",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 5954,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5953,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5956,
+                                    "src": "2152:7:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 5952,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2152:7:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2151:9:17"
+                        },
+                        "returnParameters": {
+                            "id": 5955,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "2169:0:17"
+                        },
+                        "scope": 5994,
+                        "src": "2116:54:17",
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "documentation": {
+                            "id": 5957,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "2176:288:17",
+                            "text": " @param relayManager An address of a Relay Manager.\n @param relayHub The address of the `RelayHub` contract for which this action is performed.\n @return info All the details of the given Relay Manager's registration. Throws if relay not found for `RelayHub`."
+                        },
+                        "functionSelector": "78ae6b87",
+                        "id": 5967,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getRelayInfo",
+                        "nameLocation": "2478:12:17",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 5962,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5959,
+                                    "mutability": "mutable",
+                                    "name": "relayHub",
+                                    "nameLocation": "2499:8:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5967,
+                                    "src": "2491:16:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 5958,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2491:7:17",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 5961,
+                                    "mutability": "mutable",
+                                    "name": "relayManager",
+                                    "nameLocation": "2517:12:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5967,
+                                    "src": "2509:20:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 5960,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2509:7:17",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2490:40:17"
+                        },
+                        "returnParameters": {
+                            "id": 5966,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5965,
+                                    "mutability": "mutable",
+                                    "name": "info",
+                                    "nameLocation": "2571:4:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5967,
+                                    "src": "2554:21:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_RelayInfo_$5917_memory_ptr",
+                                        "typeString": "struct IRelayRegistrar.RelayInfo"
+                                    },
+                                    "typeName": {
+                                        "id": 5964,
+                                        "nodeType": "UserDefinedTypeName",
+                                        "pathNode": {
+                                            "id": 5963,
+                                            "name": "RelayInfo",
+                                            "nodeType": "IdentifierPath",
+                                            "referencedDeclaration": 5917,
+                                            "src": "2554:9:17"
+                                        },
+                                        "referencedDeclaration": 5917,
+                                        "src": "2554:9:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_struct$_RelayInfo_$5917_storage_ptr",
+                                            "typeString": "struct IRelayRegistrar.RelayInfo"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2553:23:17"
+                        },
+                        "scope": 5994,
+                        "src": "2469:108:17",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "documentation": {
+                            "id": 5968,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "2583:266:17",
+                            "text": " @notice Read relay info of registered Relay Server from an on-chain storage.\n @param relayHub The address of the `RelayHub` contract for which this action is performed.\n @return info The list of `RelayInfo`s of registered Relay Servers"
+                        },
+                        "functionSelector": "f999ea82",
+                        "id": 5977,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "readRelayInfos",
+                        "nameLocation": "2863:14:17",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 5971,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5970,
+                                    "mutability": "mutable",
+                                    "name": "relayHub",
+                                    "nameLocation": "2895:8:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5977,
+                                    "src": "2887:16:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 5969,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2887:7:17",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2877:32:17"
+                        },
+                        "returnParameters": {
+                            "id": 5976,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5975,
+                                    "mutability": "mutable",
+                                    "name": "info",
+                                    "nameLocation": "2961:4:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5977,
+                                    "src": "2942:23:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_struct$_RelayInfo_$5917_memory_ptr_$dyn_memory_ptr",
+                                        "typeString": "struct IRelayRegistrar.RelayInfo[]"
+                                    },
+                                    "typeName": {
+                                        "baseType": {
+                                            "id": 5973,
+                                            "nodeType": "UserDefinedTypeName",
+                                            "pathNode": {
+                                                "id": 5972,
+                                                "name": "RelayInfo",
+                                                "nodeType": "IdentifierPath",
+                                                "referencedDeclaration": 5917,
+                                                "src": "2942:9:17"
+                                            },
+                                            "referencedDeclaration": 5917,
+                                            "src": "2942:9:17",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_struct$_RelayInfo_$5917_storage_ptr",
+                                                "typeString": "struct IRelayRegistrar.RelayInfo"
+                                            }
+                                        },
+                                        "id": 5974,
+                                        "nodeType": "ArrayTypeName",
+                                        "src": "2942:11:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_struct$_RelayInfo_$5917_storage_$dyn_storage_ptr",
+                                            "typeString": "struct IRelayRegistrar.RelayInfo[]"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2932:39:17"
+                        },
+                        "scope": 5994,
+                        "src": "2854:118:17",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "documentation": {
+                            "id": 5978,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "2978:555:17",
+                            "text": " @notice Read relay info of registered Relay Server from an on-chain storage.\n @param relayHub The address of the `RelayHub` contract for which this action is performed.\n @param maxCount The maximum amount of relays to be returned by this function.\n @param oldestBlockNumber The latest block number in which a Relay Server may be registered.\n @param oldestBlockTimestamp The latest block timestamp in which a Relay Server may be registered.\n @return info The list of `RelayInfo`s of registered Relay Servers"
+                        },
+                        "functionSelector": "55fb8d60",
+                        "id": 5993,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "readRelayInfosInRange",
+                        "nameLocation": "3547:21:17",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 5987,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5980,
+                                    "mutability": "mutable",
+                                    "name": "relayHub",
+                                    "nameLocation": "3586:8:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5993,
+                                    "src": "3578:16:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 5979,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "3578:7:17",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 5982,
+                                    "mutability": "mutable",
+                                    "name": "oldestBlockNumber",
+                                    "nameLocation": "3612:17:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5993,
+                                    "src": "3604:25:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 5981,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "3604:7:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 5984,
+                                    "mutability": "mutable",
+                                    "name": "oldestBlockTimestamp",
+                                    "nameLocation": "3647:20:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5993,
+                                    "src": "3639:28:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 5983,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "3639:7:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 5986,
+                                    "mutability": "mutable",
+                                    "name": "maxCount",
+                                    "nameLocation": "3685:8:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5993,
+                                    "src": "3677:16:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 5985,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "3677:7:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "3568:131:17"
+                        },
+                        "returnParameters": {
+                            "id": 5992,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5991,
+                                    "mutability": "mutable",
+                                    "name": "info",
+                                    "nameLocation": "3751:4:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5993,
+                                    "src": "3732:23:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_struct$_RelayInfo_$5917_memory_ptr_$dyn_memory_ptr",
+                                        "typeString": "struct IRelayRegistrar.RelayInfo[]"
+                                    },
+                                    "typeName": {
+                                        "baseType": {
+                                            "id": 5989,
+                                            "nodeType": "UserDefinedTypeName",
+                                            "pathNode": {
+                                                "id": 5988,
+                                                "name": "RelayInfo",
+                                                "nodeType": "IdentifierPath",
+                                                "referencedDeclaration": 5917,
+                                                "src": "3732:9:17"
+                                            },
+                                            "referencedDeclaration": 5917,
+                                            "src": "3732:9:17",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_struct$_RelayInfo_$5917_storage_ptr",
+                                                "typeString": "struct IRelayRegistrar.RelayInfo"
+                                            }
+                                        },
+                                        "id": 5990,
+                                        "nodeType": "ArrayTypeName",
+                                        "src": "3732:11:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_struct$_RelayInfo_$5917_storage_$dyn_storage_ptr",
+                                            "typeString": "struct IRelayRegistrar.RelayInfo[]"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "3722:39:17"
+                        },
+                        "scope": 5994,
+                        "src": "3538:224:17",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    }
+                ],
+                "scope": 5995,
+                "src": "349:3415:17",
+                "usedErrors": []
+            }
+        ],
+        "src": "0:3764:17"
+    },
+    "legacyAST": {
+        "absolutePath": "/Users/cameron/Rally/evm/gsn/packages/contracts/solpp/interfaces/IRelayRegistrar.sol",
+        "exportedSymbols": {
+            "IERC165": [
+                12318
+            ],
+            "IRelayRegistrar": [
+                5994
+            ]
+        },
+        "id": 5995,
+        "license": "GPL-3.0-only",
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 5898,
+                "literals": [
+                    "solidity",
+                    "^",
+                    "0.8",
+                    ".6"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "0:23:17"
+            },
+            {
+                "absolutePath": "@openzeppelin/contracts/interfaces/IERC165.sol",
+                "file": "@openzeppelin/contracts/interfaces/IERC165.sol",
+                "id": 5899,
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "ImportDirective",
+                "scope": 5995,
+                "sourceUnit": 10152,
+                "src": "66:56:17",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "abstract": false,
+                "baseContracts": [
+                    {
+                        "baseName": {
+                            "id": 5901,
+                            "name": "IERC165",
+                            "nodeType": "IdentifierPath",
+                            "referencedDeclaration": 12318,
+                            "src": "378:7:17"
+                        },
+                        "id": 5902,
+                        "nodeType": "InheritanceSpecifier",
+                        "src": "378:7:17"
+                    }
+                ],
+                "contractDependencies": [],
+                "contractKind": "interface",
+                "documentation": {
+                    "id": 5900,
+                    "nodeType": "StructuredDocumentation",
+                    "src": "124:224:17",
+                    "text": " @title The RelayRegistrar Interface\n @notice The on-chain registrar for all registered Relay Managers.\n @notice The client can use an implementation of a `RelayRegistrar` to find relay registration info."
+                },
+                "fullyImplemented": false,
+                "id": 5994,
+                "linearizedBaseContracts": [
+                    5994,
+                    12318
+                ],
+                "name": "IRelayRegistrar",
+                "nameLocation": "359:15:17",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "canonicalName": "IRelayRegistrar.RelayInfo",
+                        "id": 5917,
+                        "members": [
+                            {
+                                "constant": false,
+                                "id": 5904,
+                                "mutability": "mutable",
+                                "name": "lastSeenBlockNumber",
+                                "nameLocation": "594:19:17",
+                                "nodeType": "VariableDeclaration",
+                                "scope": 5917,
+                                "src": "587:26:17",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_uint32",
+                                    "typeString": "uint32"
+                                },
+                                "typeName": {
+                                    "id": 5903,
+                                    "name": "uint32",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "587:6:17",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint32",
+                                        "typeString": "uint32"
+                                    }
+                                },
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 5906,
+                                "mutability": "mutable",
+                                "name": "lastSeenTimestamp",
+                                "nameLocation": "674:17:17",
+                                "nodeType": "VariableDeclaration",
+                                "scope": 5917,
+                                "src": "667:24:17",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_uint40",
+                                    "typeString": "uint40"
+                                },
+                                "typeName": {
+                                    "id": 5905,
+                                    "name": "uint40",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "667:6:17",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint40",
+                                        "typeString": "uint40"
+                                    }
+                                },
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 5908,
+                                "mutability": "mutable",
+                                "name": "firstSeenBlockNumber",
+                                "nameLocation": "758:20:17",
+                                "nodeType": "VariableDeclaration",
+                                "scope": 5917,
+                                "src": "751:27:17",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_uint32",
+                                    "typeString": "uint32"
+                                },
+                                "typeName": {
+                                    "id": 5907,
+                                    "name": "uint32",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "751:6:17",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint32",
+                                        "typeString": "uint32"
+                                    }
+                                },
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 5910,
+                                "mutability": "mutable",
+                                "name": "firstSeenTimestamp",
+                                "nameLocation": "848:18:17",
+                                "nodeType": "VariableDeclaration",
+                                "scope": 5917,
+                                "src": "841:25:17",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_uint40",
+                                    "typeString": "uint40"
+                                },
+                                "typeName": {
+                                    "id": 5909,
+                                    "name": "uint40",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "841:6:17",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint40",
+                                        "typeString": "uint40"
+                                    }
+                                },
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 5914,
+                                "mutability": "mutable",
+                                "name": "urlParts",
+                                "nameLocation": "887:8:17",
+                                "nodeType": "VariableDeclaration",
+                                "scope": 5917,
+                                "src": "876:19:17",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_array$_t_bytes32_$3_storage_ptr",
+                                    "typeString": "bytes32[3]"
+                                },
+                                "typeName": {
+                                    "baseType": {
+                                        "id": 5911,
+                                        "name": "bytes32",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "876:7:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes32",
+                                            "typeString": "bytes32"
+                                        }
+                                    },
+                                    "id": 5913,
+                                    "length": {
+                                        "hexValue": "33",
+                                        "id": 5912,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": true,
+                                        "kind": "number",
+                                        "lValueRequested": false,
+                                        "nodeType": "Literal",
+                                        "src": "884:1:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_rational_3_by_1",
+                                            "typeString": "int_const 3"
+                                        },
+                                        "value": "3"
+                                    },
+                                    "nodeType": "ArrayTypeName",
+                                    "src": "876:10:17",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_bytes32_$3_storage_ptr",
+                                        "typeString": "bytes32[3]"
+                                    }
+                                },
+                                "visibility": "internal"
+                            },
+                            {
+                                "constant": false,
+                                "id": 5916,
+                                "mutability": "mutable",
+                                "name": "relayManager",
+                                "nameLocation": "913:12:17",
+                                "nodeType": "VariableDeclaration",
+                                "scope": 5917,
+                                "src": "905:20:17",
+                                "stateVariable": false,
+                                "storageLocation": "default",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_address",
+                                    "typeString": "address"
+                                },
+                                "typeName": {
+                                    "id": 5915,
+                                    "name": "address",
+                                    "nodeType": "ElementaryTypeName",
+                                    "src": "905:7:17",
+                                    "stateMutability": "nonpayable",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    }
+                                },
+                                "visibility": "internal"
+                            }
+                        ],
+                        "name": "RelayInfo",
+                        "nameLocation": "526:9:17",
+                        "nodeType": "StructDefinition",
+                        "scope": 5994,
+                        "src": "519:413:17",
+                        "visibility": "public"
+                    },
+                    {
+                        "anonymous": false,
+                        "documentation": {
+                            "id": 5918,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "938:173:17",
+                            "text": " @notice Emitted when a relay server registers or updates its details.\n Looking up these events allows a client to discover registered Relay Servers."
+                        },
+                        "id": 5928,
+                        "name": "RelayServerRegistered",
+                        "nameLocation": "1122:21:17",
+                        "nodeType": "EventDefinition",
+                        "parameters": {
+                            "id": 5927,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5920,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "relayManager",
+                                    "nameLocation": "1169:12:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5928,
+                                    "src": "1153:28:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 5919,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1153:7:17",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 5922,
+                                    "indexed": true,
+                                    "mutability": "mutable",
+                                    "name": "relayHub",
+                                    "nameLocation": "1207:8:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5928,
+                                    "src": "1191:24:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 5921,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1191:7:17",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 5926,
+                                    "indexed": false,
+                                    "mutability": "mutable",
+                                    "name": "relayUrl",
+                                    "nameLocation": "1236:8:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5928,
+                                    "src": "1225:19:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_bytes32_$3_memory_ptr",
+                                        "typeString": "bytes32[3]"
+                                    },
+                                    "typeName": {
+                                        "baseType": {
+                                            "id": 5923,
+                                            "name": "bytes32",
+                                            "nodeType": "ElementaryTypeName",
+                                            "src": "1225:7:17",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_bytes32",
+                                                "typeString": "bytes32"
+                                            }
+                                        },
+                                        "id": 5925,
+                                        "length": {
+                                            "hexValue": "33",
+                                            "id": 5924,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": true,
+                                            "kind": "number",
+                                            "lValueRequested": false,
+                                            "nodeType": "Literal",
+                                            "src": "1233:1:17",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_rational_3_by_1",
+                                                "typeString": "int_const 3"
+                                            },
+                                            "value": "3"
+                                        },
+                                        "nodeType": "ArrayTypeName",
+                                        "src": "1225:10:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_bytes32_$3_storage_ptr",
+                                            "typeString": "bytes32[3]"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1143:107:17"
+                        },
+                        "src": "1116:135:17"
+                    },
+                    {
+                        "documentation": {
+                            "id": 5929,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "1257:309:17",
+                            "text": " @notice This function is called by Relay Servers in order to register or to update their registration.\n @param relayHub The address of the `RelayHub` contract for which this action is performed.\n @param url The URL of the Relay Server that is listening to the clients' requests."
+                        },
+                        "functionSelector": "953f1768",
+                        "id": 5938,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "registerRelayServer",
+                        "nameLocation": "1580:19:17",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 5936,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5931,
+                                    "mutability": "mutable",
+                                    "name": "relayHub",
+                                    "nameLocation": "1617:8:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5938,
+                                    "src": "1609:16:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 5930,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1609:7:17",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 5935,
+                                    "mutability": "mutable",
+                                    "name": "url",
+                                    "nameLocation": "1655:3:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5938,
+                                    "src": "1635:23:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "calldata",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_bytes32_$3_calldata_ptr",
+                                        "typeString": "bytes32[3]"
+                                    },
+                                    "typeName": {
+                                        "baseType": {
+                                            "id": 5932,
+                                            "name": "bytes32",
+                                            "nodeType": "ElementaryTypeName",
+                                            "src": "1635:7:17",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_bytes32",
+                                                "typeString": "bytes32"
+                                            }
+                                        },
+                                        "id": 5934,
+                                        "length": {
+                                            "hexValue": "33",
+                                            "id": 5933,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": true,
+                                            "kind": "number",
+                                            "lValueRequested": false,
+                                            "nodeType": "Literal",
+                                            "src": "1643:1:17",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_rational_3_by_1",
+                                                "typeString": "int_const 3"
+                                            },
+                                            "value": "3"
+                                        },
+                                        "nodeType": "ArrayTypeName",
+                                        "src": "1635:10:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_bytes32_$3_storage_ptr",
+                                            "typeString": "bytes32[3]"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1599:65:17"
+                        },
+                        "returnParameters": {
+                            "id": 5937,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "1673:0:17"
+                        },
+                        "scope": 5994,
+                        "src": "1571:103:17",
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "documentation": {
+                            "id": 5939,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "1680:84:17",
+                            "text": " @return The block number in which the contract has been deployed."
+                        },
+                        "functionSelector": "20ffd56d",
+                        "id": 5944,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getCreationBlock",
+                        "nameLocation": "1778:16:17",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 5940,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "1794:2:17"
+                        },
+                        "returnParameters": {
+                            "id": 5943,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5942,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5944,
+                                    "src": "1820:7:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 5941,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1820:7:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1819:9:17"
+                        },
+                        "scope": 5994,
+                        "src": "1769:60:17",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "documentation": {
+                            "id": 5945,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "1835:126:17",
+                            "text": " @return The maximum age the relay is considered registered by default by this `RelayRegistrar`, in seconds."
+                        },
+                        "functionSelector": "e04e5b4f",
+                        "id": 5950,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getRelayRegistrationMaxAge",
+                        "nameLocation": "1975:26:17",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 5946,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "2001:2:17"
+                        },
+                        "returnParameters": {
+                            "id": 5949,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5948,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5950,
+                                    "src": "2027:7:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 5947,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2027:7:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2026:9:17"
+                        },
+                        "scope": 5994,
+                        "src": "1966:70:17",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "documentation": {
+                            "id": 5951,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "2042:69:17",
+                            "text": " @notice Change the maximum relay registration age."
+                        },
+                        "functionSelector": "c240c456",
+                        "id": 5956,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "setRelayRegistrationMaxAge",
+                        "nameLocation": "2125:26:17",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 5954,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5953,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5956,
+                                    "src": "2152:7:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 5952,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2152:7:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2151:9:17"
+                        },
+                        "returnParameters": {
+                            "id": 5955,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "2169:0:17"
+                        },
+                        "scope": 5994,
+                        "src": "2116:54:17",
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "documentation": {
+                            "id": 5957,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "2176:288:17",
+                            "text": " @param relayManager An address of a Relay Manager.\n @param relayHub The address of the `RelayHub` contract for which this action is performed.\n @return info All the details of the given Relay Manager's registration. Throws if relay not found for `RelayHub`."
+                        },
+                        "functionSelector": "78ae6b87",
+                        "id": 5967,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getRelayInfo",
+                        "nameLocation": "2478:12:17",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 5962,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5959,
+                                    "mutability": "mutable",
+                                    "name": "relayHub",
+                                    "nameLocation": "2499:8:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5967,
+                                    "src": "2491:16:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 5958,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2491:7:17",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 5961,
+                                    "mutability": "mutable",
+                                    "name": "relayManager",
+                                    "nameLocation": "2517:12:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5967,
+                                    "src": "2509:20:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 5960,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2509:7:17",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2490:40:17"
+                        },
+                        "returnParameters": {
+                            "id": 5966,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5965,
+                                    "mutability": "mutable",
+                                    "name": "info",
+                                    "nameLocation": "2571:4:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5967,
+                                    "src": "2554:21:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_RelayInfo_$5917_memory_ptr",
+                                        "typeString": "struct IRelayRegistrar.RelayInfo"
+                                    },
+                                    "typeName": {
+                                        "id": 5964,
+                                        "nodeType": "UserDefinedTypeName",
+                                        "pathNode": {
+                                            "id": 5963,
+                                            "name": "RelayInfo",
+                                            "nodeType": "IdentifierPath",
+                                            "referencedDeclaration": 5917,
+                                            "src": "2554:9:17"
+                                        },
+                                        "referencedDeclaration": 5917,
+                                        "src": "2554:9:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_struct$_RelayInfo_$5917_storage_ptr",
+                                            "typeString": "struct IRelayRegistrar.RelayInfo"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2553:23:17"
+                        },
+                        "scope": 5994,
+                        "src": "2469:108:17",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "documentation": {
+                            "id": 5968,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "2583:266:17",
+                            "text": " @notice Read relay info of registered Relay Server from an on-chain storage.\n @param relayHub The address of the `RelayHub` contract for which this action is performed.\n @return info The list of `RelayInfo`s of registered Relay Servers"
+                        },
+                        "functionSelector": "f999ea82",
+                        "id": 5977,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "readRelayInfos",
+                        "nameLocation": "2863:14:17",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 5971,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5970,
+                                    "mutability": "mutable",
+                                    "name": "relayHub",
+                                    "nameLocation": "2895:8:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5977,
+                                    "src": "2887:16:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 5969,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "2887:7:17",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2877:32:17"
+                        },
+                        "returnParameters": {
+                            "id": 5976,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5975,
+                                    "mutability": "mutable",
+                                    "name": "info",
+                                    "nameLocation": "2961:4:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5977,
+                                    "src": "2942:23:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_struct$_RelayInfo_$5917_memory_ptr_$dyn_memory_ptr",
+                                        "typeString": "struct IRelayRegistrar.RelayInfo[]"
+                                    },
+                                    "typeName": {
+                                        "baseType": {
+                                            "id": 5973,
+                                            "nodeType": "UserDefinedTypeName",
+                                            "pathNode": {
+                                                "id": 5972,
+                                                "name": "RelayInfo",
+                                                "nodeType": "IdentifierPath",
+                                                "referencedDeclaration": 5917,
+                                                "src": "2942:9:17"
+                                            },
+                                            "referencedDeclaration": 5917,
+                                            "src": "2942:9:17",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_struct$_RelayInfo_$5917_storage_ptr",
+                                                "typeString": "struct IRelayRegistrar.RelayInfo"
+                                            }
+                                        },
+                                        "id": 5974,
+                                        "nodeType": "ArrayTypeName",
+                                        "src": "2942:11:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_struct$_RelayInfo_$5917_storage_$dyn_storage_ptr",
+                                            "typeString": "struct IRelayRegistrar.RelayInfo[]"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "2932:39:17"
+                        },
+                        "scope": 5994,
+                        "src": "2854:118:17",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    },
+                    {
+                        "documentation": {
+                            "id": 5978,
+                            "nodeType": "StructuredDocumentation",
+                            "src": "2978:555:17",
+                            "text": " @notice Read relay info of registered Relay Server from an on-chain storage.\n @param relayHub The address of the `RelayHub` contract for which this action is performed.\n @param maxCount The maximum amount of relays to be returned by this function.\n @param oldestBlockNumber The latest block number in which a Relay Server may be registered.\n @param oldestBlockTimestamp The latest block timestamp in which a Relay Server may be registered.\n @return info The list of `RelayInfo`s of registered Relay Servers"
+                        },
+                        "functionSelector": "55fb8d60",
+                        "id": 5993,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "readRelayInfosInRange",
+                        "nameLocation": "3547:21:17",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 5987,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5980,
+                                    "mutability": "mutable",
+                                    "name": "relayHub",
+                                    "nameLocation": "3586:8:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5993,
+                                    "src": "3578:16:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 5979,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "3578:7:17",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 5982,
+                                    "mutability": "mutable",
+                                    "name": "oldestBlockNumber",
+                                    "nameLocation": "3612:17:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5993,
+                                    "src": "3604:25:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 5981,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "3604:7:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 5984,
+                                    "mutability": "mutable",
+                                    "name": "oldestBlockTimestamp",
+                                    "nameLocation": "3647:20:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5993,
+                                    "src": "3639:28:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 5983,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "3639:7:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 5986,
+                                    "mutability": "mutable",
+                                    "name": "maxCount",
+                                    "nameLocation": "3685:8:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5993,
+                                    "src": "3677:16:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 5985,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "3677:7:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "3568:131:17"
+                        },
+                        "returnParameters": {
+                            "id": 5992,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5991,
+                                    "mutability": "mutable",
+                                    "name": "info",
+                                    "nameLocation": "3751:4:17",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5993,
+                                    "src": "3732:23:17",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_struct$_RelayInfo_$5917_memory_ptr_$dyn_memory_ptr",
+                                        "typeString": "struct IRelayRegistrar.RelayInfo[]"
+                                    },
+                                    "typeName": {
+                                        "baseType": {
+                                            "id": 5989,
+                                            "nodeType": "UserDefinedTypeName",
+                                            "pathNode": {
+                                                "id": 5988,
+                                                "name": "RelayInfo",
+                                                "nodeType": "IdentifierPath",
+                                                "referencedDeclaration": 5917,
+                                                "src": "3732:9:17"
+                                            },
+                                            "referencedDeclaration": 5917,
+                                            "src": "3732:9:17",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_struct$_RelayInfo_$5917_storage_ptr",
+                                                "typeString": "struct IRelayRegistrar.RelayInfo"
+                                            }
+                                        },
+                                        "id": 5990,
+                                        "nodeType": "ArrayTypeName",
+                                        "src": "3732:11:17",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_struct$_RelayInfo_$5917_storage_$dyn_storage_ptr",
+                                            "typeString": "struct IRelayRegistrar.RelayInfo[]"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "3722:39:17"
+                        },
+                        "scope": 5994,
+                        "src": "3538:224:17",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    }
+                ],
+                "scope": 5995,
+                "src": "349:3415:17",
+                "usedErrors": []
+            }
+        ],
+        "src": "0:3764:17"
+    },
+    "compiler": {
+        "name": "solc",
+        "version": "0.8.7+commit.e28d00a7.Emscripten.clang"
+    },
+    "networks": {},
+    "schemaVersion": "3.1.0",
+    "updatedAt": "2023-06-08T13:50:08.484Z",
+    "devdoc": {
+        "kind": "dev",
+        "methods": {
+            "getCreationBlock()": {
+                "returns": {
+                    "_0": "The block number in which the contract has been deployed."
+                }
+            },
+            "getRelayInfo(address,address)": {
+                "params": {
+                    "relayHub": "The address of the `RelayHub` contract for which this action is performed.",
+                    "relayManager": "An address of a Relay Manager."
+                },
+                "returns": {
+                    "info": "All the details of the given Relay Manager's registration. Throws if relay not found for `RelayHub`."
+                }
+            },
+            "getRelayRegistrationMaxAge()": {
+                "returns": {
+                    "_0": "The maximum age the relay is considered registered by default by this `RelayRegistrar`, in seconds."
+                }
+            },
+            "readRelayInfos(address)": {
+                "params": {
+                    "relayHub": "The address of the `RelayHub` contract for which this action is performed."
+                },
+                "returns": {
+                    "info": "The list of `RelayInfo`s of registered Relay Servers"
+                }
+            },
+            "readRelayInfosInRange(address,uint256,uint256,uint256)": {
+                "params": {
+                    "maxCount": "The maximum amount of relays to be returned by this function.",
+                    "oldestBlockNumber": "The latest block number in which a Relay Server may be registered.",
+                    "oldestBlockTimestamp": "The latest block timestamp in which a Relay Server may be registered.",
+                    "relayHub": "The address of the `RelayHub` contract for which this action is performed."
+                },
+                "returns": {
+                    "info": "The list of `RelayInfo`s of registered Relay Servers"
+                }
+            },
+            "registerRelayServer(address,bytes32[3])": {
+                "params": {
+                    "relayHub": "The address of the `RelayHub` contract for which this action is performed.",
+                    "url": "The URL of the Relay Server that is listening to the clients' requests."
+                }
+            },
+            "supportsInterface(bytes4)": {
+                "details": "Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas."
+            }
+        },
+        "title": "The RelayRegistrar Interface",
+        "version": 1
+    },
+    "userdoc": {
+        "events": {
+            "RelayServerRegistered(address,address,bytes32[3])": {
+                "notice": "Emitted when a relay server registers or updates its details. Looking up these events allows a client to discover registered Relay Servers."
+            }
+        },
+        "kind": "user",
+        "methods": {
+            "readRelayInfos(address)": {
+                "notice": "Read relay info of registered Relay Server from an on-chain storage."
+            },
+            "readRelayInfosInRange(address,uint256,uint256,uint256)": {
+                "notice": "Read relay info of registered Relay Server from an on-chain storage."
+            },
+            "registerRelayServer(address,bytes32[3])": {
+                "notice": "This function is called by Relay Servers in order to register or to update their registration."
+            },
+            "setRelayRegistrationMaxAge(uint256)": {
+                "notice": "Change the maximum relay registration age."
+            }
+        },
+        "notice": "The on-chain registrar for all registered Relay Managers.The client can use an implementation of a `RelayRegistrar` to find relay registration info.",
+        "version": 1
+    }
+}
