@@ -29,6 +29,7 @@
     "@opengsn/logger": "3.0.0-beta.3",
     "@opengsn/provider": "3.0.0-beta.3",
     "@opengsn/relay": "3.0.0-beta.3",
+    "@opengsn/contracts": "3.0.0-beta.3",
     "@truffle/hdwallet-provider": "^2.0.10",
     "@types/asciichart": "^1.5.4",
     "@types/clear": "^0.1.1",
